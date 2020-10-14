@@ -13,11 +13,45 @@
     -webkit-transition: all .2s ease;
     -o-transition: all .2s ease;
     transition: all .2s ease;
-    width: 280px;
     z-index: 1000;
+    width: 70px;
+    border-right: 1px solid rgba(0, 0, 0, .07);
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    .sidebar-into {
+        text-align: center;
+        padding: 7px 15px;
+        border-bottom: 1px solid rgba(0, 0, 0, .07);
+    }
+    &.opensidebar {
+        width: 280px;
+        -webkit-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+    }
 }
 
 .contenido-completo {
     padding-left: 280px;
     min-height: 100vh;
+    background-color: #f9fafb;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    &.collapsedSidebar {
+        padding-left: 70px;
+        -webkit-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+    }
+}
+
+.header {
+    padding: 20px 15px;
+    background: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, .07);
+    p {
+        margin-bottom: 0px;
+    }
+}
+
+.cursor-pointer {
+    cursor: pointer;
 }

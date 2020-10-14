@@ -1,8 +1,8 @@
 <div class="dashboard">
-    <div class="sidebar">
+    <div class="sidebar" [class.opensidebar]="openSidebar">
         <app-sidebar></app-sidebar>
     </div>
-    <div class="contenido-completo">
+    <div class="contenido-completo" [class.collapsedSidebar]="!openSidebar">
         <div class="header">
             <app-header></app-header>
         </div>

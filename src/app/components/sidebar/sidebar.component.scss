@@ -6,3 +6,45 @@
         border-radius: 50px;
     }
 }
+
+.sidebar-up {
+    .lista {
+        padding: 30px;
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            list-style: none;
+            position: relative;
+            white-space: nowrap;
+            padding-bottom: 20px;
+        }
+        i {
+            font-size: 22px;
+            display: inline-block;
+        }
+        p {
+            display: inline-block;
+            padding-left: 15px;
+            margin: 0;
+            opacity: 0;
+            position: relative;
+            white-space: nowrap;
+            -webkit-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+        }
+    }
+}
+
+.azul-claro {
+    color: #2196f3;
+}
+
+.naranja-claro {
+    color: #ff5722;
+}
+
+.rojo-claro {
+    color: #f44336;
+}

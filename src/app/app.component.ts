@@ -15,7 +15,6 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.dashboardService.openSidebarSubject.subscribe( (respuesta) => {
-      console.log(respuesta)
       this.openSidebar = respuesta;
     });    
   }

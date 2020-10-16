@@ -35,6 +35,7 @@ a {
     -webkit-transition: all 0.2s ease;
     transition: all 0.2s ease;
     .sidebar-into {
+        position: relative;
         text-align: center;
         padding: 7px 15px;
         border-bottom: 1px solid rgba(0, 0, 0, .07);
@@ -83,4 +84,36 @@ a {
 
 .cursor-pointer {
     cursor: pointer;
+}
+
+.cerrar-sidebarrp {
+    display: none;
+}
+
+@media (max-width: 991px) {
+    .sidebar {
+        margin-left: -280px;
+        &.opensidebar {
+            width: 280px;
+            margin-left: 0px;
+        }
+    }
+    .contenido-completo {
+        padding-left: 0;
+        &.collapsedSidebar {
+            padding-left: 0;
+        }
+    }
+    .cerrar-sidebarrp {
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 25px;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        font-size: 20px;
+        i {
+            color: #72777a;
+        }
+    }
 }

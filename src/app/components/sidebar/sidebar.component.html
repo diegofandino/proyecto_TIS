@@ -3,6 +3,9 @@
         <div class="logo">
             <img src="assets/uv-dashboard.png" alt="uv_dashboard">
         </div>
+        <div (click)="opensidebar()" class="cerrar-sidebarrp">
+            <i class="fas fa-angle-left"></i>
+        </div>
     </div>
 
     <div class="lista">
@@ -27,8 +30,20 @@
             </li>
             <li>
                 <a href="#" class="cursor-pointer">
-                    <i class="far fa-building rojo-claro"></i>
+                    <i class="far fa-check-square morado-claro"></i>
                     <p>Inventario</p>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="cursor-pointer">
+                    <i class="far fa-address-card verde-claro"></i>
+                    <p>Trabajadores</p>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="cursor-pointer">
+                    <i class="far fa-file-alt azul-claro2"></i>
+                    <p>Reportes</p>
                 </a>
             </li>
         </ul>

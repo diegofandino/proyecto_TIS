@@ -16,6 +16,13 @@ export class HeaderComponent implements OnInit {
   }
 
   opensidebar(){
+
+    this.dashboardService.openSidebarSubject.subscribe(
+      (respuesta) => {
+        this.openSidebar = respuesta;
+      }
+    );
+    
     this.openSidebar = !this.openSidebar;
     this.dashboardService.setModalStatus(this.openSidebar);
   }

@@ -136,3 +136,31 @@ a {
         }
     }
 }
+
+@media (max-width: 780px) {
+    .titulos-principales {
+        h1 {
+            font-size: 22px;
+            letter-spacing: 0;
+        }
+    }
+}
+
+@media (max-width: 580px) {
+    .titulos-principales {
+        text-align: center !important;
+        &:last-child {
+            padding-bottom: 5px;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .contenedor-paginador {
+        display: block !important;
+        text-align: center;
+        .pagination {
+            justify-content: center;
+        }
+    }
+}

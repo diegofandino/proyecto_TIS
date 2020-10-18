@@ -103,6 +103,12 @@ a {
     display: none;
 }
 
+.table {
+    td {
+        vertical-align: middle;
+    }
+}
+
 @media (max-width: 991px) {
     .sidebar {
         margin-left: -280px;

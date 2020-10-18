@@ -1,0 +1,24 @@
+::ng-deep .modal-footer {
+    justify-content: center;
+}
+
+.modal-contenedor {
+    .close {
+        &:focus {
+            outline: none;
+        }
+    }
+    .modal-title {
+        font-weight: 600;
+        letter-spacing: -1px;
+        padding-left: 10px;
+    }
+    .modal-body {
+        padding: 25px 15px;
+        text-align: justify;
+        p {
+            margin: 0;
+            text-align: center;
+        }
+    }
+}

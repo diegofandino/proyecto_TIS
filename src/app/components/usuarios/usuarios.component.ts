@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from '../../components/modal/modal.component';
+
 
 @Component({
   selector: 'app-usuarios',
@@ -48,7 +51,7 @@ export class UsuariosComponent implements OnInit {
   pageSize = 5;
   collectionSize = this.COUNTRIES.length;
   countries: any[];
-  constructor() { }
+  constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.refreshCountries();
@@ -58,6 +61,12 @@ export class UsuariosComponent implements OnInit {
     this.countries = this.COUNTRIES
       .map((country, i) => ({id: i + 1, ...country}))
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+  }
+
+  open(id) {
+    const modalRef = this.modalService.open(ModalComponent, { centered: true });
+    modalRef.componentInstance.escenario = 'usuarios';
+    modalRef.componentInstance.id = id;
   }
 
 }

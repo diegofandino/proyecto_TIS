@@ -11,6 +11,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ContenidoComponent } from './components/contenido/contenido.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
     SidebarComponent,
     HeaderComponent,
     ContenidoComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

@@ -9,7 +9,7 @@
         <form [formGroup]="crearUsuarios" #formDir (ngSubmit)="crear(formDir)">
 
             <div class="row">
-                <div class="col-6">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
                         <input type="text" class="form-control" id="nombres" placeholder="Nombres*" formControlName="nombres">
                         <div *ngIf=" crearUsuarios.controls['nombres'].invalid && (crearUsuarios.controls['nombres'].dirty || crearUsuarios.controls['nombres'].touched)" class="alert alert-danger formulario-error">
@@ -17,7 +17,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Apellidos*" id="apellidos" formControlName="apellidos">
                         <div *ngIf=" crearUsuarios.controls['apellidos'].invalid && (crearUsuarios.controls['apellidos'].dirty || crearUsuarios.controls['apellidos'].touched)" class="alert alert-danger formulario-error">
@@ -28,7 +28,7 @@
             </div>
 
             <div class="row">
-                <div class="col-6">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
                         <select name="genero" class="form-control" id="genero" formControlName="genero">
                             <option value="" disabled selected>Genero*</option>
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Teléfono*" id="telefono" formControlName="telefono">
                         <div *ngIf=" crearUsuarios.controls['telefono'].invalid && (crearUsuarios.controls['telefono'].dirty || crearUsuarios.controls['telefono'].touched)" class="alert alert-danger formulario-error">
@@ -66,7 +66,7 @@
             </div>
 
             <div class="row">
-                <div class="col-6">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
                         <select name="rol" class="form-control" id="rol" formControlName="rol">
                             <option value="" disabled selected>Rol*</option>
@@ -80,7 +80,7 @@
                         <div *ngIf="crearUsuarios.controls['rol'].errors.required">El campo Rol es requerido</div>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Cargo*" id="cargo" formControlName="cargo">
                         <div *ngIf=" crearUsuarios.controls['cargo'].invalid && (crearUsuarios.controls['cargo'].dirty || crearUsuarios.controls['cargo'].touched)" class="alert alert-danger formulario-error">
@@ -91,11 +91,11 @@
             </div>
 
             <div class="row botones-creacion">
-                <div class="col-6 text-right">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 text-right">
                     <button type="submit" class="btn btn-success"> Crear </button>
                 </div>
-                <div class="col-6 text-left">
-                    <button type="button" class="btn btn-danger"> Cancelar </button>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 text-left">
+                    <button type="button" (click)="resetear()" class="btn btn-danger"> Cancelar </button>
                 </div>
             </div>
 

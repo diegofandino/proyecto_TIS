@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crear-usuario',
@@ -9,7 +10,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 export class CrearUsuarioComponent implements OnInit {
 
   crearUsuarios: FormGroup
-  constructor(private formbuilder: FormBuilder) { }
+  constructor(private formbuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -38,6 +39,12 @@ export class CrearUsuarioComponent implements OnInit {
     }
 
     console.log(values);
+  }
+
+  resetear(){
+    this.crearUsuarios.reset();
+    this.crearUsuarios.markAsUntouched();
+    this.router.navigate(['/usuarios']);
   }
 
 }

@@ -1,0 +1,105 @@
+<div class="container crear-usuarios">
+    <div class="row align-items-center">
+        <div class="col-lg-12 text-center titulos-principales">
+            <h1>Modificar usuario</h1>
+        </div>
+    </div>
+
+    <div class="formulario-crear">
+        <form [formGroup]="modificarUsuarios" #formDir (ngSubmit)="modificar(formDir)">
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="nombres" placeholder="Nombres*" formControlName="nombres">
+                        <div *ngIf=" modificarUsuarios.controls['nombres'].invalid && (modificarUsuarios.controls['nombres'].dirty || modificarUsuarios.controls['nombres'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarUsuarios.controls['nombres'].errors.required">El campo Nombres es requerido</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Apellidos*" id="apellidos" formControlName="apellidos">
+                        <div *ngIf=" modificarUsuarios.controls['apellidos'].invalid && (modificarUsuarios.controls['apellidos'].dirty || modificarUsuarios.controls['apellidos'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarUsuarios.controls['apellidos'].errors.required">El campo Apellidos es requerido</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <select name="genero" class="form-control" id="genero" formControlName="genero">
+                            <option value="" disabled selected>Genero*</option>
+                            <option value="masculino"> Masculino </option>
+                            <option value="femenino"> Femenino </option>
+                            <option value="otro"> Otro </option>
+                        </select>
+                        <div *ngIf=" modificarUsuarios.controls['genero'].invalid && (modificarUsuarios.controls['genero'].dirty || modificarUsuarios.controls['genero'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarUsuarios.controls['genero'].errors.required">El campo Genero es requerido</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Teléfono*" id="telefono" formControlName="telefono">
+                        <div *ngIf=" modificarUsuarios.controls['telefono'].invalid && (modificarUsuarios.controls['telefono'].dirty || modificarUsuarios.controls['telefono'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarUsuarios.controls['telefono'].errors.required">El campo Teléfono es requerido</div>
+                            <div *ngIf="modificarUsuarios.controls['telefono'].errors.maxlength">El campo Teléfono debe tener máximo 10 carácteres</div>
+                            <div *ngIf="modificarUsuarios.controls['telefono'].errors.pattern">El campo Teléfono es tipo numérico</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Correo electrónico*" id="correo" formControlName="correo">
+                        <div *ngIf=" modificarUsuarios.controls['correo'].invalid && (modificarUsuarios.controls['correo'].dirty || modificarUsuarios.controls['correo'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarUsuarios.controls['correo'].errors.required">El campo Correo electrónico es requerido</div>
+                            <div *ngIf="modificarUsuarios.controls['correo'].errors.pattern">El campo Correo electrónico no es de tipo E-mail</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <select name="rol" class="form-control" id="rol" formControlName="rol">
+                            <option value="" disabled selected>Rol*</option>
+                            <option value="administrador"> Administrador </option>
+                            <option value="jefe de obra"> Jefe de Obra </option>
+                            <option value="supervisor "> Supervisor  </option>
+                            <option value="tecnico "> Técnico  </option>
+                        </select>
+                    </div>
+                    <div *ngIf=" modificarUsuarios.controls['rol'].invalid && (modificarUsuarios.controls['rol'].dirty || modificarUsuarios.controls['rol'].touched)" class="alert alert-danger formulario-error">
+                        <div *ngIf="modificarUsuarios.controls['rol'].errors.required">El campo Rol es requerido</div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Cargo*" id="cargo" formControlName="cargo">
+                        <div *ngIf=" modificarUsuarios.controls['cargo'].invalid && (modificarUsuarios.controls['cargo'].dirty || modificarUsuarios.controls['cargo'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarUsuarios.controls['cargo'].errors.required">El campo Cargo es requerido</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row botones-creacion">
+                <div class="col-6 text-right">
+                    <button type="submit" class="btn btn-success"> Crear </button>
+                </div>
+                <div class="col-6 text-left">
+                    <button type="button" (click)="resetear()" class="btn btn-danger"> Cancelar </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</div>

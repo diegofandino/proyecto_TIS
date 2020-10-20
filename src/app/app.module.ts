@@ -14,6 +14,7 @@ import { ContenidoComponent } from './components/contenido/contenido.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { CrearUsuarioComponent } from './components/usuarios/crear-usuario.component';
+import { ModificarUsuarioComponent } from './components/usuarios/modificar-usuario.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CrearUsuarioComponent } from './components/usuarios/crear-usuario.compo
     ContenidoComponent,
     UsuariosComponent,
     ModalComponent,
-    CrearUsuarioComponent
+    CrearUsuarioComponent,
+    ModificarUsuarioComponent
   ],
   imports: [
     BrowserModule,

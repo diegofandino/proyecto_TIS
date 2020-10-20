@@ -24,6 +24,12 @@
 
 .box-contenido {
     margin-bottom: 20px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
     h2 {
         font-size: 22px;
         font-weight: 600;

@@ -15,6 +15,9 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { CrearUsuarioComponent } from './components/usuarios/crear-usuario.component';
 import { ModificarUsuarioComponent } from './components/usuarios/modificar-usuario.component';
+import { TrabajadoresComponent } from './components/trabajadores/trabajadores.component';
+import { CrearTrabajadoresComponent } from './components/trabajadores/crear-trabajadores.component';
+import { ModificarTrabajadoresComponent } from './components/trabajadores/modificar-trabajadores.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { ModificarUsuarioComponent } from './components/usuarios/modificar-usuar
     UsuariosComponent,
     ModalComponent,
     CrearUsuarioComponent,
-    ModificarUsuarioComponent
+    ModificarUsuarioComponent,
+    TrabajadoresComponent,
+    CrearTrabajadoresComponent,
+    ModificarTrabajadoresComponent
   ],
   imports: [
     BrowserModule,

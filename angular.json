@@ -127,6 +127,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "FronTIS"
+    }
+  },
+  "defaultProject": "FronTIS",
+  "cli": {
+    "analytics": "ca6563c0-f5e4-48b1-bbca-7f80f712adbb"
+  }
 }

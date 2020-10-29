@@ -11,17 +11,38 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="nombres" placeholder="Nombres*" formControlName="nombres">
-                        <div *ngIf=" crearUsuarios.controls['nombres'].invalid && (crearUsuarios.controls['nombres'].dirty || crearUsuarios.controls['nombres'].touched)" class="alert alert-danger formulario-error">
-                            <div *ngIf="crearUsuarios.controls['nombres'].errors.required">El campo Nombres es requerido</div>
+                        <input type="text" class="form-control" id="nombre" placeholder="Nombre*" formControlName="nombre">
+                        <div *ngIf=" crearUsuarios.controls['nombre'].invalid && (crearUsuarios.controls['nombre'].dirty || crearUsuarios.controls['nombre'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="crearUsuarios.controls['nombre'].errors.required">El campo Nombres es requerido</div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Apellidos*" id="apellidos" formControlName="apellidos">
-                        <div *ngIf=" crearUsuarios.controls['apellidos'].invalid && (crearUsuarios.controls['apellidos'].dirty || crearUsuarios.controls['apellidos'].touched)" class="alert alert-danger formulario-error">
-                            <div *ngIf="crearUsuarios.controls['apellidos'].errors.required">El campo Apellidos es requerido</div>
+                        <input type="text" class="form-control" placeholder="Apellidos*" id="apellido" formControlName="apellido">
+                        <div *ngIf=" crearUsuarios.controls['apellido'].invalid && (crearUsuarios.controls['apellido'].dirty || crearUsuarios.controls['apellido'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="crearUsuarios.controls['apellido'].errors.required">El campo Apellidos es requerido</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="documento" placeholder="Documento*" formControlName="documento">
+                        <div *ngIf=" crearUsuarios.controls['documento'].invalid && (crearUsuarios.controls['documento'].dirty || crearUsuarios.controls['documento'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="crearUsuarios.controls['documento'].errors.required">El campo Documento es requerido</div>
+                            <div *ngIf="crearUsuarios.controls['documento'].errors.maxlength">El campo Documento debe tener máximo 10 carácteres</div>
+                            <div *ngIf="crearUsuarios.controls['documento'].errors.pattern">El campo Documento es tipo numérico</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password*" id="password" formControlName="password">
+                        <div *ngIf=" crearUsuarios.controls['password'].invalid && (crearUsuarios.controls['password'].dirty || crearUsuarios.controls['password'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="crearUsuarios.controls['password'].errors.required">El campo Apellidos es requerido</div>
                         </div>
                     </div>
                 </div>
@@ -54,15 +75,28 @@
             </div>
 
             <div class="row">
-                <div class="col-12">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Correo electrónico*" id="correo" formControlName="correo">
-                        <div *ngIf=" crearUsuarios.controls['correo'].invalid && (crearUsuarios.controls['correo'].dirty || crearUsuarios.controls['correo'].touched)" class="alert alert-danger formulario-error">
-                            <div *ngIf="crearUsuarios.controls['correo'].errors.required">El campo Correo electrónico es requerido</div>
-                            <div *ngIf="crearUsuarios.controls['correo'].errors.pattern">El campo Correo electrónico no es de tipo E-mail</div>
+                        <input type="email" class="form-control" placeholder="Correo electrónico*" id="email" formControlName="email">
+                        <div *ngIf=" crearUsuarios.controls['email'].invalid && (crearUsuarios.controls['email'].dirty || crearUsuarios.controls['email'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="crearUsuarios.controls['email'].errors.required">El campo Correo electrónico es requerido</div>
+                            <div *ngIf="crearUsuarios.controls['email'].errors.pattern">El campo Correo electrónico no es de tipo E-mail</div>
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <select name="estado" class="form-control" id="estado" formControlName="estado">
+                            <option value="" disabled selected>Estado*</option>
+                            <option value="1"> Activo </option>
+                            <option value="0"> Inactivo </option>
+                        </select>
+                        <div *ngIf=" crearUsuarios.controls['estado'].invalid && (crearUsuarios.controls['estado'].dirty || crearUsuarios.controls['estado'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="crearUsuarios.controls['estado'].errors.required">El campo Estado es requerido</div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             <div class="row">

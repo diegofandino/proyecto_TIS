@@ -15,13 +15,16 @@ export class CrearUsuarioComponent implements OnInit {
   ngOnInit(): void {
 
     this.crearUsuarios = this.formbuilder.group({
-      nombres: new FormControl ('', Validators.required),
-      apellidos: new FormControl ('', Validators.required),
+      nombre: new FormControl ('', Validators.required),
+      apellido: new FormControl ('', Validators.required),
       genero: new FormControl ('', Validators.required),
+      password: new FormControl ('', Validators.required),
+      documento: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
       telefono: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
-      correo: new FormControl ('', [Validators.required, Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$')]),
+      email: new FormControl ('', [Validators.required, Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$')]),
       cargo: new FormControl ('', Validators.required),
-      rol: new FormControl ('', Validators.required)
+      rol: new FormControl ('', Validators.required),
+      estado: new FormControl ('', Validators.required)
     })
 
   }

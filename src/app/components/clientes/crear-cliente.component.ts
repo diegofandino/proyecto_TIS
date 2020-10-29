@@ -36,7 +36,7 @@ export class CrearClienteComponent implements OnInit {
         return;
     }
 
-    console.log(values);
+    console.log(this.crearClientes.value);
   }
 
   resetear(){

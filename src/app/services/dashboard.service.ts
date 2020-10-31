@@ -9,13 +9,23 @@ import { environment } from '../../environments/environment';
 })
 export class DashboardService {
 
+  private headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'Access-Control-Allow-Origin': '*'
+  });
   openSidebarSubject : Subject<boolean> = new Subject<boolean>() ;
   constructor(private http: HttpClient) {
-    const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
    }
 
   setModalStatus(openSidebar : boolean){
     this.openSidebarSubject.next(openSidebar);
    }
+
+  crearUsuario( objeto ){
+    console.log(`${environment.url}user/create`);
+    console.log(objeto);
+      return this.http.post( `${environment.url}user/create`, objeto , {headers: this.headers});
+  }
 
 }

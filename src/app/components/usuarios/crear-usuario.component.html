@@ -86,13 +86,13 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <select name="estado" class="form-control" id="estado" formControlName="estado">
+                        <select name="activo" class="form-control" id="activo" formControlName="activo">
                             <option value="" disabled selected>Estado*</option>
                             <option value="1"> Activo </option>
                             <option value="0"> Inactivo </option>
                         </select>
-                        <div *ngIf=" crearUsuarios.controls['estado'].invalid && (crearUsuarios.controls['estado'].dirty || crearUsuarios.controls['estado'].touched)" class="alert alert-danger formulario-error">
-                            <div *ngIf="crearUsuarios.controls['estado'].errors.required">El campo Estado es requerido</div>
+                        <div *ngIf=" crearUsuarios.controls['activo'].invalid && (crearUsuarios.controls['activo'].dirty || crearUsuarios.controls['activo'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="crearUsuarios.controls['activo'].errors.required">El campo Estado es requerido</div>
                         </div>
                     </div>
                 </div>
@@ -112,14 +112,6 @@
                     </div>
                     <div *ngIf=" crearUsuarios.controls['rol'].invalid && (crearUsuarios.controls['rol'].dirty || crearUsuarios.controls['rol'].touched)" class="alert alert-danger formulario-error">
                         <div *ngIf="crearUsuarios.controls['rol'].errors.required">El campo Rol es requerido</div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Cargo*" id="cargo" formControlName="cargo">
-                        <div *ngIf=" crearUsuarios.controls['cargo'].invalid && (crearUsuarios.controls['cargo'].dirty || crearUsuarios.controls['cargo'].touched)" class="alert alert-danger formulario-error">
-                            <div *ngIf="crearUsuarios.controls['cargo'].errors.required">El campo Cargo es requerido</div>
-                        </div>
                     </div>
                 </div>
             </div>

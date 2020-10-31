@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DashboardService } from 'src/app/services/dashboard.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-crear-usuario',
@@ -11,7 +12,8 @@ import { DashboardService } from 'src/app/services/dashboard.service';
 export class CrearUsuarioComponent implements OnInit {
 
   crearUsuarios: FormGroup
-  constructor(private formbuilder: FormBuilder, private router: Router, private dashboardService: DashboardService) { }
+  constructor(private formbuilder: FormBuilder, private router: Router, private dashboardService: DashboardService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -41,16 +43,16 @@ export class CrearUsuarioComponent implements OnInit {
         return;
     }
 
-    console.log(JSON.stringify( this.crearUsuarios.value));
-
-
     this.dashboardService.crearUsuario( this.crearUsuarios.value )
-        .subscribe( (respuesta: any) => {
-          console.log("Usuario registrado existoso", respuesta);
-          this.resetear();
-        }, err => { console.log("No se pudo realizar la petición") });
+    .subscribe( (respuesta: any) => {
+      console.log("Proceso exitoso", respuesta)
+      // this.toastr.success('¡Registro exitoso!', '');
+      this.resetear();
+        });
 
   }
+
+  
 
   resetear(){
     this.crearUsuarios.reset();

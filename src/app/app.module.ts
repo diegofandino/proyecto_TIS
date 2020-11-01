@@ -6,6 +6,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { DatePipe } from '@angular/common';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +23,9 @@ import { ModificarUsuarioComponent } from './components/usuarios/modificar-usuar
 import { ClientesComponent } from './components/clientes/clientes.component';
 import { ModificarClienteComponent } from './components/clientes/modificar-cliente.component';
 import { CrearClienteComponent } from './components/clientes/crear-cliente.component';
+import { AvanceObraComponent } from './components/avance-obra/avance-obra.component';
+import { CrearObraComponent } from './components/avance-obra/crear-obra.component';
+import { ModificarObraComponent } from './components/avance-obra/modificar-obra.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,10 @@ import { CrearClienteComponent } from './components/clientes/crear-cliente.compo
     ModificarUsuarioComponent,
     ClientesComponent,
     ModificarClienteComponent,
-    CrearClienteComponent
+    CrearClienteComponent,
+    AvanceObraComponent,
+    CrearObraComponent,
+    ModificarObraComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +59,7 @@ import { CrearClienteComponent } from './components/clientes/crear-cliente.compo
     }),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

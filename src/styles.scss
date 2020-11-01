@@ -4,6 +4,7 @@
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import "~bootstrap/scss/bootstrap";
+@import '~ngx-toastr/toastr-bs4-alert';
 body,
 * {
     font-family: 'Open Sans', sans-serif;
@@ -63,6 +64,24 @@ a {
     }
 }
 
+::ng-deep #toast-container {
+    .ngx-toastr {
+        background-image: none !important;
+    }
+    .toast-info {
+        background-image: none !important;
+        background: none !important;
+    }
+    .toast-error {
+        background-image: none !important;
+        background: none !important;
+    }
+    .toast-warning {
+        background-image: none !important;
+        background: none !important;
+    }
+}
+
 .contenido-completo {
     padding-left: 280px;
     min-height: 100vh;
@@ -105,6 +124,9 @@ a {
 
 .table {
     td {
+        vertical-align: middle;
+    }
+    th {
         vertical-align: middle;
     }
 }

@@ -16,10 +16,19 @@ export class ModalComponent implements OnInit {
   }
 
   eliminarRegistro(){
-    if(this.escenario == 'usuarios'){
-      console.log('Se elimina el usuario', this.id);
-      this.activeModal.close();
+
+    switch (this.escenario) {
+      case 'usuarios':
+        console.log('Se elimina el usuario', this.id);
+        this.activeModal.close();
+        break;
+      case 'clientes':
+        console.log('Se elimina el cliente', this.id);
+        this.activeModal.close();
+        break;
+    
     }
+
   }
 
 }

@@ -28,6 +28,21 @@
     }
 }
 
+::ng-deep #toast-container {
+    .ngx-toastr {
+        background-image: none !important;
+        padding: 15px;
+        font-size: 14px;
+        font-weight: 600;
+        width: 400px;
+        &.toast-error {
+            .toast-message {
+                color: #bd2130;
+            }
+        }
+    }
+}
+
 @media (max-width: 780px) {
     .formulario-crear {
         padding: 30px 0px;

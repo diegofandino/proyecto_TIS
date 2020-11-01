@@ -9,19 +9,40 @@
         <form [formGroup]="modificarUsuarios" #formDir (ngSubmit)="modificar(formDir)">
 
             <div class="row">
-                <div class="col-6">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="nombres" placeholder="Nombres*" formControlName="nombres">
-                        <div *ngIf=" modificarUsuarios.controls['nombres'].invalid && (modificarUsuarios.controls['nombres'].dirty || modificarUsuarios.controls['nombres'].touched)" class="alert alert-danger formulario-error">
-                            <div *ngIf="modificarUsuarios.controls['nombres'].errors.required">El campo Nombres es requerido</div>
+                        <input type="text" class="form-control" id="nombre" placeholder="Nombre*" formControlName="nombre">
+                        <div *ngIf=" modificarUsuarios.controls['nombre'].invalid && (modificarUsuarios.controls['nombre'].dirty || modificarUsuarios.controls['nombre'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarUsuarios.controls['nombre'].errors.required">El campo Nombres es requerido</div>
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Apellidos*" id="apellidos" formControlName="apellidos">
-                        <div *ngIf=" modificarUsuarios.controls['apellidos'].invalid && (modificarUsuarios.controls['apellidos'].dirty || modificarUsuarios.controls['apellidos'].touched)" class="alert alert-danger formulario-error">
-                            <div *ngIf="modificarUsuarios.controls['apellidos'].errors.required">El campo Apellidos es requerido</div>
+                        <input type="text" class="form-control" placeholder="Apellidos*" id="apellido" formControlName="apellido">
+                        <div *ngIf=" modificarUsuarios.controls['apellido'].invalid && (modificarUsuarios.controls['apellido'].dirty || modificarUsuarios.controls['apellido'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarUsuarios.controls['apellido'].errors.required">El campo Apellidos es requerido</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="documento" placeholder="Documento*" formControlName="documento">
+                        <div *ngIf=" modificarUsuarios.controls['documento'].invalid && (modificarUsuarios.controls['documento'].dirty || modificarUsuarios.controls['documento'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarUsuarios.controls['documento'].errors.required">El campo Documento es requerido</div>
+                            <div *ngIf="modificarUsuarios.controls['documento'].errors.maxlength">El campo Documento debe tener máximo 10 carácteres</div>
+                            <div *ngIf="modificarUsuarios.controls['documento'].errors.pattern">El campo Documento es tipo numérico</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password*" id="password" formControlName="password">
+                        <div *ngIf=" modificarUsuarios.controls['password'].invalid && (modificarUsuarios.controls['password'].dirty || modificarUsuarios.controls['password'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarUsuarios.controls['password'].errors.required">El campo Apellidos es requerido</div>
                         </div>
                     </div>
                 </div>
@@ -54,12 +75,24 @@
             </div>
 
             <div class="row">
-                <div class="col-12">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Correo electrónico*" id="correo" formControlName="correo">
-                        <div *ngIf=" modificarUsuarios.controls['correo'].invalid && (modificarUsuarios.controls['correo'].dirty || modificarUsuarios.controls['correo'].touched)" class="alert alert-danger formulario-error">
-                            <div *ngIf="modificarUsuarios.controls['correo'].errors.required">El campo Correo electrónico es requerido</div>
-                            <div *ngIf="modificarUsuarios.controls['correo'].errors.pattern">El campo Correo electrónico no es de tipo E-mail</div>
+                        <input type="email" class="form-control" placeholder="Correo electrónico*" id="email" formControlName="email">
+                        <div *ngIf=" modificarUsuarios.controls['email'].invalid && (modificarUsuarios.controls['email'].dirty || modificarUsuarios.controls['email'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarUsuarios.controls['email'].errors.required">El campo Correo electrónico es requerido</div>
+                            <div *ngIf="modificarUsuarios.controls['email'].errors.pattern">El campo Correo electrónico no es de tipo E-mail</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <select name="estado" class="form-control" id="estado" formControlName="estado">
+                            <option value="" disabled selected>Estado*</option>
+                            <option value="1"> Activo </option>
+                            <option value="0"> Inactivo </option>
+                        </select>
+                        <div *ngIf=" modificarUsuarios.controls['estado'].invalid && (modificarUsuarios.controls['estado'].dirty || modificarUsuarios.controls['estado'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarUsuarios.controls['estado'].errors.required">El campo Estado es requerido</div>
                         </div>
                     </div>
                 </div>

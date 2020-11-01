@@ -3,49 +3,46 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-crear-trabajadores',
-  templateUrl: './crear-trabajadores.component.html',
-  styleUrls: ['./crear-trabajadores.component.scss']
+  selector: 'app-crear-cliente',
+  templateUrl: './crear-cliente.component.html',
+  styleUrls: ['./crear-cliente.component.scss']
 })
-export class CrearTrabajadoresComponent implements OnInit {
+export class CrearClienteComponent implements OnInit {
 
-  crearTrabajadores: FormGroup
+  crearClientes: FormGroup
   constructor(private formbuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
-
-    this.crearTrabajadores = this.formbuilder.group({
-      documento: new FormControl ('', Validators.required),
+    
+    this.crearClientes = this.formbuilder.group({
       nombres: new FormControl ('', Validators.required),
       apellidos: new FormControl ('', Validators.required),
-      genero: new FormControl ('', Validators.required),
       telefono: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
       correo: new FormControl ('', [Validators.required, Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$')]),
-      cargo: new FormControl ('', Validators.required),
-      rol: new FormControl ('', Validators.required)
+      obras: new FormControl ('', Validators.required),
     })
 
   }
 
   get f(){
-    return this.crearUsuarios.controls;
+    return this.crearClientes.controls;
   }
 
   crear(values){
 
-    if( !this.crearUsuarios.valid ){
-        this.crearUsuarios.markAllAsTouched();
+    if( !this.crearClientes.valid ){
+        this.crearClientes.markAllAsTouched();
         console.log("No debe funcionar el formulario");
         return;
     }
 
-    console.log(values);
+    console.log(this.crearClientes.value);
   }
 
   resetear(){
-    this.crearUsuarios.reset();
-    this.crearUsuarios.markAsUntouched();
-    this.router.navigate(['/usuarios']);
+    this.crearClientes.reset();
+    this.crearClientes.markAsUntouched();
+    this.router.navigate(['/clientes']);
   }
 
 }

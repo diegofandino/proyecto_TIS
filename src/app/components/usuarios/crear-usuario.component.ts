@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DashboardService } from 'src/app/services/dashboard.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-crear-usuario',
@@ -10,18 +12,21 @@ import { Router } from '@angular/router';
 export class CrearUsuarioComponent implements OnInit {
 
   crearUsuarios: FormGroup
-  constructor(private formbuilder: FormBuilder, private router: Router) { }
+  constructor(private formbuilder: FormBuilder, private router: Router, private dashboardService: DashboardService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
     this.crearUsuarios = this.formbuilder.group({
-      nombres: new FormControl ('', Validators.required),
-      apellidos: new FormControl ('', Validators.required),
+      nombre: new FormControl ('', Validators.required),
+      apellido: new FormControl ('', Validators.required),
       genero: new FormControl ('', Validators.required),
+      password: new FormControl ('', Validators.required),
+      documento: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
       telefono: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
-      correo: new FormControl ('', [Validators.required, Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$')]),
-      cargo: new FormControl ('', Validators.required),
-      rol: new FormControl ('', Validators.required)
+      email: new FormControl ('', [Validators.required, Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$')]),
+      rol: new FormControl ('', Validators.required),
+      activo: new FormControl ('', Validators.required)
     })
 
   }
@@ -38,8 +43,16 @@ export class CrearUsuarioComponent implements OnInit {
         return;
     }
 
-    console.log(values);
+    this.dashboardService.crearUsuario( this.crearUsuarios.value )
+    .subscribe( (respuesta: any) => {
+      console.log("Proceso exitoso", respuesta)
+      // this.toastr.success('¡Registro exitoso!', '');
+      this.resetear();
+        });
+
   }
+
+  
 
   resetear(){
     this.crearUsuarios.reset();

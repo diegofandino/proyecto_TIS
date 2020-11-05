@@ -11,17 +11,30 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="nombres" placeholder="Nombres*" formControlName="nombres">
-                        <div *ngIf=" crearTrabajadores.controls['nombres'].invalid && (crearTrabajadores.controls['nombres'].dirty || crearTrabajadores.controls['nombres'].touched)" class="alert alert-danger formulario-error">
-                            <div *ngIf="crearTrabajadores.controls['nombres'].errors.required">El campo Nombres es requerido</div>
+                        <input type="text" class="form-control" id="documento" placeholder="Documento*" formControlName="documento">
+                        <div *ngIf=" crearTrabajadores.controls['documento'].invalid && (crearTrabajadores.controls['documento'].dirty || crearTrabajadores.controls['documento'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="crearTrabajadores.controls['documento'].errors.required">El campo Documento es requerido</div>
+                            <div *ngIf="crearTrabajadores.controls['documento'].errors.maxlength">El campo Documento debe tener máximo 10 carácteres</div>
+                            <div *ngIf="crearTrabajadores.controls['documento'].errors.pattern">El campo Documento es tipo numérico</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="nombre" placeholder="Nombres*" formControlName="nombre">
+                        <div *ngIf=" crearTrabajadores.controls['nombre'].invalid && (crearTrabajadores.controls['nombre'].dirty || crearTrabajadores.controls['nombre'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="crearTrabajadores.controls['nombre'].errors.required">El campo Nombres es requerido</div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Apellidos*" id="apellidos" formControlName="apellidos">
-                        <div *ngIf=" crearTrabajadores.controls['apellidos'].invalid && (crearTrabajadores.controls['apellidos'].dirty || crearTrabajadores.controls['apellidos'].touched)" class="alert alert-danger formulario-error">
-                            <div *ngIf="crearTrabajadores.controls['apellidos'].errors.required">El campo Apellidos es requerido</div>
+                        <input type="text" class="form-control" placeholder="Apellidos*" id="apellido" formControlName="apellido">
+                        <div *ngIf=" crearTrabajadores.controls['apellido'].invalid && (crearTrabajadores.controls['apellido'].dirty || crearTrabajadores.controls['apellido'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="crearTrabajadores.controls['apellido'].errors.required">El campo apellidos es requerido</div>
                         </div>
                     </div>
                 </div>
@@ -54,19 +67,16 @@
             </div>
 
             <div class="row">
-                <div class="col-12">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Correo electrónico*" id="correo" formControlName="correo">
-                        <div *ngIf=" crearTrabajadores.controls['correo'].invalid && (crearTrabajadores.controls['correo'].dirty || crearTrabajadores.controls['correo'].touched)" class="alert alert-danger formulario-error">
-                            <div *ngIf="crearTrabajadores.controls['correo'].errors.required">El campo Correo electrónico es requerido</div>
-                            <div *ngIf="crearTrabajadores.controls['correo'].errors.pattern">El campo Correo electrónico no es de tipo E-mail</div>
+                        <input type="email" class="form-control" placeholder="Correo electrónico*" id="email" formControlName="email">
+                        <div *ngIf=" crearTrabajadores.controls['email'].invalid && (crearTrabajadores.controls['email'].dirty || crearTrabajadores.controls['email'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="crearTrabajadores.controls['email'].errors.required">El campo correo electrónico es requerido</div>
+                            <div *ngIf="crearTrabajadores.controls['email'].errors.pattern">El campo correo electrónico no es de tipo E-mail</div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Dirección*" id="direccion" formControlName="direccion">
                         <div *ngIf=" crearTrabajadores.controls['direccion'].invalid && (crearTrabajadores.controls['direccion'].dirty || crearTrabajadores.controls['direccion'].touched)" class="alert alert-danger formulario-error">
@@ -85,9 +95,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
                         <select name="obras" class="form-control" id="obras" formControlName="obras">
@@ -104,25 +111,24 @@
                     <div class="form-group">
                         <select name="activo" class="form-control" id="activo" formControlName="activo">
                             <option value="" disabled selected>Estado*</option>
-                            <option value="activo"> Activo </option>
-                            <option value="inactivo"> Inactivo </option>
+                            <option value="1"> Activo </option>
+                            <option value="0"> Inactivo </option>
                         </select>
+                        <div *ngIf=" crearTrabajadores.controls['activo'].invalid && (crearTrabajadores.controls['activo'].dirty || crearTrabajadores.controls['activo'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="crearTrabajadores.controls['activo'].errors.required">El campo Estado es requerido</div>
+                        </div>
                     </div>
-                    <div *ngIf=" crearTrabajadores.controls['activo'].invalid && (crearTrabajadores.controls['activo'].dirty || crearTrabajadores.controls['activo'].touched)" class="alert alert-danger formulario-error">
+                </div>
+
+                <div class="row botones-creacion">
+                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 text-right">
+                        <button type="submit" class="btn btn-success"> Crear </button>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 text-left">
+                        <button type="button" (click)="resetear()" class="btn btn-danger"> Cancelar </button>
                     </div>
                 </div>
             </div>
-
-            <div class="row botones-creacion">
-                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 text-right">
-                    <button type="submit" class="btn btn-success"> Crear </button>
-                </div>
-                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 text-left">
-                    <button type="button" (click)="resetear()" class="btn btn-danger"> Cancelar </button>
-                </div>
-            </div>
-
         </form>
     </div>
-
 </div>

@@ -15,26 +15,28 @@ export class CrearTrabajadoresComponent implements OnInit {
   ngOnInit(): void {
 
     this.crearTrabajadores = this.formbuilder.group({
-      documento: new FormControl ('', Validators.required),
-      nombres: new FormControl ('', Validators.required),
-      apellidos: new FormControl ('', Validators.required),
+      documento: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
+      nombre: new FormControl ('', Validators.required),
+      apellido: new FormControl ('', Validators.required),
       genero: new FormControl ('', Validators.required),
       telefono: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
-      correo: new FormControl ('', [Validators.required, Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$')]),
+      email: new FormControl ('', [Validators.required, Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$')]),
+      direccion: new FormControl ('', Validators.required),
       cargo: new FormControl ('', Validators.required),
-      rol: new FormControl ('', Validators.required)
+      obras: new FormControl (''),
+      activo: new FormControl ('', Validators.required)
     })
 
   }
 
   get f(){
-    return this.crearUsuarios.controls;
+    return this.crearTrabajadores.controls;
   }
 
   crear(values){
 
-    if( !this.crearUsuarios.valid ){
-        this.crearUsuarios.markAllAsTouched();
+    if( !this.crearTrabajadores.valid ){
+        this.crearTrabajadores.markAllAsTouched();
         console.log("No debe funcionar el formulario");
         return;
     }
@@ -43,9 +45,9 @@ export class CrearTrabajadoresComponent implements OnInit {
   }
 
   resetear(){
-    this.crearUsuarios.reset();
-    this.crearUsuarios.markAsUntouched();
-    this.router.navigate(['/usuarios']);
+    this.crearTrabajadores.reset();
+    this.crearTrabajadores.markAsUntouched();
+    this.router.navigate(['/trabajadores']);
   }
 
 }

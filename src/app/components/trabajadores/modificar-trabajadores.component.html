@@ -1,1 +1,134 @@
-<p>modificar-trabajadores works!</p>
+<div class="container crear-trabajadores">
+    <div class="row align-items-center">
+        <div class="col-lg-12 text-center titulos-principales">
+            <h1>Modificar Trabajadores</h1>
+        </div>
+    </div>
+
+    <div class="formulario-crear">
+        <form [formGroup]="modificarTrabajadores" #formDir (ngSubmit)="modificar(formDir)">
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="documento" placeholder="Documento*" formControlName="documento">
+                        <div *ngIf=" modificarTrabajadores.controls['documento'].invalid && (modificarTrabajadores.controls['documento'].dirty || modificarTrabajadores.controls['documento'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarTrabajadores.controls['documento'].errors.required">El campo Documento es requerido</div>
+                            <div *ngIf="modificarTrabajadores.controls['documento'].errors.maxlength">El campo Documento debe tener máximo 10 carácteres</div>
+                            <div *ngIf="modificarTrabajadores.controls['documento'].errors.pattern">El campo Documento es tipo numérico</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="nombre" placeholder="Nombres*" formControlName="nombre">
+                        <div *ngIf=" modificarTrabajadores.controls['nombre'].invalid && (modificarTrabajadores.controls['nombre'].dirty || modificarTrabajadores.controls['nombre'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarTrabajadores.controls['nombre'].errors.required">El campo Nombres es requerido</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Apellidos*" id="apellido" formControlName="apellido">
+                        <div *ngIf=" modificarTrabajadores.controls['apellido'].invalid && (modificarTrabajadores.controls['apellido'].dirty || modificarTrabajadores.controls['apellido'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarTrabajadores.controls['apellido'].errors.required">El campo apellidos es requerido</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <select name="genero" class="form-control" id="genero" formControlName="genero">
+                            <option value="" disabled selected>Genero*</option>
+                            <option value="masculino"> Masculino </option>
+                            <option value="femenino"> Femenino </option>
+                            <option value="otro"> Otro </option>
+                        </select>
+                        <div *ngIf=" modificarTrabajadores.controls['genero'].invalid && (modificarTrabajadores.controls['genero'].dirty || modificarTrabajadores.controls['genero'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarTrabajadores.controls['genero'].errors.required">El campo Genero es requerido</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Teléfono*" id="telefono" formControlName="telefono">
+                        <div *ngIf=" modificarTrabajadores.controls['telefono'].invalid && (modificarTrabajadores.controls['telefono'].dirty || modificarTrabajadores.controls['telefono'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarTrabajadores.controls['telefono'].errors.required">El campo Teléfono es requerido</div>
+                            <div *ngIf="modificarTrabajadores.controls['telefono'].errors.maxlength">El campo Teléfono debe tener máximo 10 carácteres</div>
+                            <div *ngIf="modificarTrabajadores.controls['telefono'].errors.pattern">El campo Teléfono es tipo numérico</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Correo electrónico*" id="email" formControlName="email">
+                        <div *ngIf=" modificarTrabajadores.controls['email'].invalid && (modificarTrabajadores.controls['email'].dirty || modificarTrabajadores.controls['email'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarTrabajadores.controls['email'].errors.required">El campo correo electrónico es requerido</div>
+                            <div *ngIf="modificarTrabajadores.controls['email'].errors.pattern">El campo correo electrónico no es de tipo E-mail</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Dirección*" id="direccion" formControlName="direccion">
+                        <div *ngIf=" modificarTrabajadores.controls['direccion'].invalid && (modificarTrabajadores.controls['direccion'].dirty || modificarTrabajadores.controls['direccion'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarTrabajadores.controls['direccion'].errors.required">El campo dirección es requerido</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Cargo*" id="cargo" formControlName="cargo">
+                        <div *ngIf=" modificarTrabajadores.controls['cargo'].invalid && (modificarTrabajadores.controls['cargo'].dirty || modificarTrabajadores.controls['cargo'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarTrabajadores.controls['cargo'].errors.required">El campo Cargo es requerido</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <select name="obras" class="form-control" id="obras" formControlName="obras">
+                            
+                        </select>
+                    </div>
+                    <div *ngIf=" modificarTrabajadores.controls['obras'].invalid && (modificarTrabajadores.controls['obras'].dirty || modificarTrabajadores.controls['obras'].touched)" class="alert alert-danger formulario-error">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <select name="activo" class="form-control" id="activo" formControlName="activo">
+                            <option value="" disabled selected>Estado*</option>
+                            <option value="1"> Activo </option>
+                            <option value="0"> Inactivo </option>
+                        </select>
+                        <div *ngIf=" modificarTrabajadores.controls['activo'].invalid && (modificarTrabajadores.controls['activo'].dirty || modificarTrabajadores.controls['activo'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarTrabajadores.controls['activo'].errors.required">El campo Estado es requerido</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row botones-creacion">
+                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 text-right">
+                        <button type="submit" class="btn btn-success"> Crear </button>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 text-left">
+                        <button type="button" (click)="resetear()" class="btn btn-danger"> Cancelar </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

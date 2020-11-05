@@ -18,15 +18,15 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { CrearUsuarioComponent } from './components/usuarios/crear-usuario.component';
 import { ModificarUsuarioComponent } from './components/usuarios/modificar-usuario.component';
-<<<<<<< HEAD
 import { TrabajadoresComponent } from './components/trabajadores/trabajadores.component';
 import { CrearTrabajadoresComponent } from './components/trabajadores/crear-trabajadores.component';
 import { ModificarTrabajadoresComponent } from './components/trabajadores/modificar-trabajadores.component';
-=======
 import { ClientesComponent } from './components/clientes/clientes.component';
 import { ModificarClienteComponent } from './components/clientes/modificar-cliente.component';
 import { CrearClienteComponent } from './components/clientes/crear-cliente.component';
->>>>>>> dfec9da8ca8d6d83ecc05b617d27e054c87d346b
+import { ProveedoresComponent } from './components/proveedores/proveedores.component';
+import { CrearProveedoresComponent } from './components/proveedores/crear-proveedores.component';
+import { ModificarProveedoresComponent } from './components/proveedores/modificar-proveedores.component';
 
 @NgModule({
   declarations: [
@@ -38,15 +38,15 @@ import { CrearClienteComponent } from './components/clientes/crear-cliente.compo
     ModalComponent,
     CrearUsuarioComponent,
     ModificarUsuarioComponent,
-<<<<<<< HEAD
     TrabajadoresComponent,
     CrearTrabajadoresComponent,
-    ModificarTrabajadoresComponent
-=======
+    ModificarTrabajadoresComponent,
     ClientesComponent,
     ModificarClienteComponent,
-    CrearClienteComponent
->>>>>>> dfec9da8ca8d6d83ecc05b617d27e054c87d346b
+    CrearClienteComponent,
+    ProveedoresComponent,
+    CrearProveedoresComponent,
+    ModificarProveedoresComponent
   ],
   imports: [
     BrowserModule,

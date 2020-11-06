@@ -23,7 +23,7 @@ export class ModificarTrabajadoresComponent implements OnInit {
       direccion: new FormControl ('', Validators.required),
       cargo: new FormControl ('', Validators.required),
       obras: new FormControl (''),
-      activo: new FormControl ('', Validators.required)
+      estado: new FormControl ('', Validators.required)
     })
 
     this.activatedRoute.params

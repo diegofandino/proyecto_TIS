@@ -1,7 +1,7 @@
-<div class="container crear-trabajadores">
+<div class="container crear-proveedores">
     <div class="row align-items-center">
         <div class="col-lg-12 text-center titulos-principales">
-            <h1>Crear Proveedores</h1>
+            <h1>Crear proveedor</h1>
         </div>
     </div>
 
@@ -11,23 +11,23 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <select name="tipo" class="form-control" id="tipo" formControlName="tipo">
-                            <option value="" disabled selected>Tipo identificacion*</option>
-                            <option value="masculino"> Cédula de ciudadanía </option>
-                            <option value="femenino"> Nit </option>
-                        </select>
-                        <div *ngIf=" crearProveedores.controls['genero'].invalid && (crearProveedores.controls['genero'].dirty || crearProveedores.controls['genero'].touched)" class="alert alert-danger formulario-error">
-                            <div *ngIf="crearProveedores.controls['genero'].errors.required">El campo Genero es requerido</div>
+                        <input type="text" class="form-control" id="documento" placeholder="Documento*" formControlName="documento">
+                        <div *ngIf=" crearProveedores.controls['documento'].invalid && (crearProveedores.controls['documento'].dirty || crearProveedores.controls['documento'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="crearProveedores.controls['documento'].errors.required">El campo Documento es requerido</div>
+                            <div *ngIf="crearProveedores.controls['documento'].errors.maxlength">El campo Documento debe tener máximo 10 carácteres</div>
+                            <div *ngIf="crearProveedores.controls['documento'].errors.pattern">El campo Documento es tipo numérico</div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="identificacion" placeholder="identificacion*" formControlName="identificacion">
-                        <div *ngIf=" crearProveedores.controls['identificacion'].invalid && (crearProveedores.controls['identificacion'].dirty || crearProveedores.controls['identificacion'].touched)" class="alert alert-danger formulario-error">
-                            <div *ngIf="crearProveedores.controls['identificacion'].errors.required">El campo identificacion es requerido</div>
-                            <div *ngIf="crearProveedores.controls['identificacion'].errors.maxlength">El campo identificacion debe tener máximo 10 carácteres</div>
-                            <div *ngIf="crearProveedores.controls['identificacion'].errors.pattern">El campo identificacion es tipo numérico</div>
+                        <select name="tipo" class="form-control" id="tipo" formControlName="tipo">
+                            <option value="" disabled selected>Tipo documento*</option>
+                            <option value="CC"> Cédula de ciudadanía </option>
+                            <option value="Nit"> NIT </option>
+                        </select>
+                        <div *ngIf=" crearProveedores.controls['tipo'].invalid && (crearProveedores.controls['tipo'].dirty || crearProveedores.controls['tipo'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="crearProveedores.controls['tipo'].errors.required">El campo Tipo es requerido</div>
                         </div>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="nombre" placeholder="Nombres*" formControlName="nombre">
+                        <input type="text" class="form-control" id="nombre" placeholder="Nombre*" formControlName="nombre">
                         <div *ngIf=" crearProveedores.controls['nombre'].invalid && (crearProveedores.controls['nombre'].dirty || crearProveedores.controls['nombre'].touched)" class="alert alert-danger formulario-error">
                             <div *ngIf="crearProveedores.controls['nombre'].errors.required">El campo Nombres es requerido</div>
                         </div>
@@ -44,9 +44,9 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Representate Legal*" id="repreLegal" formControlName="repreLegal">
+                        <input type="text" class="form-control" placeholder="Representante Legal*" id="repreLegal" formControlName="repreLegal">
                         <div *ngIf=" crearProveedores.controls['repreLegal'].invalid && (crearProveedores.controls['repreLegal'].dirty || crearProveedores.controls['repreLegal'].touched)" class="alert alert-danger formulario-error">
-                            <div *ngIf="crearProveedores.controls['repreLegal'].errors.required">El campo Representate Legal es requerido</div>
+                            <div *ngIf="crearProveedores.controls['repreLegal'].errors.required">El campo Representante Legal es requerido</div>
                         </div>
                     </div>
                 </div>
@@ -67,8 +67,8 @@
                     <div class="form-group">
                         <input type="email" class="form-control" placeholder="Correo electrónico*" id="email" formControlName="email">
                         <div *ngIf=" crearProveedores.controls['email'].invalid && (crearProveedores.controls['email'].dirty || crearProveedores.controls['email'].touched)" class="alert alert-danger formulario-error">
-                            <div *ngIf="crearProveedores.controls['email'].errors.required">El campo correo electrónico es requerido</div>
-                            <div *ngIf="crearProveedores.controls['email'].errors.pattern">El campo correo electrónico no es de tipo E-mail</div>
+                            <div *ngIf="crearProveedores.controls['email'].errors.required">El campo Correo electrónico es requerido</div>
+                            <div *ngIf="crearProveedores.controls['email'].errors.pattern">El campo Correo electrónico no es de tipo E-mail</div>
                         </div>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Dirección*" id="direccion" formControlName="direccion">
                         <div *ngIf=" crearProveedores.controls['direccion'].invalid && (crearProveedores.controls['direccion'].dirty || crearProveedores.controls['direccion'].touched)" class="alert alert-danger formulario-error">
-                            <div *ngIf="crearProveedores.controls['direccion'].errors.required">El campo dirección es requerido</div>
+                            <div *ngIf="crearProveedores.controls['direccion'].errors.required">El campo Dirección es requerido</div>
                         </div>
                     </div>
                 </div>
@@ -95,18 +95,19 @@
                         </div>
                     </div>
                 </div>
+
             </div>
 
-            <div class="row">
-                <div class="row botones-creacion">
-                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 text-right">
-                        <button type="submit" class="btn btn-success"> Crear </button>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 text-left">
-                        <button type="button" (click)="resetear()" class="btn btn-danger"> Cancelar </button>
-                    </div>
+            <div class="row botones-creacion">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 text-right">
+                    <button type="submit" class="btn btn-success"> Crear </button>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 text-left">
+                    <button type="button" (click)="resetear()" class="btn btn-danger"> Cancelar </button>
                 </div>
             </div>
+
         </form>
     </div>
+
 </div>

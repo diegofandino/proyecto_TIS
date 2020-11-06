@@ -29,13 +29,19 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="cursor-pointer">
+                <a [routerLink]="['/proveedores']" routerLinkActive="router-link-active" class="cursor-pointer">
                     <i class="far fa-check-square morado-claro"></i>
-                    <p>Inventario</p>
+                    <p>Proveedores</p>
                 </a>
             </li>
             <li>
                 <a href="#" class="cursor-pointer">
+                    <i class="far fa-check-square azul-claro"></i>
+                    <p>Materiales</p>
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="['/trabajadores']" routerLinkActive="router-link-active" class="cursor-pointer">
                     <i class="far fa-address-card verde-claro"></i>
                     <p>Trabajadores</p>
                 </a>

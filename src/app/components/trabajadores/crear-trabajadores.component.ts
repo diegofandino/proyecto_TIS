@@ -24,7 +24,7 @@ export class CrearTrabajadoresComponent implements OnInit {
       direccion: new FormControl ('', Validators.required),
       cargo: new FormControl ('', Validators.required),
       obras: new FormControl (''),
-      activo: new FormControl ('', Validators.required)
+      estado: new FormControl ('', Validators.required)
     })
 
   }

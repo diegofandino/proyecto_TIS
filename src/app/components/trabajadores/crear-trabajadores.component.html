@@ -19,9 +19,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
                         <input type="text" class="form-control" id="nombre" placeholder="Nombres*" formControlName="nombre">
@@ -30,6 +27,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="row">  
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Apellidos*" id="apellido" formControlName="apellido">
@@ -38,9 +38,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
                         <select name="genero" class="form-control" id="genero" formControlName="genero">
@@ -54,6 +51,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Teléfono*" id="telefono" formControlName="telefono">
@@ -64,9 +64,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
                         <input type="email" class="form-control" placeholder="Correo electrónico*" id="email" formControlName="email">
@@ -76,6 +73,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Dirección*" id="direccion" formControlName="direccion">
@@ -84,9 +84,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Cargo*" id="cargo" formControlName="cargo">
@@ -95,38 +92,40 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
-                    <div class="form-group">
-                        <select name="obras" class="form-control" id="obras" formControlName="obras">
-                            
-                        </select>
-                    </div>
-                    <div *ngIf=" crearTrabajadores.controls['obras'].invalid && (crearTrabajadores.controls['obras'].dirty || crearTrabajadores.controls['obras'].touched)" class="alert alert-danger formulario-error">
-                    </div>
-                </div>
             </div>
 
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <select name="activo" class="form-control" id="activo" formControlName="activo">
+                        <select name="obras" class="form-control" id="obras" formControlName="obras">
+                            <option value="" disabled selected>Obras*</option>
+                            <option value="obra1"> Obra 1 </option>
+                            <option value="obra2"> Obra 2 </option>
+                        </select>
+                    </div>
+                    <div *ngIf=" crearTrabajadores.controls['obras'].invalid && (crearTrabajadores.controls['obras'].dirty || crearTrabajadores.controls['obras'].touched)" class="alert alert-danger formulario-error">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <select name="estado" class="form-control" id="estado" formControlName="estado">
                             <option value="" disabled selected>Estado*</option>
                             <option value="1"> Activo </option>
                             <option value="0"> Inactivo </option>
                         </select>
-                        <div *ngIf=" crearTrabajadores.controls['activo'].invalid && (crearTrabajadores.controls['activo'].dirty || crearTrabajadores.controls['activo'].touched)" class="alert alert-danger formulario-error">
-                            <div *ngIf="crearTrabajadores.controls['activo'].errors.required">El campo Estado es requerido</div>
+                        <div *ngIf=" crearTrabajadores.controls['estado'].invalid && (crearTrabajadores.controls['estado'].dirty || crearTrabajadores.controls['estado'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="crearTrabajadores.controls['estado'].errors.required">El campo Estado es requerido</div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="row botones-creacion">
-                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 text-right">
-                        <button type="submit" class="btn btn-success"> Crear </button>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 text-left">
-                        <button type="button" (click)="resetear()" class="btn btn-danger"> Cancelar </button>
-                    </div>
+            <div class="row botones-creacion">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 text-right">
+                    <button type="submit" class="btn btn-success"> Crear </button>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 text-left">
+                    <button type="button" (click)="resetear()" class="btn btn-danger"> Cancelar </button>
                 </div>
             </div>
         </form>

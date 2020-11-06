@@ -15,8 +15,8 @@ export class CrearProveedoresComponent implements OnInit {
   ngOnInit(): void {
 
     this.crearProveedores = this.formbuilder.group({
+      documento: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
       tipo: new FormControl ('', Validators.required),
-      identificacion: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
       nombre: new FormControl ('', Validators.required),
       repreLegal: new FormControl ('', Validators.required),
       telefono: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),

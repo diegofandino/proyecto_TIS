@@ -6,6 +6,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { DatePipe } from '@angular/common';
+import { NgbDatepickerConfig, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateFRParserFormatter } from "../app/utils/ngb-date-fr-parser-formatter"
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +30,9 @@ import { CrearClienteComponent } from './components/clientes/crear-cliente.compo
 import { ProveedoresComponent } from './components/proveedores/proveedores.component';
 import { CrearProveedoresComponent } from './components/proveedores/crear-proveedores.component';
 import { ModificarProveedoresComponent } from './components/proveedores/modificar-proveedores.component';
+import { AvanceObraComponent } from './components/avance-obra/avance-obra.component';
+import { CrearObraComponent } from './components/avance-obra/crear-obra.component';
+import { ModificarObraComponent } from './components/avance-obra/modificar-obra.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +52,10 @@ import { ModificarProveedoresComponent } from './components/proveedores/modifica
     CrearClienteComponent,
     ProveedoresComponent,
     CrearProveedoresComponent,
-    ModificarProveedoresComponent
+    ModificarProveedoresComponent,
+    AvanceObraComponent,
+    CrearObraComponent,
+    ModificarObraComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +72,7 @@ import { ModificarProveedoresComponent } from './components/proveedores/modifica
     }),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  providers: [DatePipe, {provide: NgbDateParserFormatter, useClass: NgbDateFRParserFormatter}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

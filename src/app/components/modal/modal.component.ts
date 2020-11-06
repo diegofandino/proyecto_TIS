@@ -26,6 +26,10 @@ export class ModalComponent implements OnInit {
         console.log('Se elimina el cliente', this.id);
         this.activeModal.close();
         break;
+      case 'obras':
+        console.log('Se elimina la obra', this.id);
+        this.activeModal.close();
+        break;
     
     }
 

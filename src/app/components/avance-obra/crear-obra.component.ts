@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { DashboardService } from 'src/app/services/dashboard.service';
 
@@ -51,30 +52,54 @@ export class CrearObraComponent implements OnInit {
   dateToString = (date) => {
     console.log(date)
   return  `${date.year}-${date.month}-${date.day}`;
-  };
+  }
+
+  fechaInicial(fechaInicio){
+    let fechainicialModify = new Date(fechaInicio.year, fechaInicio.month - 1, fechaInicio.day);
+    this.fechainicial = this.datepipe.transform(fechainicialModify, 'yyyy-MM-dd');
+    console.log(this.fechainicial)
+  }
+  
+  fechaFinal(fechaFinal){
+    let fechainicialModify2 = new Date(fechaFinal.year, fechaFinal.month - 1, fechaFinal.day);
+    this.fechafinal = this.datepipe.transform(fechainicialModify2, 'yyyy-MM-dd');
+    console.log(this.fechafinal)
+  }
 
   crear(values){
-
 
     if( !this.crearObras.valid ){
       console.log(this.crearObras.value);
         this.crearObras.markAllAsTouched();
         console.log("No debe funcionar el formulario");
+        this.toastr.error('Existen campos obligatorios sin diligenciar', '');
         return;
       }
 
-      this.crearObras.get('fechaFin').setValue(   this.dateToString(this.crearObras.get('fechaFin').value));
-      this.crearObras.get('fechaInicio').setValue(   this.dateToString(this.crearObras.get('fechaInicio').value));
-      
-      if( this.crearObras.controls['fechaFin'].value < this.crearObras.controls['fechaInicio'].value  ){
-        this.crearObras.invalid;
+      if( this.fechafinal < this.fechainicial ){
         console.log("No debe funcionar el formulario");
         this.toastr.error('La Fecha final no debe ser menor a la Fecha inicial', '');
+        this.crearObras.invalid;
         return;
-    }
+      }
 
-    console.log("Si se puede crear el form");
-    console.log(this.crearObras.value);
+      console.log("Si se puede crear el form");
+      console.log(this.crearObras.value);
+
+    const formData1 = new FormData();
+    formData1.append('codigo',this.crearObras.controls['codigo'].value );
+    formData1.append('identObra',this.crearObras.controls['identObra'].value );
+    formData1.append('nombreObra',this.crearObras.controls['nombreObra'].value );
+    formData1.append('descripcion',this.crearObras.controls['descripcion'].value );
+    formData1.append('fechaInicio', this.fechainicial );
+    formData1.append('fechaFin', this.fechafinal );
+    formData1.append('regPlano', this.fileParaSubir );
+    formData1.append('activo', this.crearObras.controls['activo'].value );
+
+    formData1.forEach( (elemento) => {
+      console.log("Enviar al back datos", elemento );
+    } );
+
 
     // this.dashboardService.crearUsuario( this.crearUsuarios.value )
     // .subscribe( (respuesta: any) => {

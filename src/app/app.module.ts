@@ -7,7 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
-
+import { NgbDatepickerConfig, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateFRParserFormatter } from "../app/utils/ngb-date-fr-parser-formatter"
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -59,7 +60,7 @@ import { ModificarObraComponent } from './components/avance-obra/modificar-obra.
     }),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, {provide: NgbDateParserFormatter, useClass: NgbDateFRParserFormatter}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

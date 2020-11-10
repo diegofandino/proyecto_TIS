@@ -44,10 +44,10 @@
             </div>
 
             <div class="d-flex justify-content-between contenedor-paginador p-2">
-                <ngb-pagination class="centrar-pagination" [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshCountries()">
+                <ngb-pagination class="centrar-pagination" [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refrescarUsuarios()">
                 </ngb-pagination>
 
-                <select class="custom-select centrar-pagination" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshCountries()">
+                <select class="custom-select centrar-pagination" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refrescarUsuarios()">
                     <option [ngValue]="5">5 usuarios por página</option>
                     <option [ngValue]="10">10 usuarios por página</option>
                     <option [ngValue]="15">15 usuarios por página</option>

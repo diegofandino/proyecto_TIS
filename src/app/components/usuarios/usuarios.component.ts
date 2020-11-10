@@ -20,22 +20,21 @@ export class UsuariosComponent implements OnInit {
   pageSize = 5;
   usuariosLista: Usuarios[] = [];
   collectionSize = this.usuariosLista.length;
-  countries: any[];
+  usuarios: any[];
   constructor(private modalService: NgbModal, private dashboardService: DashboardService) { }
 
   ngOnInit(): void {
-    this.refreshCountries();
-
+    
     this.dashboardService.listarUsuarios()
-        .subscribe( (respuesta: any) => {
-          this.usuariosLista = respuesta.usuarios;
-        } );
-
+    .subscribe( (respuesta: any) => {
+      this.usuariosLista = respuesta.usuarios;
+    } );
+    
+    this.refrescarUsuarios();
   }
 
-  refreshCountries() {
-    this.countries = this.usuariosLista
-      .map((usuario, i) => ({numeral: i + 1, ...usuario}))
+  refrescarUsuarios() {
+    this.usuarios = this.usuariosLista
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
 

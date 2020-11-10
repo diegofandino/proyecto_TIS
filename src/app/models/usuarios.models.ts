@@ -1,5 +1,5 @@
 export class Usuarios {
-    _id: string
+    _id: string;
     documento: String;
     nombre:  String;
     apellido: String;
@@ -8,5 +8,5 @@ export class Usuarios {
     email: String;
     rol: String;  
     password: String;
-    activo: boolean   
+    activo: boolean;  
 }

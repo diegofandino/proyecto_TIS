@@ -40,13 +40,14 @@ export class CrearUsuarioComponent implements OnInit {
     if( !this.crearUsuarios.valid ){
         this.crearUsuarios.markAllAsTouched();
         console.log("No debe funcionar el formulario");
+        this.toastr.error('Existen campos obligatorios sin diligenciar', '');
         return;
     }
 
     this.dashboardService.crearUsuario( this.crearUsuarios.value )
     .subscribe( (respuesta: any) => {
       console.log("Proceso exitoso", respuesta)
-      // this.toastr.success('¡Registro exitoso!', '');
+      this.toastr.success('¡Registro exitoso!', '');
       this.resetear();
         });
 

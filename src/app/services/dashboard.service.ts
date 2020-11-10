@@ -23,9 +23,14 @@ export class DashboardService {
    }
 
   crearUsuario( objeto ){
-    console.log(`${environment.url}user/create`);
-    console.log(objeto);
       return this.http.post( `${environment.url}user/create`, objeto , {headers: this.headers});
+  }
+  eliminarUsuario( id ){
+      return this.http.post( `${environment.url}user/delete`, id , {headers: this.headers});
+  }
+  
+  listarUsuarios( ){
+      return this.http.get( `${environment.url}user/`);
   }
 
 }

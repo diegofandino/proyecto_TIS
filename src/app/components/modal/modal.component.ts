@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DashboardService } from 'src/app/services/dashboard.service';
 
 @Component({
   selector: 'app-modal',
@@ -10,7 +11,7 @@ export class ModalComponent implements OnInit {
 
   @Input() escenario: any; 
   @Input() id: any; 
-  constructor(public activeModal: NgbActiveModal) { }
+  constructor(public activeModal: NgbActiveModal, private dashboardService: DashboardService) { }
 
   ngOnInit(): void {
   }
@@ -19,7 +20,10 @@ export class ModalComponent implements OnInit {
 
     switch (this.escenario) {
       case 'usuarios':
-        console.log('Se elimina el usuario', this.id);
+        this.dashboardService.eliminarUsuario(this.id)
+            .subscribe( (respuesta: any) => {
+              console.log(respuesta);
+            } )      
         this.activeModal.close();
         break;
       case 'clientes':

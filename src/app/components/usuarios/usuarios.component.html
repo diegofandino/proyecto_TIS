@@ -27,17 +27,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let country of countries, let i = index">
+                        <tr *ngFor="let usuario of usuariosLista, let i = index">
                             <th class="text-center" scope="row">{{ i + 1}}</th>
                             <td class="text-center">
-                                {{ country.nombre}}
+                                {{ usuario.nombre}}
                             </td>
-                            <td class="text-center">{{ country.apellido}}</td>
-                            <td class="text-center">{{ country.correo}}</td>
+                            <td class="text-center">{{ usuario.apellido}}</td>
+                            <td class="text-center">{{ usuario.email}}</td>
                             <td class="text-center">
-                                <a [routerLink]="['/modificar-usuario', i + 1]" routerLinkActive="router-link-active" class="cursor-pointer btn btn-success btn-texto"> <i class="far fa-edit" style="color: #ffffff;"></i></a>
+                                <a [routerLink]="['/modificar-usuario', usuario._id]" routerLinkActive="router-link-active" class="cursor-pointer btn btn-success btn-texto"> <i class="far fa-edit" style="color: #ffffff;"></i></a>
                             </td>
-                            <td class="text-center"><a (click)="open(i+1)" class="cursor-pointer btn btn-danger btn-texto"><i class="far fa-trash-alt" style="color: #ffffff;"></i></a></td>
+                            <td class="text-center"><a (click)="open(usuario._id)" class="cursor-pointer btn btn-danger btn-texto"><i class="far fa-trash-alt" style="color: #ffffff;"></i></a></td>
                         </tr>
                     </tbody>
                 </table>

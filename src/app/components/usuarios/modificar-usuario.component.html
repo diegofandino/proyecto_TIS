@@ -86,13 +86,13 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <select name="estado" class="form-control" id="estado" formControlName="estado">
+                        <select name="activo" class="form-control" id="activo" formControlName="activo">
                             <option value="" disabled selected>Estado*</option>
-                            <option value="1"> Activo </option>
-                            <option value="0"> Inactivo </option>
+                            <option value="true"> Activo </option>
+                            <option value="false"> Inactivo </option>
                         </select>
-                        <div *ngIf=" modificarUsuarios.controls['estado'].invalid && (modificarUsuarios.controls['estado'].dirty || modificarUsuarios.controls['estado'].touched)" class="alert alert-danger formulario-error">
-                            <div *ngIf="modificarUsuarios.controls['estado'].errors.required">El campo Estado es requerido</div>
+                        <div *ngIf=" modificarUsuarios.controls['activo'].invalid && (modificarUsuarios.controls['activo'].dirty || modificarUsuarios.controls['activo'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarUsuarios.controls['activo'].errors.required">El campo Estado es requerido</div>
                         </div>
                     </div>
                 </div>
@@ -111,14 +111,6 @@
                     </div>
                     <div *ngIf=" modificarUsuarios.controls['rol'].invalid && (modificarUsuarios.controls['rol'].dirty || modificarUsuarios.controls['rol'].touched)" class="alert alert-danger formulario-error">
                         <div *ngIf="modificarUsuarios.controls['rol'].errors.required">El campo Rol es requerido</div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Cargo*" id="cargo" formControlName="cargo">
-                        <div *ngIf=" modificarUsuarios.controls['cargo'].invalid && (modificarUsuarios.controls['cargo'].dirty || modificarUsuarios.controls['cargo'].touched)" class="alert alert-danger formulario-error">
-                            <div *ngIf="modificarUsuarios.controls['cargo'].errors.required">El campo Cargo es requerido</div>
-                        </div>
                     </div>
                 </div>
             </div>

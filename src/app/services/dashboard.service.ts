@@ -25,6 +25,9 @@ export class DashboardService {
   crearUsuario( objeto ){
       return this.http.post( `${environment.url}user/create`, objeto , {headers: this.headers});
   }
+  obtenerDatosById( objeto ){
+      return this.http.get( `${environment.url}user/${objeto}` , {headers: this.headers});
+  }
   eliminarUsuario( id ){
       return this.http.post( `${environment.url}user/delete`, id , {headers: this.headers});
   }

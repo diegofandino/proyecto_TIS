@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: 'crear-usuario', component: CrearUsuarioComponent },
   { path: 'crear-trabajadores', component: CrearTrabajadoresComponent },
   { path: 'crear-proveedores', component: CrearProveedoresComponent },
-  { path: 'modificar-usuario/:id', component: ModificarUsuarioComponent },
+  { path: 'modificar-usuario/:email', component: ModificarUsuarioComponent },
   { path: 'modificar-cliente/:id', component: ModificarClienteComponent },
   { path: 'modificar-trabajador/:id', component: ModificarTrabajadoresComponent },
   { path: 'modificar-proveedor/:id', component: ModificarProveedoresComponent },

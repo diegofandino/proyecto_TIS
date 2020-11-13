@@ -88,8 +88,8 @@
                     <div class="form-group">
                         <select name="activo" class="form-control" id="activo" formControlName="activo">
                             <option value="" disabled selected>Estado*</option>
-                            <option value="1"> Activo </option>
-                            <option value="0"> Inactivo </option>
+                            <option value="true"> Activo </option>
+                            <option value="false"> Inactivo </option>
                         </select>
                         <div *ngIf=" crearUsuarios.controls['activo'].invalid && (crearUsuarios.controls['activo'].dirty || crearUsuarios.controls['activo'].touched)" class="alert alert-danger formulario-error">
                             <div *ngIf="crearUsuarios.controls['activo'].errors.required">El campo Estado es requerido</div>

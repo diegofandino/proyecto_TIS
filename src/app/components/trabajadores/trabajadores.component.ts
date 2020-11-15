@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Trabajadores } from 'src/app/models/trabajadores.models';
+import { DashboardService } from 'src/app/services/dashboard.service';
 import { ModalComponent } from '../modal/modal.component';
 
 @Component({
@@ -9,53 +11,25 @@ import { ModalComponent } from '../modal/modal.component';
 })
 export class TrabajadoresComponent implements OnInit {
 
-  COUNTRIES: any[] = [
-    {
-      nombre: 'Nombre',
-      apellido: 'apellido',
-      correo: 'correo@getMaxListeners.com',
-    },
-    {
-      nombre: 'Nombre',
-      apellido: 'apellido',
-      correo: 'correo@getMaxListeners.com',
-    },
-    {
-      nombre: 'Nombre',
-      apellido: 'apellido',
-      correo: 'correo@getMaxListeners.com',
-    },
-    {
-      nombre: 'Nombre',
-      apellido: 'apellido',
-      correo: 'correo@getMaxListeners.com',
-    },
-    {
-      nombre: 'Nombre',
-      apellido: 'apellido',
-      correo: 'correo@getMaxListeners.com',
-    },
-    {
-      nombre: 'Nombre',
-      apellido: 'apellido',
-      correo: 'correo@getMaxListeners.com',
-    }
-  ];
-
-
   page = 1;
   pageSize = 5;
-  collectionSize = this.COUNTRIES.length;
-  countries: any[];
-  constructor(private modalService: NgbModal) { }
+  trabajadoresLista: Trabajadores[] = [];
+  collectionSize = this.trabajadoresLista.length;
+  trabajadores: any[];
+  constructor(private modalService: NgbModal, private dashboardService: DashboardService) { }
 
   ngOnInit(): void {
-    this.refreshCountries();
+    
+    this.dashboardService.listarTrabajadores()
+    .subscribe( (respuesta: any) => {
+      this.trabajadoresLista = respuesta.trabajadores;
+    } );
+    
+    this.refrescarTrabajadores();
   }
 
-  refreshCountries() {
-    this.countries = this.COUNTRIES
-      .map((country, i) => ({id: i + 1, ...country}))
+  refrescarTrabajadores() {
+    this.trabajadores = this.trabajadoresLista
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
 

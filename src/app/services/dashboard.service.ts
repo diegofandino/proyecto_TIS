@@ -31,9 +31,28 @@ export class DashboardService {
   eliminarUsuario( id ){
       return this.http.post( `${environment.url}user/delete`, id , {headers: this.headers});
   }
-  
   listarUsuarios( ){
       return this.http.get( `${environment.url}user/`);
   }
+
+  crearTrabajador( objeto ){
+    return this.http.post( `${environment.url}trabajador/create`, objeto , {headers: this.headers});
+}
+  eliminarTrabajador( id ){
+    return this.http.post( `${environment.url}trabajador/delete`, id , {headers: this.headers});
+}
+  listarTrabajadores( ){
+    return this.http.get( `${environment.url}trabajador/`);
+}
+
+  crearProveedor( objeto ){
+    return this.http.post( `${environment.url}proveedor/create`, objeto , {headers: this.headers});
+}
+  eliminarProveedor( id ){
+    return this.http.post( `${environment.url}proveedor/delete`, id , {headers: this.headers});
+}
+  listarProveedores( ){
+    return this.http.get( `${environment.url}proveedor/`);
+}
 
 }

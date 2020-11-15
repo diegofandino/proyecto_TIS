@@ -27,6 +27,7 @@ export class UsuariosComponent implements OnInit {
     
     this.dashboardService.listarUsuarios()
     .subscribe( (respuesta: any) => {
+      console.log(respuesta);
       this.usuariosLista = respuesta.usuarios;
     } );
     

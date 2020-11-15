@@ -34,6 +34,20 @@ export class ModalComponent implements OnInit {
         console.log('Se elimina la obra', this.id);
         this.activeModal.close();
         break;
+      case 'trabajadores':
+        this.dashboardService.eliminarTrabajador(this.id)
+            .subscribe( (respuesta: any) => {
+            console.log(respuesta);
+            } )      
+        this.activeModal.close();
+        break;
+      case 'proveedores':
+        this.dashboardService.eliminarProveedor(this.id)
+            .subscribe( (respuesta: any) => {
+            console.log(respuesta);
+            } )      
+        this.activeModal.close();
+        break;
     
     }
 

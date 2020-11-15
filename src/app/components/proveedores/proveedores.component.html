@@ -1,4 +1,4 @@
-<div class="container consultar-usuarios">
+<div class="container consultar-proveedores">
     <div class="row align-items-center">
         <div class="col-lg-9 col-sm-6 titulos-principales">
             <h1>Consultar proveedores</h1>
@@ -27,13 +27,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let country of countries, let i = index">
+                        <tr *ngFor="let proveedor of proveedoresLista, let i = index">
                             <th class="text-center" scope="row">{{ i + 1}}</th>
                             <td class="text-center">
-                                {{ country.nombre}}
+                                {{ proveedor.nombre}}
                             </td>
-                            <td class="text-center">{{ country.apellido}}</td>
-                            <td class="text-center">{{ country.correo}}</td>
+                            <td class="text-center">{{ proveedor.apellido}}</td>
+                            <td class="text-center">{{ proveedor.email}}</td>
                             <td class="text-center">
                                 <a [routerLink]="['/modificar-proveedor', i + 1]" routerLinkActive="router-link-active" class="cursor-pointer btn btn-success btn-texto"> <i class="far fa-edit" style="color: #ffffff;"></i></a>
                             </td>
@@ -44,10 +44,10 @@
             </div>
 
             <div class="d-flex justify-content-between contenedor-paginador p-2">
-                <ngb-pagination class="centrar-pagination" [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshCountries()">
+                <ngb-pagination class="centrar-pagination" [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshProveedores()">
                 </ngb-pagination>
 
-                <select class="custom-select centrar-pagination" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshCountries()">
+                <select class="custom-select centrar-pagination" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshProveedores()">
                     <option [ngValue]="5">5 proveedores por página</option>
                     <option [ngValue]="10">10 proveedores por página</option>
                     <option [ngValue]="15">15 proveedores por página</option>

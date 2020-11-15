@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { DashboardService } from 'src/app/services/dashboard.service';
 
 @Component({
   selector: 'app-crear-proveedores',
@@ -10,13 +12,14 @@ import { Router } from '@angular/router';
 export class CrearProveedoresComponent implements OnInit {
 
   crearProveedores: FormGroup
-  constructor(private formbuilder: FormBuilder, private router: Router) { }
+  constructor(private formbuilder: FormBuilder, private router: Router, private dashboardService: DashboardService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
     this.crearProveedores = this.formbuilder.group({
-      documento: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
       tipo: new FormControl ('', Validators.required),
+      identificacion: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
       nombre: new FormControl ('', Validators.required),
       repreLegal: new FormControl ('', Validators.required),
       telefono: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
@@ -36,10 +39,16 @@ export class CrearProveedoresComponent implements OnInit {
     if( !this.crearProveedores.valid ){
         this.crearProveedores.markAllAsTouched();
         console.log("No debe funcionar el formulario");
+        this.toastr.error('Existen campos obligatorios sin diligenciar', '');
         return;
     }
 
-    console.log(values);
+    this.dashboardService.crearProveedor( this.crearProveedores.value )
+    .subscribe( (respuesta: any) => {
+      console.log("Proceso exitoso", respuesta)
+      this.toastr.success('¡Registro exitoso!', '');
+      this.resetear();
+        });
   }
 
   resetear(){

@@ -27,13 +27,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let country of countries, let i = index">
+                        <tr *ngFor="let trabajador of trabajadoresLista, let i = index">
                             <th class="text-center" scope="row">{{ i + 1}}</th>
                             <td class="text-center">
-                                {{ country.nombre}}
+                                {{ trabajador.nombre}}
                             </td>
-                            <td class="text-center">{{ country.apellido}}</td>
-                            <td class="text-center">{{ country.correo}}</td>
+                            <td class="text-center">{{ trabajador.apellido}}</td>
+                            <td class="text-center">{{ trabajador.email}}</td>
                             <td class="text-center">
                                 <a [routerLink]="['/modificar-trabajador', i + 1]" routerLinkActive="router-link-active" class="cursor-pointer btn btn-success btn-texto"> <i class="far fa-edit" style="color: #ffffff;"></i></a>
                             </td>
@@ -44,10 +44,10 @@
             </div>
 
             <div class="d-flex justify-content-between contenedor-paginador p-2">
-                <ngb-pagination class="centrar-pagination" [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshCountries()">
+                <ngb-pagination class="centrar-pagination" [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refrescarTrabajadores()">
                 </ngb-pagination>
 
-                <select class="custom-select centrar-pagination" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshCountries()">
+                <select class="custom-select centrar-pagination" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refrescarTrabajadores()">
                     <option [ngValue]="5">5 trabajadores por página</option>
                     <option [ngValue]="10">10 trabajadores por página</option>
                     <option [ngValue]="15">15 trabajadores por página</option>

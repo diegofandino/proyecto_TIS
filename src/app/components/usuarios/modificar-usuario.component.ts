@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { DashboardService } from 'src/app/services/dashboard.service';
 
 @Component({
@@ -12,8 +13,9 @@ export class ModificarUsuarioComponent implements OnInit {
 
   modificarUsuarios: FormGroup;
   emailUsuario: string;
+  idModificar: string;
   constructor(private formbuilder: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute,
-    private dashboardService: DashboardService) { }
+    private dashboardService: DashboardService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -24,7 +26,7 @@ export class ModificarUsuarioComponent implements OnInit {
           password: new FormControl ('', Validators.required),
           documento: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
           telefono: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
-          email: new FormControl ('', [Validators.required, Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$')]),
+          email: new FormControl ({value: '', disabled: true}, [Validators.required, Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$')]),
           rol: new FormControl ('', Validators.required),
           activo: new FormControl ('', Validators.required)
         });
@@ -32,7 +34,6 @@ export class ModificarUsuarioComponent implements OnInit {
         this.activatedRoute.params
         .subscribe( async params => {
             this.emailUsuario = await params['email'];
-            console.log(this.emailUsuario);
             this.getData(this.emailUsuario);
         } );
 
@@ -40,8 +41,6 @@ export class ModificarUsuarioComponent implements OnInit {
 
   async getData(id){
     const data = await this.dashboardService.obtenerDatosById(id).toPromise();
-
-    console.log(data['usuario']);
 
     this.modificarUsuarios.setValue({
       nombre: data['usuario'].nombre,
@@ -54,6 +53,8 @@ export class ModificarUsuarioComponent implements OnInit {
       rol: data['usuario'].rol,
       activo: data['usuario'].activo
     });
+
+    this.idModificar = data['usuario']._id;
     
   }
 
@@ -61,11 +62,19 @@ export class ModificarUsuarioComponent implements OnInit {
 
     if( !this.modificarUsuarios.valid ){
         this.modificarUsuarios.markAllAsTouched();
-        console.log("No debe funcionar el formulario");
+        this.toastr.error('Existen campos obligatorios sin diligenciar', '');
         return;
     }
 
-    console.log(this.modificarUsuarios.value);
+    Object.assign(this.modificarUsuarios.value , {'_id': this.idModificar});
+    console.log("Revisar", this.modificarUsuarios.value);
+
+    this.dashboardService.actualizarUsuario(this.modificarUsuarios.value)
+        .subscribe( (respuesta: any) => {
+          this.toastr.success('¡Registro exitoso!', '');
+          this.router.navigate(['/usuarios']);
+        } );
+
   }
 
   resetear(){

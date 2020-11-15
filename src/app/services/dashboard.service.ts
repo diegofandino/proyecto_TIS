@@ -28,6 +28,9 @@ export class DashboardService {
   obtenerDatosById( objeto ){
       return this.http.get( `${environment.url}user/${objeto}` , {headers: this.headers});
   }
+  actualizarUsuario( objeto ){
+    return this.http.post( `${environment.url}user/update`, objeto , {headers: this.headers});
+}
   eliminarUsuario( id ){
       return this.http.post( `${environment.url}user/delete`, id , {headers: this.headers});
   }

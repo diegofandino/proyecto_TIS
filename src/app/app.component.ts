@@ -16,10 +16,6 @@ export class AppComponent {
 
   ngOnInit(): void {
 
-    this.usuarioAuth = false;
-
-    this.dashboardService.openSidebarSubject.subscribe( (respuesta) => {
-      this.openSidebar = respuesta;
-    });    
+       
   }
 }

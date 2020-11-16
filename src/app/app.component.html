@@ -1,17 +1,1 @@
-<div *ngIf="usuarioAuth" class="dashboard">
-    <div class="sidebar" [class.opensidebar]="openSidebar">
-        <app-sidebar></app-sidebar>
-    </div>
-    <div class="contenido-completo" [class.collapsedSidebar]="!openSidebar">
-        <div class="header">
-            <app-header></app-header>
-        </div>
-        <div class="body-dash">
-            <router-outlet></router-outlet>
-        </div>
-    </div>
-</div>
-
-<div class="login" *ngIf="!usuarioAuth">
-    <app-login></app-login>
-</div>
+<router-outlet></router-outlet>

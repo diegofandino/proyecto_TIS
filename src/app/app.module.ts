@@ -34,6 +34,7 @@ import { AvanceObraComponent } from './components/avance-obra/avance-obra.compon
 import { CrearObraComponent } from './components/avance-obra/crear-obra.component';
 import { ModificarObraComponent } from './components/avance-obra/modificar-obra.component';
 import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { LoginComponent } from './components/login/login.component';
     AvanceObraComponent,
     CrearObraComponent,
     ModificarObraComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

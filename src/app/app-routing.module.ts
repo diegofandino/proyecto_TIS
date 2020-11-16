@@ -17,13 +17,15 @@ import { AvanceObraComponent } from './components/avance-obra/avance-obra.compon
 import { CrearObraComponent } from './components/avance-obra/crear-obra.component';
 import { ModificarObraComponent } from './components/avance-obra/modificar-obra.component';
 import { LoginComponent } from '../app/components/login/login.component';
+import { HomeComponent } from '../app/components/home/home.component';
 
 
 
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: '', component: ContenidoComponent , children: [
+  { path: '', component: HomeComponent , children: [
+    { path: 'bienvenido', component: ContenidoComponent },
     { path: 'usuarios', component: UsuariosComponent },
     { path: 'clientes', component: ClientesComponent },
     { path: 'trabajadores', component: TrabajadoresComponent },

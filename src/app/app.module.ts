@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
@@ -33,6 +33,10 @@ import { ModificarProveedoresComponent } from './components/proveedores/modifica
 import { AvanceObraComponent } from './components/avance-obra/avance-obra.component';
 import { CrearObraComponent } from './components/avance-obra/crear-obra.component';
 import { ModificarObraComponent } from './components/avance-obra/modificar-obra.component';
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { AuthGuard } from './guards/auth.guard';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -55,7 +59,9 @@ import { ModificarObraComponent } from './components/avance-obra/modificar-obra.
     ModificarProveedoresComponent,
     AvanceObraComponent,
     CrearObraComponent,
-    ModificarObraComponent
+    ModificarObraComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +78,8 @@ import { ModificarObraComponent } from './components/avance-obra/modificar-obra.
     }),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [DatePipe, {provide: NgbDateParserFormatter, useClass: NgbDateFRParserFormatter}],
+  providers: [DatePipe, {provide: NgbDateParserFormatter, useClass: NgbDateFRParserFormatter}, AuthGuard,
+  { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

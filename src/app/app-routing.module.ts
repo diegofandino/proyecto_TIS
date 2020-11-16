@@ -16,30 +16,38 @@ import { ModificarProveedoresComponent } from './components/proveedores/modifica
 import { AvanceObraComponent } from './components/avance-obra/avance-obra.component';
 import { CrearObraComponent } from './components/avance-obra/crear-obra.component';
 import { ModificarObraComponent } from './components/avance-obra/modificar-obra.component';
+import { LoginComponent } from '../app/components/login/login.component';
+import { HomeComponent } from '../app/components/home/home.component';
+import { AuthGuard } from './guards/auth.guard';
+
 
 
 
 const routes: Routes = [
-  { path: '', component: ContenidoComponent },
-  { path: 'usuarios', component: UsuariosComponent },
-  { path: 'clientes', component: ClientesComponent },
-  { path: 'trabajadores', component: TrabajadoresComponent },
-  { path: 'proveedores', component: ProveedoresComponent },
-  { path: 'crear-cliente', component: CrearClienteComponent },
-  { path: 'crear-obra', component: CrearObraComponent },
-  { path: 'avance-obra', component: AvanceObraComponent },
-  { path: 'crear-usuario', component: CrearUsuarioComponent },
-  { path: 'crear-trabajadores', component: CrearTrabajadoresComponent },
-  { path: 'crear-proveedores', component: CrearProveedoresComponent },
-  { path: 'modificar-usuario/:email', component: ModificarUsuarioComponent },
-  { path: 'modificar-cliente/:id', component: ModificarClienteComponent },
-  { path: 'modificar-trabajador/:id', component: ModificarTrabajadoresComponent },
-  { path: 'modificar-proveedor/:id', component: ModificarProveedoresComponent },
-  { path: 'modificar-obra/:id', component: ModificarObraComponent },
+  { path: 'login', component: LoginComponent },
+  { path: '', component: HomeComponent ,  canActivate: [AuthGuard] , children: [
+    { path: 'bienvenido', component: ContenidoComponent, canActivate: [AuthGuard] },
+    { path: 'usuarios', component: UsuariosComponent , canActivate: [AuthGuard] },
+    { path: 'clientes', component: ClientesComponent , canActivate: [AuthGuard] },
+    { path: 'trabajadores', component: TrabajadoresComponent , canActivate: [AuthGuard] },
+    { path: 'proveedores', component: ProveedoresComponent , canActivate: [AuthGuard] },
+    { path: 'crear-cliente', component: CrearClienteComponent , canActivate: [AuthGuard] },
+    { path: 'crear-obra', component: CrearObraComponent , canActivate: [AuthGuard] },
+    { path: 'avance-obra', component: AvanceObraComponent , canActivate: [AuthGuard] },
+    { path: 'crear-usuario', component: CrearUsuarioComponent , canActivate: [AuthGuard] },
+    { path: 'crear-trabajadores', component: CrearTrabajadoresComponent , canActivate: [AuthGuard] },
+    { path: 'crear-proveedores', component: CrearProveedoresComponent , canActivate: [AuthGuard] },
+    { path: 'modificar-usuario/:email', component: ModificarUsuarioComponent , canActivate: [AuthGuard] },
+    { path: 'modificar-cliente/:id', component: ModificarClienteComponent , canActivate: [AuthGuard] },
+    { path: 'modificar-trabajador/:id', component: ModificarTrabajadoresComponent , canActivate: [AuthGuard] },
+    { path: 'modificar-proveedor/:id', component: ModificarProveedoresComponent , canActivate: [AuthGuard] },
+    { path: 'modificar-obra/:id', component: ModificarObraComponent , canActivate: [AuthGuard] }
+  ]},
+  { path: '**', redirectTo: '/login', pathMatch: 'full'  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

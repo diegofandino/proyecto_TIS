@@ -1,0 +1,71 @@
+::ng-deep .formulario-crear {
+    .botones-creacion {
+        padding-top: 30px;
+        button {
+            width: 170px;
+            padding: 8px 0px;
+        }
+    }
+    .formulario-error {
+        padding: 0 13px;
+        background: transparent;
+        border: none;
+        margin-top: -3px;
+        div {
+            color: #9a1919;
+            font-weight: 600;
+        }
+    }
+    padding: 30px 200px;
+    .form-control {
+        height: 45px;
+        margin: 10px 0px;
+        border-radius: 100px;
+        border: 2px solid #c0c0c0;
+        &:focus {
+            box-shadow: none;
+        }
+    }
+    .button-login {
+        padding: 6px 40px;
+    }
+}
+
+::ng-deep #toast-container {
+    .ngx-toastr {
+        background-image: none !important;
+        padding: 15px;
+        font-size: 14px;
+        font-weight: 600;
+        width: 400px;
+        &.toast-error {
+            .toast-message {
+                color: #bd2130;
+            }
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .formulario-crear {
+        padding: 30px 0px;
+    }
+}
+
+@media (max-width: 780px) {
+    .formulario-crear {
+        padding: 30px 0px;
+        .botones-creacion {
+            div {
+                text-align: center !important;
+                padding-bottom: 20px;
+            }
+        }
+    }
+}
+
+@media (max-width: 640px) {
+    .formulario-crear {
+        padding: 10px 0px;
+    }
+}

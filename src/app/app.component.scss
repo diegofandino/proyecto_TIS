@@ -1,0 +1,12 @@
+.login {
+    background-color: #F9FAFB;
+    height: 100vh !important;
+}
+
+::ng-deep .login-usuarios {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}

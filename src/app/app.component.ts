@@ -10,12 +10,12 @@ import { DashboardService } from './services/dashboard.service';
 export class AppComponent {
   title = 'FronTIS';
   openSidebar: boolean;
+  usuarioAuth: boolean = false;
   constructor(private dashboardService: DashboardService){
   }
 
   ngOnInit(): void {
-    this.dashboardService.openSidebarSubject.subscribe( (respuesta) => {
-      this.openSidebar = respuesta;
-    });    
+
+       
   }
 }

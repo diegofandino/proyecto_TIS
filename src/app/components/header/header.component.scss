@@ -6,4 +6,13 @@
     .item-desplegable i {
         color: #72777a;
     }
+    .btn-logout {
+        -webkit-transition: all 0.2s linear;
+        transition: all 0.2s linear;
+        &:hover {
+            text-decoration: none;
+            -webkit-transition: all 0.2s linear;
+            transition: all 0.2s linear;
+        }
+    }
 }

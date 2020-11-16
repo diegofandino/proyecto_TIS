@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
@@ -36,6 +36,7 @@ import { ModificarObraComponent } from './components/avance-obra/modificar-obra.
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './guards/auth.guard';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { AuthGuard } from './guards/auth.guard';
     }),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [DatePipe, {provide: NgbDateParserFormatter, useClass: NgbDateFRParserFormatter}, AuthGuard],
+  providers: [DatePipe, {provide: NgbDateParserFormatter, useClass: NgbDateFRParserFormatter}, AuthGuard,
+  { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -45,7 +45,7 @@ export class CrearProveedoresComponent implements OnInit {
 
     this.dashboardService.crearProveedor( this.crearProveedores.value )
     .subscribe( (respuesta: any) => {
-      console.log("Proceso exitoso", respuesta)
+      console.log(respuesta)
       this.toastr.success('¡Registro exitoso!', '');
       this.resetear();
         });

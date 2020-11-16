@@ -37,6 +37,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './guards/auth.guard';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { MaterialesComponent } from './components/materiales/materiales.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     CrearObraComponent,
     ModificarObraComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    MaterialesComponent
   ],
   imports: [
     BrowserModule,

@@ -12,7 +12,7 @@ import { ModalComponent } from '../modal/modal.component';
 export class ProveedoresComponent implements OnInit {
 
   page = 1;
-  pageSize = 5;
+  pageSize = 6;
   proveedoresLista: Proveedores[] = [];
   collectionSize = this.proveedoresLista.length;
   proveedores: any[];

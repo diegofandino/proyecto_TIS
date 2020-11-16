@@ -35,6 +35,7 @@ import { CrearObraComponent } from './components/avance-obra/crear-obra.componen
 import { ModificarObraComponent } from './components/avance-obra/modificar-obra.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,7 @@ import { HomeComponent } from './components/home/home.component';
     }),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [DatePipe, {provide: NgbDateParserFormatter, useClass: NgbDateFRParserFormatter}],
+  providers: [DatePipe, {provide: NgbDateParserFormatter, useClass: NgbDateFRParserFormatter}, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

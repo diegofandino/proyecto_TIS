@@ -33,6 +33,7 @@ import { ModificarProveedoresComponent } from './components/proveedores/modifica
 import { AvanceObraComponent } from './components/avance-obra/avance-obra.component';
 import { CrearObraComponent } from './components/avance-obra/crear-obra.component';
 import { ModificarObraComponent } from './components/avance-obra/modificar-obra.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { ModificarObraComponent } from './components/avance-obra/modificar-obra.
     ModificarProveedoresComponent,
     AvanceObraComponent,
     CrearObraComponent,
-    ModificarObraComponent
+    ModificarObraComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -25,6 +25,11 @@ export class AuthService {
     return !!token;
   }
 
+  obtenerToken(){
+    const obtenerToken = localStorage.getItem('token');
+    return obtenerToken;
+  }
+
   logout(){
     localStorage.removeItem('token');
     this.route.navigate(['../login']);

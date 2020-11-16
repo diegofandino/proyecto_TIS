@@ -43,7 +43,7 @@ const routes: Routes = [
     { path: 'modificar-proveedor/:id', component: ModificarProveedoresComponent , canActivate: [AuthGuard] },
     { path: 'modificar-obra/:id', component: ModificarObraComponent , canActivate: [AuthGuard] }
   ]},
-  { path: '**', redirectTo: 'login', pathMatch: 'full'  },
+  { path: '**', redirectTo: '/login', pathMatch: 'full'  },
 ];
 
 @NgModule({

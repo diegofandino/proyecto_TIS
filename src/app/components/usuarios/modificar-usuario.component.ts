@@ -71,7 +71,7 @@ export class ModificarUsuarioComponent implements OnInit {
 
     this.dashboardService.actualizarUsuario(this.modificarUsuarios.value)
         .subscribe( (respuesta: any) => {
-          this.toastr.success('¡Registro exitoso!', '');
+          this.toastr.success('!Modificación exitosa!', '');
           this.router.navigate(['/usuarios']);
         } );
 

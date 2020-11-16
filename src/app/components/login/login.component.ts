@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
 
     if(this.authService.estaAutenticado()){
-      this.route.navigate(['./bienvenido']);
+      this.route.navigate(['../bienvenido']);
     }
 
     this.formLogin = this.formBuilder.group({
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
           console.log(respuesta);
            if( respuesta['ok'] ){
              console.log('entro')
-              this.route.navigate(['./bienvenido']);
+              this.route.navigate(['../bienvenido']);
            } else {
             this.toastr.error( respuesta.mensaje , '');
            }

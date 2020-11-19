@@ -22,6 +22,7 @@ export class TrabajadoresComponent implements OnInit {
     
     this.dashboardService.listarTrabajadores()
     .subscribe( (respuesta: any) => {
+      console.log(respuesta);
       this.trabajadoresLista = respuesta.trabajadores;
     } );
     

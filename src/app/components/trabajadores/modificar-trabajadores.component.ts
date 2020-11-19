@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { DashboardService } from 'src/app/services/dashboard.service';
+import { __await } from 'tslib';
 
 @Component({
   selector: 'app-modificar-trabajadores',
@@ -10,9 +13,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ModificarTrabajadoresComponent implements OnInit {
 
   modificarTrabajadores: FormGroup;
-  constructor(private formbuilder: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute) { }
-
-  ngOnInit(): void {
+  documentoTrabajador: String;
+  idModificar: String;
+  constructor(private formbuilder: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute,
+    private dashboardService: DashboardService, private toastr: ToastrService) { }
+  
+    ngOnInit(): void {
     this.modificarTrabajadores = this.formbuilder.group({
       documento: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
       nombre: new FormControl ('', Validators.required),
@@ -27,21 +33,53 @@ export class ModificarTrabajadoresComponent implements OnInit {
     })
 
     this.activatedRoute.params
-        .subscribe( params => {
-            console.log("trabajador", params['id']);
+        .subscribe(async params => {
+            this.documentoTrabajador = await params['documento'];
+            this.getData(this.documentoTrabajador);
+            //console.log("trabajador", params['id']);
         } );
+  }
 
+  async getData(id){
+    
+    const data = await this.dashboardService.obtenerDatosByIdTra(id).toPromise();
+    console.log(data);
+
+    this.modificarTrabajadores.setValue({
+      documento: data['trabajador'].documento,
+      nombre: data['trabajador'].nombre,
+      apellido: data['trabajador'].apellido,
+      genero: data['trabajador'].genero,
+      telefono: data['trabajador'].genero,
+      email: data['trabajador'].email,
+      direccion: data['trabajador'].direccion,
+      cargo: data['trabajador'].cargo,
+      //obras: data['trabajador'].obras,
+      estado: data['trabajador'].estado,
+      
+    });
+
+    this.idModificar = data['trabajador']._id;
+    
   }
 
   modificar(values){
 
     if( !this.modificarTrabajadores.valid ){
         this.modificarTrabajadores.markAllAsTouched();
-        console.log("No debe funcionar el formulario");
+        this.toastr.error('Existen campos obligatorios sin diligenciar', '');
         return;
     }
 
-    console.log(values);
+    Object.assign(this.modificarTrabajadores.value , {'_id': this.idModificar});
+    console.log("Revisar", this.modificarTrabajadores.value);
+
+    this.dashboardService.actualizarTrabajador(this.modificarTrabajadores.value)
+        .subscribe( (respuesta: any) => {
+          this.toastr.success('!Modificación exitosa!', '');
+          this.router.navigate(['/trabajadores']);
+        } );
+
   }
 
   resetear(){

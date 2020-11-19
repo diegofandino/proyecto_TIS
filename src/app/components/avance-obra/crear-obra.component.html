@@ -11,14 +11,6 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="codigo" placeholder="Código de la obra*" formControlName="codigo">
-                        <div *ngIf=" crearObras.controls['codigo'].invalid && (crearObras.controls['codigo'].dirty || crearObras.controls['codigo'].touched)" class="alert alert-danger formulario-error">
-                            <div *ngIf="crearObras.controls['codigo'].errors.required">El campo Código de la obra es requerido</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
-                    <div class="form-group">
                         <input type="text" class="form-control" id="identObra" placeholder="Identidad de la obra*" formControlName="identObra">
                         <div *ngIf=" crearObras.controls['identObra'].invalid && (crearObras.controls['identObra'].dirty || crearObras.controls['identObra'].touched)" class="alert alert-danger formulario-error">
                             <div *ngIf="crearObras.controls['identObra'].errors.required">El campo Identidad de la obra es requerido</div>

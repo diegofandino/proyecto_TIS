@@ -30,7 +30,7 @@ export class DashboardService {
   }
   actualizarUsuario( objeto ){
     return this.http.post( `${environment.url}user/update`, objeto , {headers: this.headers});
-}
+  }
   eliminarUsuario( id ){
       return this.http.post( `${environment.url}user/delete`, id , {headers: this.headers});
   }
@@ -38,24 +38,45 @@ export class DashboardService {
       return this.http.get( `${environment.url}user/`);
   }
 
-  crearTrabajador( objeto ){
-    return this.http.post( `${environment.url}trabajador/create`, objeto , {headers: this.headers});
-}
-  eliminarTrabajador( id ){
-    return this.http.post( `${environment.url}trabajador/delete`, id , {headers: this.headers});
-}
-  listarTrabajadores( ){
-    return this.http.get( `${environment.url}trabajador/`);
+  crearCliente( objeto ){
+    return this.http.post( `${environment.url}cliente/create`, objeto , {headers: this.headers});
+  }
+  listarClientes( ){
+    return this.http.get( `${environment.url}cliente/`);
 }
 
-  crearProveedor( objeto ){
+  crearTrabajador( objeto ){    
+    return this.http.post( `${environment.url}trabajador/create`, objeto , {headers: this.headers});
+  }
+  obtenerDatosByIdTra( objeto ){
+    return this.http.get( `${environment.url}trabajador/${objeto}` , {headers: this.headers});
+  }
+  actualizarTrabajador( objeto ){
+    return this.http.post( `${environment.url}trabajador/update`, objeto , {headers: this.headers});
+  }
+  listarTrabajadores( ){
+    return this.http.get( `${environment.url}trabajador/`);
+  }
+
+  crearProveedor( objeto ){    
     return this.http.post( `${environment.url}proveedor/create`, objeto , {headers: this.headers});
-}
-  eliminarProveedor( id ){
-    return this.http.post( `${environment.url}proveedor/delete`, id , {headers: this.headers});
 }
   listarProveedores( ){
     return this.http.get( `${environment.url}proveedor/`);
 }
+
+  crearMateriales( objeto ){
+    return this.http.post( `${environment.url}material/create`, objeto , {headers: this.headers});
+  }
+  listarMateriales( ){
+    return this.http.get( `${environment.url}material/`);
+}
+
+  crearObra( objeto ){
+    return this.http.post( `${environment.url}obra/create`, objeto , {headers: this.headers});
+  }
+  listarObras( ){
+    return this.http.get( `${environment.url}obra/`);
+  }
 
 }

@@ -38,6 +38,8 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './guards/auth.guard';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { MaterialesComponent } from './components/materiales/materiales.component';
+import { crearMaterialesComponent } from './components/materiales/crear-materiales.component';
+import { ModificarMaterialesComponent } from './components/materiales/modificar-materiales.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +65,9 @@ import { MaterialesComponent } from './components/materiales/materiales.componen
     ModificarObraComponent,
     LoginComponent,
     HomeComponent,
-    MaterialesComponent
+    MaterialesComponent,
+    crearMaterialesComponent,
+    ModificarMaterialesComponent
   ],
   imports: [
     BrowserModule,

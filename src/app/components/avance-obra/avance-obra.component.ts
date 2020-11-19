@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Obras } from 'src/app/models/obras.models';
+import { DashboardService } from 'src/app/services/dashboard.service';
 import { ModalComponent } from '../../components/modal/modal.component';
 
 @Component({
@@ -8,53 +10,27 @@ import { ModalComponent } from '../../components/modal/modal.component';
   styleUrls: ['./avance-obra.component.scss']
 })
 export class AvanceObraComponent implements OnInit {
-  COUNTRIES: any[] = [
-    {
-      nombre: 'Nombre',
-      apellido: 'apellido',
-      correo: 'correo@getMaxListeners.com',
-    },
-    {
-      nombre: 'Nombre',
-      apellido: 'apellido',
-      correo: 'correo@getMaxListeners.com',
-    },
-    {
-      nombre: 'Nombre',
-      apellido: 'apellido',
-      correo: 'correo@getMaxListeners.com',
-    },
-    {
-      nombre: 'Nombre',
-      apellido: 'apellido',
-      correo: 'correo@getMaxListeners.com',
-    },
-    {
-      nombre: 'Nombre',
-      apellido: 'apellido',
-      correo: 'correo@getMaxListeners.com',
-    },
-    {
-      nombre: 'Nombre',
-      apellido: 'apellido',
-      correo: 'correo@getMaxListeners.com',
-    }
-  ];
-
-
+  
   page = 1;
   pageSize = 5;
-  collectionSize = this.COUNTRIES.length;
+  obrasLista: Obras[] = [];
+  collectionSize = this.obrasLista.length;
   countries: any[];
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, private dashboardService: DashboardService) { }
 
   ngOnInit(): void {
-    this.refreshCountries();
+
+    this.dashboardService.listarObras()
+    .subscribe( (respuesta: any) => {
+      console.log(respuesta);
+      this.obrasLista = respuesta.obras;
+    } );
+
+    this.refrescarObras();
   }
 
-  refreshCountries() {
-    this.countries = this.COUNTRIES
-      .map((country, i) => ({id: i + 1, ...country}))
+  refrescarObras() {
+    this.countries = this.obrasLista
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
 

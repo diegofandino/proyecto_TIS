@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { DashboardService } from 'src/app/services/dashboard.service';
 
 @Component({
   selector: 'app-crear-cliente',
@@ -10,16 +12,19 @@ import { Router } from '@angular/router';
 export class CrearClienteComponent implements OnInit {
 
   crearClientes: FormGroup
-  constructor(private formbuilder: FormBuilder, private router: Router) { }
+  constructor(private formbuilder: FormBuilder, private router: Router, private dashboardService: DashboardService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     
     this.crearClientes = this.formbuilder.group({
-      nombres: new FormControl ('', Validators.required),
-      apellidos: new FormControl ('', Validators.required),
+      tipo: new FormControl ('', Validators.required),
+      identificacion: new FormControl ('', Validators.required),
+      nombre: new FormControl ('', Validators.required),
       telefono: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
-      correo: new FormControl ('', [Validators.required, Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$')]),
-      obras: new FormControl ('', Validators.required),
+      email: new FormControl ('', [Validators.required, Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$')]),
+      direccion: new FormControl ('', Validators.required),
+      activo: new FormControl ('', Validators.required)
     })
 
   }
@@ -33,10 +38,16 @@ export class CrearClienteComponent implements OnInit {
     if( !this.crearClientes.valid ){
         this.crearClientes.markAllAsTouched();
         console.log("No debe funcionar el formulario");
+        this.toastr.error('Existen campos obligatorios sin diligenciar', '');
         return;
     }
 
-    console.log(this.crearClientes.value);
+    this.dashboardService.crearCliente( this.crearClientes.value )
+    .subscribe( (respuesta: any) => {
+      console.log("Proceso exitoso", respuesta)
+      this.toastr.success('¡Registro exitoso!', '');
+      this.resetear();
+        });
   }
 
   resetear(){

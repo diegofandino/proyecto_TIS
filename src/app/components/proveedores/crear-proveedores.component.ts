@@ -19,7 +19,7 @@ export class CrearProveedoresComponent implements OnInit {
 
     this.crearProveedores = this.formbuilder.group({
       tipo: new FormControl ('', Validators.required),
-      identificacion: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
+      identificacion: new FormControl ('', Validators.required),
       nombre: new FormControl ('', Validators.required),
       repreLegal: new FormControl ('', Validators.required),
       telefono: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
@@ -36,6 +36,7 @@ export class CrearProveedoresComponent implements OnInit {
 
   crear(values){
 
+  
     if( !this.crearProveedores.valid ){
         this.crearProveedores.markAllAsTouched();
         console.log("No debe funcionar el formulario");
@@ -45,7 +46,7 @@ export class CrearProveedoresComponent implements OnInit {
 
     this.dashboardService.crearProveedor( this.crearProveedores.value )
     .subscribe( (respuesta: any) => {
-      console.log(respuesta)
+      console.log("Proceso Exitoso: ", respuesta)
       this.toastr.success('¡Registro exitoso!', '');
       this.resetear();
         });

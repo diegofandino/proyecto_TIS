@@ -1,0 +1,90 @@
+<div class="container crear-materiales">
+    <div class="row align-items-center">
+        <div class="col-lg-12 text-center titulos-principales">
+            <h1>Crear material</h1>
+        </div>
+    </div>
+
+    <div class="formulario-crear">
+        <form [formGroup]="crearMateriales" #formDir (ngSubmit)="crear(formDir)">
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="codigo" placeholder="Código*" formControlName="codigo">
+                        <div *ngIf=" crearMateriales.controls['codigo'].invalid && (crearMateriales.controls['codigo'].dirty || crearMateriales.controls['codigo'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="crearMateriales.controls['codigo'].errors.required">El campo codigo es requerido</div>
+                            <div *ngIf="crearMateriales.controls['codigo'].errors.maxlength">El campo codigo debe tener máximo 10 carácteres</div>
+                            <div *ngIf="crearMateriales.controls['codigo'].errors.pattern">El campo codigo es tipo numérico</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Referencia*" id="referencia" formControlName="referencia">
+                        <div *ngIf=" crearMateriales.controls['referencia'].invalid && (crearMateriales.controls['referencia'].dirty || crearMateriales.controls['referencia'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="crearMateriales.controls['referencia'].errors.required">El campo referencia es requerido</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="unidadMedida" placeholder="Unidad Medida*" formControlName="unidadMedida">
+                        <div *ngIf=" crearMateriales.controls['unidadMedida'].invalid && (crearMateriales.controls['unidadMedida'].dirty || crearMateriales.controls['unidadMedida'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="crearMateriales.controls['unidadMedida'].errors.required">El campo Unidad de Medida es requerido</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Precio*" id="precio" formControlName="precio">
+                        <div *ngIf=" crearMateriales.controls['precio'].invalid && (crearMateriales.controls['precio'].dirty || crearMateriales.controls['precio'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="crearMateriales.controls['precio'].errors.required">El campo precio es requerido</div>
+                            <div *ngIf="crearMateriales.controls['precio'].errors.maxlength">El campo precio debe tener máximo 10 carácteres</div>
+                            <div *ngIf="crearMateriales.controls['precio'].errors.pattern">El campo precio es tipo numérico</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Cantidad*" id="cantidad" formControlName="cantidad">
+                        <div *ngIf=" crearMateriales.controls['cantidad'].invalid && (crearMateriales.controls['cantidad'].dirty || crearMateriales.controls['cantidad'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="crearMateriales.controls['cantidad'].errors.required">El campo cantidad es requerido</div>
+                            <div *ngIf="crearMateriales.controls['cantidad'].errors.maxlength">El campo cantidad debe tener máximo 5 carácteres</div>
+                            <div *ngIf="crearMateriales.controls['cantidad'].errors.pattern">El campo cantidad es tipo numérico</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <select name="activo" class="form-control" id="activo" formControlName="activo">
+                            <option value="" disabled selected>Estado*</option>
+                            <option value="true"> Activo </option>
+                            <option value="false"> Inactivo </option>
+                        </select>
+                        <div *ngIf=" crearMateriales.controls['activo'].invalid && (crearMateriales.controls['activo'].dirty || crearMateriales.controls['activo'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="crearMateriales.controls['activo'].errors.required">El campo Estado es requerido</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row botones-creacion">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 text-right">
+                    <button type="submit" class="btn btn-success"> Crear </button>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 text-left">
+                    <button type="button" (click)="resetear()" class="btn btn-danger"> Cancelar </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</div>

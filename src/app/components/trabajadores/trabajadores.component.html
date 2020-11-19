@@ -23,7 +23,6 @@
                             <th class="text-center" scope="col">Apellido</th>
                             <th class="text-center" scope="col">Correo</th>
                             <th class="text-center" scope="col">Modificar</th>
-                            <th class="text-center" scope="col">Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,9 +34,8 @@
                             <td class="text-center">{{ trabajador.apellido}}</td>
                             <td class="text-center">{{ trabajador.email}}</td>
                             <td class="text-center">
-                                <a [routerLink]="['/modificar-trabajador', i + 1]" routerLinkActive="router-link-active" class="cursor-pointer btn btn-success btn-texto"> <i class="far fa-edit" style="color: #ffffff;"></i></a>
+                                <a [routerLink]="['/modificar-trabajador', trabajador.documento]" routerLinkActive="router-link-active" class="cursor-pointer btn btn-success btn-texto"> <i class="far fa-edit" style="color: #ffffff;"></i></a>
                             </td>
-                            <td class="text-center"><a (click)="open(i+1)" class="cursor-pointer btn btn-danger btn-texto"><i class="far fa-trash-alt" style="color: #ffffff;"></i></a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -53,8 +51,6 @@
                     <option [ngValue]="15">15 trabajadores por página</option>
                     </select>
             </div>
-
-
         </div>
     </div>
 </div>

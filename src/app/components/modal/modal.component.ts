@@ -35,22 +35,15 @@ export class ModalComponent implements OnInit {
         this.activeModal.close();
         break;
       case 'trabajadores':
-        this.dashboardService.eliminarTrabajador(this.id)
-            .subscribe( (respuesta: any) => {
-            console.log(respuesta);
-            } )      
+        console.log('Se elimina el trabajador', this.id);
         this.activeModal.close();
-        break;
+        break;  
       case 'proveedores':
-        this.dashboardService.eliminarProveedor(this.id)
-            .subscribe( (respuesta: any) => {
-            console.log(respuesta);
-            } )      
+        console.log('Se elimina el proveedor', this.id);
         this.activeModal.close();
-        break;
-    
+        break;      
+      }    
     }
 
   }
 
-}

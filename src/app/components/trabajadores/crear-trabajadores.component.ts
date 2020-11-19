@@ -26,7 +26,7 @@ export class CrearTrabajadoresComponent implements OnInit {
       email: new FormControl ('', [Validators.required, Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$')]),
       direccion: new FormControl ('', Validators.required),
       cargo: new FormControl ('', Validators.required),
-      obra: new FormControl (''),
+      //obra: new FormControl (''),
       activo: new FormControl ('', Validators.required)
     })
 

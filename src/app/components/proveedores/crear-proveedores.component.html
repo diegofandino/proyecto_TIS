@@ -23,11 +23,9 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="identificacion" placeholder="identificacion*" formControlName="identificacion">
+                        <input type="text" class="form-control" id="identificacion" placeholder="Identificacion*" formControlName="identificacion">
                         <div *ngIf=" crearProveedores.controls['identificacion'].invalid && (crearProveedores.controls['identificacion'].dirty || crearProveedores.controls['identificacion'].touched)" class="alert alert-danger formulario-error">
                             <div *ngIf="crearProveedores.controls['identificacion'].errors.required">El campo identificacion es requerido</div>
-                            <div *ngIf="crearProveedores.controls['identificacion'].errors.maxlength">El campo identificacion debe tener máximo 10 carácteres</div>
-                            <div *ngIf="crearProveedores.controls['identificacion'].errors.pattern">El campo identificacion es tipo numérico</div>
                         </div>
                     </div>
                 </div>

@@ -24,7 +24,6 @@ export class CrearObraComponent implements OnInit {
   ngOnInit(): void {
 
     this.crearObras = this.formbuilder.group({
-      codigo: new FormControl ('', Validators.required),
       identObra: new FormControl ('', Validators.required),
       nombreObra: new FormControl ('', Validators.required),
       descripcion: new FormControl ('', Validators.required),
@@ -67,7 +66,7 @@ export class CrearObraComponent implements OnInit {
   }
 
   crear(values){
-
+    console.log("Entro aqui:");
     if( !this.crearObras.valid ){
       console.log(this.crearObras.value);
         this.crearObras.markAllAsTouched();
@@ -86,27 +85,35 @@ export class CrearObraComponent implements OnInit {
       console.log("Si se puede crear el form");
       console.log(this.crearObras.value);
 
-    const formData1 = new FormData();
-    formData1.append('codigo',this.crearObras.controls['codigo'].value );
+   /* const formData1 = new FormData();
     formData1.append('identObra',this.crearObras.controls['identObra'].value );
     formData1.append('nombreObra',this.crearObras.controls['nombreObra'].value );
     formData1.append('descripcion',this.crearObras.controls['descripcion'].value );
     formData1.append('fechaInicio', this.fechainicial );
     formData1.append('fechaFin', this.fechafinal );
-    formData1.append('regPlano', this.fileParaSubir );
+    formData1.append('regPlano', this.fileParaSubir.name );
     formData1.append('activo', this.crearObras.controls['activo'].value );
 
     formData1.forEach( (elemento) => {
       console.log("Enviar al back datos", elemento );
-    } );
+    } );*/
 
+    let objetoprueba = {    
+  identObra: this.crearObras.controls['identObra'].value ,
+  nombreObra: this.crearObras.controls['nombreObra'].value ,
+  descripcion: this.crearObras.controls['descripcion'].value ,
+  fechaInicio:  this.fechainicial ,
+  fechaFin:  this.fechafinal ,
+  regPlano:  this.fileParaSubir.name ,
+  activo:  this.crearObras.controls['activo'].value ,
+    }
 
-    // this.dashboardService.crearUsuario( this.crearUsuarios.value )
-    // .subscribe( (respuesta: any) => {
-    //   console.log("Proceso exitoso", respuesta)
-    //   // this.toastr.success('¡Registro exitoso!', '');
-    //   this.resetear();
-    //     });
+    this.dashboardService.crearObra( objetoprueba )
+      .subscribe( (respuesta: any) => {
+       console.log("Proceso exitoso", respuesta)
+       this.toastr.success('¡Registro exitoso!', '');
+       this.resetear();
+    });
 
   }
 

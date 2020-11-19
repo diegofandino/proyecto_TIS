@@ -19,6 +19,10 @@ import { ModificarObraComponent } from './components/avance-obra/modificar-obra.
 import { LoginComponent } from '../app/components/login/login.component';
 import { HomeComponent } from '../app/components/home/home.component';
 import { AuthGuard } from './guards/auth.guard';
+import { MaterialesComponent} from './components/materiales/materiales.component';
+import { crearMaterialesComponent } from './components/materiales/crear-materiales.component';
+import { ModificarMaterialesComponent } from './components/materiales/modificar-materiales.component';
+
 
 
 
@@ -31,15 +35,17 @@ const routes: Routes = [
     { path: 'clientes', component: ClientesComponent , canActivate: [AuthGuard] },
     { path: 'trabajadores', component: TrabajadoresComponent , canActivate: [AuthGuard] },
     { path: 'proveedores', component: ProveedoresComponent , canActivate: [AuthGuard] },
+    { path: 'materiales', component: MaterialesComponent , canActivate: [AuthGuard] },
     { path: 'crear-cliente', component: CrearClienteComponent , canActivate: [AuthGuard] },
     { path: 'crear-obra', component: CrearObraComponent , canActivate: [AuthGuard] },
     { path: 'avance-obra', component: AvanceObraComponent , canActivate: [AuthGuard] },
     { path: 'crear-usuario', component: CrearUsuarioComponent , canActivate: [AuthGuard] },
     { path: 'crear-trabajadores', component: CrearTrabajadoresComponent , canActivate: [AuthGuard] },
     { path: 'crear-proveedores', component: CrearProveedoresComponent , canActivate: [AuthGuard] },
+    { path: 'crear-materiales', component: crearMaterialesComponent , canActivate: [AuthGuard] },
     { path: 'modificar-usuario/:email', component: ModificarUsuarioComponent , canActivate: [AuthGuard] },
     { path: 'modificar-cliente/:id', component: ModificarClienteComponent , canActivate: [AuthGuard] },
-    { path: 'modificar-trabajador/:id', component: ModificarTrabajadoresComponent , canActivate: [AuthGuard] },
+    { path: 'modificar-trabajador/:documento', component: ModificarTrabajadoresComponent , canActivate: [AuthGuard] },
     { path: 'modificar-proveedor/:id', component: ModificarProveedoresComponent , canActivate: [AuthGuard] },
     { path: 'modificar-obra/:id', component: ModificarObraComponent , canActivate: [AuthGuard] }
   ]},

@@ -20,10 +20,9 @@
                         <tr>
                             <th class="text-center" scope="col">#</th>
                             <th class="text-center" scope="col">Nombre</th>
-                            <th class="text-center" scope="col">Apellido</th>
+                            <th class="text-center" scope="col">Representante Legal</th>
                             <th class="text-center" scope="col">Correo</th>
                             <th class="text-center" scope="col">Modificar</th>
-                            <th class="text-center" scope="col">Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,12 +31,12 @@
                             <td class="text-center">
                                 {{ proveedor.nombre}}
                             </td>
-                            <td class="text-center">{{ proveedor.apellido}}</td>
+                            <td class="text-center">{{ proveedor.repreLegal}}</td>
                             <td class="text-center">{{ proveedor.email}}</td>
                             <td class="text-center">
-                                <a [routerLink]="['/modificar-proveedor', i + 1]" routerLinkActive="router-link-active" class="cursor-pointer btn btn-success btn-texto"> <i class="far fa-edit" style="color: #ffffff;"></i></a>
+                                <a [routerLink]="['/modificar-proveedor', proveedor.identificacion]" routerLinkActive="router-link-active" class="cursor-pointer btn btn-success btn-texto"> <i class="far fa-edit" style="color: #ffffff;"></i></a>
                             </td>
-                            <td class="text-center"><a (click)="open(i+1)" class="cursor-pointer btn btn-danger btn-texto"><i class="far fa-trash-alt" style="color: #ffffff;"></i></a></td>
+                            <!--td class="text-center"><a (click)="open(i+1)" class="cursor-pointer btn btn-danger btn-texto"><i class="far fa-trash-alt" style="color: #ffffff;"></i></a></td-->
                         </tr>
                     </tbody>
                 </table>

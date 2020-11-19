@@ -12,7 +12,7 @@ import { ModalComponent } from '../modal/modal.component';
 export class ProveedoresComponent implements OnInit {
 
   page = 1;
-  pageSize = 6;
+  pageSize = 5;
   proveedoresLista: Proveedores[] = [];
   collectionSize = this.proveedoresLista.length;
   proveedores: any[];
@@ -21,6 +21,7 @@ export class ProveedoresComponent implements OnInit {
   ngOnInit(): void {
     this.dashboardService.listarProveedores()
     .subscribe( (respuesta: any) => {
+      console.log(respuesta);
       this.proveedoresLista = respuesta.proveedores;
     } );
     

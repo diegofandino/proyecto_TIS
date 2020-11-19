@@ -23,7 +23,6 @@ export class ModificarObraComponent implements OnInit {
   ngOnInit(): void {
 
     this.modificarObra = this.formbuilder.group({
-      codigo: new FormControl ('', Validators.required),
       identObra: new FormControl ('', Validators.required),
       nombreObra: new FormControl ('', Validators.required),
       descripcion: new FormControl ('', Validators.required),
@@ -72,7 +71,6 @@ export class ModificarObraComponent implements OnInit {
     console.log(this.modificarObra.value);
 
     const formData1 = new FormData();
-    formData1.append('codigo',this.modificarObra.controls['codigo'].value );
     formData1.append('identObra',this.modificarObra.controls['identObra'].value );
     formData1.append('nombreObra',this.modificarObra.controls['nombreObra'].value );
     formData1.append('descripcion',this.modificarObra.controls['descripcion'].value );

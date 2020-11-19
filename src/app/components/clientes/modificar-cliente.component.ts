@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { DashboardService } from 'src/app/services/dashboard.service';
 
 @Component({
   selector: 'app-modificar-cliente',
@@ -10,34 +12,67 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ModificarClienteComponent implements OnInit {
 
   modificarClientes: FormGroup;
-  constructor(private formbuilder: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute) { }
-
-  ngOnInit(): void {
-
+  documentoCliente: String;
+  idModificarCli: String;
+  constructor(private formbuilder: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute,
+    private dashboardService: DashboardService, private toastr: ToastrService) { }
+  
+    ngOnInit(): void {
     this.modificarClientes = this.formbuilder.group({
-      nombres: new FormControl ('', Validators.required),
-      apellidos: new FormControl ('', Validators.required),
+      tipo: new FormControl ('', Validators.required),
+      identificacion: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
+      nombre: new FormControl ('', Validators.required),
       telefono: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
-      correo: new FormControl ('', [Validators.required, Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$')]),
-      obras: new FormControl ('', Validators.required),
-    })
+      email: new FormControl ('', [Validators.required, Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$')]),
+      direccion: new FormControl ('', Validators.required),
+      activo: new FormControl ('', Validators.required)
+    });
 
     this.activatedRoute.params
-        .subscribe( params => {
-            console.log("cliente", params['id']);
+        .subscribe(async params => {
+            this.documentoCliente = await params['identificacion'];
+            this.getData(this.documentoCliente);
+            //console.log("cliente", params['id']);
         } );
+  }
 
+  async getData(id){
+    
+    const data = await this.dashboardService.obtenerDatosByIdCli(id).toPromise();
+    console.log(data);
+
+    this.modificarClientes.setValue({
+      tipo: data['cliente'].tipo,
+      identificacion: data['cliente'].identificacion,
+      nombre: data['cliente'].nombre,
+      telefono: data['cliente'].telefono,
+      email: data['cliente'].email,
+      direccion: data['cliente'].direccion,
+      activo: data['cliente'].activo
+      
+      
+    });
+
+    this.idModificarCli = data['cliente']._id;
+    
   }
 
   modificar(values){
 
     if( !this.modificarClientes.valid ){
         this.modificarClientes.markAllAsTouched();
-        console.log("No debe funcionar el formulario");
+        this.toastr.error('Existen campos obligatorios sin diligenciar', '');
         return;
     }
 
-    console.log(values);
+    Object.assign(this.modificarClientes.value , {'_id': this.idModificarCli});
+    console.log("Revisar", this.modificarClientes.value);
+
+    this.dashboardService.actualizarCliente(this.modificarClientes.value)
+        .subscribe( (respuesta: any) => {
+          this.toastr.success('!Modificación exitosa!', '');
+          this.router.navigate(['/clientes']);
+        } );
   }
 
   resetear(){

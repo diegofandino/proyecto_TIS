@@ -26,6 +26,8 @@
                         <input type="text" class="form-control" id="identificacion" placeholder="Identificacion*" formControlName="identificacion">
                         <div *ngIf=" crearClientes.controls['identificacion'].invalid && (crearClientes.controls['identificacion'].dirty || crearClientes.controls['identificacion'].touched)" class="alert alert-danger formulario-error">
                             <div *ngIf="crearClientes.controls['identificacion'].errors.required">El campo identificacion es requerido</div>
+                            <div *ngIf="crearClientes.controls['identificacion'].errors.maxlength">El campo identificacion debe tener máximo 10 carácteres</div>
+                            <div *ngIf="crearClientes.controls['identificacion'].errors.pattern">El campo identificacion es tipo numérico</div>
                         </div>
                     </div>
                 </div>

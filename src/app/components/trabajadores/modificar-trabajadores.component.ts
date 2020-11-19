@@ -28,8 +28,8 @@ export class ModificarTrabajadoresComponent implements OnInit {
       email: new FormControl ('', [Validators.required, Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$')]),
       direccion: new FormControl ('', Validators.required),
       cargo: new FormControl ('', Validators.required),
-      obras: new FormControl (''),
-      estado: new FormControl ('', Validators.required)
+      //obras: new FormControl (''),
+      activo: new FormControl ('', Validators.required)
     })
 
     this.activatedRoute.params
@@ -50,12 +50,12 @@ export class ModificarTrabajadoresComponent implements OnInit {
       nombre: data['trabajador'].nombre,
       apellido: data['trabajador'].apellido,
       genero: data['trabajador'].genero,
-      telefono: data['trabajador'].genero,
+      telefono: data['trabajador'].telefono,
       email: data['trabajador'].email,
       direccion: data['trabajador'].direccion,
       cargo: data['trabajador'].cargo,
       //obras: data['trabajador'].obras,
-      estado: data['trabajador'].estado,
+      activo: data['trabajador'].activo,
       
     });
 

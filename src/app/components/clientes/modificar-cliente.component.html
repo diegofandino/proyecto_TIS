@@ -1,4 +1,4 @@
-<div class="container crear-usuarios">
+<div class="container modificar-clientes">
     <div class="row align-items-center">
         <div class="col-lg-12 text-center titulos-principales">
             <h1>Modificar cliente</h1>
@@ -7,37 +7,42 @@
 
     <div class="formulario-crear">
         <form [formGroup]="modificarClientes" #formDir (ngSubmit)="modificar(formDir)">
-
+            
             <div class="row">
-                <div class="col-6">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="nombres" placeholder="Nombres*" formControlName="nombres">
-                        <div *ngIf=" modificarClientes.controls['nombres'].invalid && (modificarClientes.controls['nombres'].dirty || modificarClientes.controls['nombres'].touched)" class="alert alert-danger formulario-error">
-                            <div *ngIf="modificarClientes.controls['nombres'].errors.required">El campo Nombres es requerido</div>
+                        <select name="tipo" class="form-control" id="tipo" formControlName="tipo">
+                            <option value="" disabled selected>Tipo identificación*</option>
+                            <option value="CC"> Cédula de ciudadanía </option>
+                            <option value="Nit"> NIT </option>
+                        </select>
+                        <div *ngIf=" modificarClientes.controls['tipo'].invalid && (modificarClientes.controls['tipo'].dirty || modificarClientes.controls['tipo'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarClientes.controls['tipo'].errors.required">El campo Tipo es requerido</div>
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Apellidos*" id="apellidos" formControlName="apellidos">
-                        <div *ngIf=" modificarClientes.controls['apellidos'].invalid && (modificarClientes.controls['apellidos'].dirty || modificarClientes.controls['apellidos'].touched)" class="alert alert-danger formulario-error">
-                            <div *ngIf="modificarClientes.controls['apellidos'].errors.required">El campo Apellidos es requerido</div>
+                        <input type="text" class="form-control" id="identificacion" placeholder="Identificacion*" formControlName="identificacion">
+                        <div *ngIf=" modificarClientes.controls['identificacion'].invalid && (modificarClientes.controls['identificacion'].dirty || modificarClientes.controls['identificacion'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarClientes.controls['identificacion'].errors.required">El campo identificacion es requerido</div>
+                            <div *ngIf="modificarClientes.controls['identificacion'].errors.maxlength">El campo identificacion debe tener máximo 10 carácteres</div>
+                            <div *ngIf="modificarClientes.controls['identificacion'].errors.pattern">El campo identificacion es tipo numérico</div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-6">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Correo electrónico*" id="correo" formControlName="correo">
-                        <div *ngIf=" modificarClientes.controls['correo'].invalid && (modificarClientes.controls['correo'].dirty || modificarClientes.controls['correo'].touched)" class="alert alert-danger formulario-error">
-                            <div *ngIf="modificarClientes.controls['correo'].errors.required">El campo Correo electrónico es requerido</div>
-                            <div *ngIf="modificarClientes.controls['correo'].errors.pattern">El campo Correo electrónico no es de tipo E-mail</div>
+                        <input type="text" class="form-control" id="nombre" placeholder="Nombre y Apellido*" formControlName="nombre">
+                        <div *ngIf=" modificarClientes.controls['nombre'].invalid && (modificarClientes.controls['nombre'].dirty || modificarClientes.controls['nombre'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarClientes.controls['nombre'].errors.required">El campo Nombres y Apellido es requerido</div>
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Teléfono*" id="telefono" formControlName="telefono">
                         <div *ngIf=" modificarClientes.controls['telefono'].invalid && (modificarClientes.controls['telefono'].dirty || modificarClientes.controls['telefono'].touched)" class="alert alert-danger formulario-error">
@@ -50,27 +55,45 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <select name="obras" class="form-control" id="obras" formControlName="obras">
-                            <option value="" disabled selected>obras*</option>
-                            <option value="administrador"> Administrador </option>
-                            <option value="jefe de obra"> Jefe de Obra </option>
-                            <option value="supervisor "> Supervisor  </option>
-                            <option value="tecnico "> Técnico  </option>
-                        </select>
+                        <input type="email" class="form-control" placeholder="Correo electrónico*" id="email" formControlName="email">
+                        <div *ngIf=" modificarClientes.controls['email'].invalid && (modificarClientes.controls['email'].dirty || modificarClientes.controls['email'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarClientes.controls['email'].errors.required">El campo Correo electrónico es requerido</div>
+                            <div *ngIf="modificarClientes.controls['email'].errors.pattern">El campo Correo electrónico no es de tipo E-mail</div>
+                        </div>
                     </div>
-                    <div *ngIf=" modificarClientes.controls['obras'].invalid && (modificarClientes.controls['obras'].dirty || modificarClientes.controls['obras'].touched)" class="alert alert-danger formulario-error">
-                        <div *ngIf="modificarClientes.controls['obras'].errors.required">El campo obras es requerido</div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Dirección*" id="direccion" formControlName="direccion">
+                        <div *ngIf=" modificarClientes.controls['direccion'].invalid && (modificarClientes.controls['direccion'].dirty || modificarClientes.controls['direccion'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarClientes.controls['direccion'].errors.required">El campo Dirección es requerido</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <select name="activo" class="form-control" id="activo" formControlName="activo">
+                            <option value="" disabled selected>Estado*</option>
+                            <option value="true"> Activo </option>
+                            <option value="false"> Inactivo </option>
+                        </select>
+                        <div *ngIf=" modificarClientes.controls['activo'].invalid && (modificarClientes.controls['activo'].dirty || modificarClientes.controls['activo'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarClientes.controls['activo'].errors.required">El campo Estado es requerido</div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="row botones-creacion">
-                <div class="col-6 text-right">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 text-right">
                     <button type="submit" class="btn btn-success"> Crear </button>
                 </div>
-                <div class="col-6 text-left">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 text-left">
                     <button type="button" (click)="resetear()" class="btn btn-danger"> Cancelar </button>
                 </div>
             </div>

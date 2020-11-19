@@ -41,9 +41,15 @@ export class DashboardService {
   crearCliente( objeto ){
     return this.http.post( `${environment.url}cliente/create`, objeto , {headers: this.headers});
   }
+  obtenerDatosByIdCli( objeto ){
+    return this.http.get( `${environment.url}cliente/${objeto}` , {headers: this.headers});
+  }
+  actualizarCliente( objeto ){
+  return this.http.post( `${environment.url}cliente/update`, objeto , {headers: this.headers});
+  }
   listarClientes( ){
     return this.http.get( `${environment.url}cliente/`);
-}
+  }
 
   crearTrabajador( objeto ){    
     return this.http.post( `${environment.url}trabajador/create`, objeto , {headers: this.headers});
@@ -77,6 +83,10 @@ export class DashboardService {
   }
   listarObras( ){
     return this.http.get( `${environment.url}obra/`);
+  }
+
+  registrarAvanceObra( objeto ){
+    return this.http.post( `${environment.url}avance-obra/create`, objeto , {headers: this.headers});
   }
 
 }

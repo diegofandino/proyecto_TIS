@@ -108,13 +108,13 @@
                 </div-->
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <select name="estado" class="form-control" id="estado" formControlName="estado">
+                        <select name="activo" class="form-control" id="activo" formControlName="activo">
                             <option value="" disabled selected>Estado*</option>
-                            <option value="1"> Activo </option>
-                            <option value="0"> Inactivo </option>
+                            <option value="true"> Activo </option>
+                            <option value="false"> Inactivo </option>
                         </select>
-                        <div *ngIf=" modificarTrabajadores.controls['estado'].invalid && (modificarTrabajadores.controls['estado'].dirty || modificarTrabajadores.controls['estado'].touched)" class="alert alert-danger formulario-error">
-                            <div *ngIf="modificarTrabajadores.controls['estado'].errors.required">El campo Estado es requerido</div>
+                        <div *ngIf=" modificarTrabajadores.controls['activo'].invalid && (modificarTrabajadores.controls['activo'].dirty || modificarTrabajadores.controls['activo'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarTrabajadores.controls['activo'].errors.required">El campo activo es requerido</div>
                         </div>
                     </div>
                 </div>

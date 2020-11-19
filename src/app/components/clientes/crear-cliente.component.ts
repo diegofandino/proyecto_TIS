@@ -19,7 +19,7 @@ export class CrearClienteComponent implements OnInit {
     
     this.crearClientes = this.formbuilder.group({
       tipo: new FormControl ('', Validators.required),
-      identificacion: new FormControl ('', Validators.required),
+      identificacion: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
       nombre: new FormControl ('', Validators.required),
       telefono: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
       email: new FormControl ('', [Validators.required, Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$')]),

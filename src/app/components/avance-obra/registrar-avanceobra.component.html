@@ -1,0 +1,72 @@
+
+<!--div class="container crear-usuarios">
+    <div class="row align-items-center">
+        <div class="col-lg-12 text-center titulos-principales">
+            <h1>Registrar Avance Obra</h1>
+        </div>
+    </div>
+
+    <div class="formulario-crear">
+        <form [formGroup]="registrarAvanceObra" #formDir="ngForm" (ngSubmit)="crear(formDir)">
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="identObra" placeholder="Identidad de la obra*" formControlName="identObra">
+                        <div *ngIf=" registrarAvanceObra.controls['identObra'].invalid && (registrarAvanceObra.controls['identObra'].dirty || registrarAvanceObra.controls['identObra'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="registrarAvanceObra.controls['identObra'].errors.required">El campo Identidad de la obra es requerido</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group calendario-position">
+                        <input type="text" [readonly]="true" [minDate]="minDate" (dateSelect)="fechaInicial($event)" class="form-control" id="fechaAvance" placeholder="{{this.registrarAvanceObra.controls['fechaAvance'].value ? this.registrarAvanceObra.controls['fechaAvance'].value : 'Fecha de inicio*'}}"
+                            formControlName="fechaAvance" ngbDatepicker #inicio="ngbDatepicker">
+                        <div class="input-group-append calendar-absolute">
+                            <button class="btn btn-outline-secondary calendar" (click)="inicio.toggle()" type="button"> <i class="far fa-calendar-alt"></i> </button>
+                        </div>
+                        <div *ngIf=" registrarAvanceObra.controls['fechaAvance'].invalid && (registrarAvanceObra.controls['fechaAvance'].dirty || registrarAvanceObra.controls['fechaAvance'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="registrarAvanceObra.controls['fechaAvance'].errors.required">El campo Fecha de avance es requerido</div>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <textarea rows="3" class="form-control" id="descripcion" placeholder="Descripción de la obra*" formControlName="descripcion"></textarea>
+                        <div *ngIf=" registrarAvanceObra.controls['descripcion'].invalid && (registrarAvanceObra.controls['descripcion'].dirty || registrarAvanceObra.controls['descripcion'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="registrarAvanceObra.controls['descripcion'].errors.required">El campo Descripción de la obra es requerido</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group input-group">
+                        <div class="custom-file">
+                            <input type="file" class="cursor-pointer form-control custom-file-input" id="inputGroupFile01" formControlName="foto" (change)="fileInputChange($event.target.files)" aria-describedby="inputGroupFileAddon01" accept=".pdf">
+                            <label class="custom-file-label" for="inputGroupFile01">Registrar plano</label>
+                        </div>
+                    </div>
+                    <div *ngIf=" registrarAvanceObra.controls['foto'].invalid && formDir.submitted" class="alert mt-4 alert-danger formulario-error">
+                        <div *ngIf="registrarAvanceObra.controls['foto'].errors.required">El campo Registrar foto es requerido</div>
+                    </div>
+                    <div *ngIf="uploadFileEvent" class="alert mt-4 alert-danger formulario-error">
+                        <div *ngIf="uploadFileEvent">El campo Registrar plano sólo acepta formato .jpg</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row botones-creacion">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 text-right">
+                    <button type="submit" class="btn btn-success"> Crear </button>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 text-left">
+                    <button type="button" (click)="resetear()" class="btn btn-danger"> Cancelar </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</div-->

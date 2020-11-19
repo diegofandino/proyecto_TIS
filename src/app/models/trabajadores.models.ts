@@ -8,6 +8,6 @@ export class Trabajadores {
     email: String;
     direccion: string;
     cargo: String;
-    obra: String;   
+    //obra: String;   
     activo: boolean;  
 }

@@ -44,7 +44,7 @@ const routes: Routes = [
     { path: 'crear-proveedores', component: CrearProveedoresComponent , canActivate: [AuthGuard] },
     { path: 'crear-materiales', component: crearMaterialesComponent , canActivate: [AuthGuard] },
     { path: 'modificar-usuario/:email', component: ModificarUsuarioComponent , canActivate: [AuthGuard] },
-    { path: 'modificar-cliente/:id', component: ModificarClienteComponent , canActivate: [AuthGuard] },
+    { path: 'modificar-cliente/:identificacion', component: ModificarClienteComponent , canActivate: [AuthGuard] },
     { path: 'modificar-trabajador/:documento', component: ModificarTrabajadoresComponent , canActivate: [AuthGuard] },
     { path: 'modificar-proveedor/:id', component: ModificarProveedoresComponent , canActivate: [AuthGuard] },
     { path: 'modificar-obra/:id', component: ModificarObraComponent , canActivate: [AuthGuard] }

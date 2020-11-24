@@ -22,7 +22,12 @@ import { AuthGuard } from './guards/auth.guard';
 import { MaterialesComponent} from './components/materiales/materiales.component';
 import { crearMaterialesComponent } from './components/materiales/crear-materiales.component';
 import { ModificarMaterialesComponent } from './components/materiales/modificar-materiales.component';
+<<<<<<< HEAD
 import { RegistrarAvaobraComponent } from './components/avance-obra/registrar-avaobra.component';
+=======
+import { ReportesComponent } from '../app/components/reportes/reportes.component';
+
+>>>>>>> aaab91c46b4a281ba644fd3ea5e81c0b94133f97
 
 
 
@@ -33,6 +38,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent ,  canActivate: [AuthGuard] , children: [
     { path: 'bienvenido', component: ContenidoComponent, canActivate: [AuthGuard] },
     { path: 'usuarios', component: UsuariosComponent , canActivate: [AuthGuard] },
+    { path: 'reportes', component: ReportesComponent , canActivate: [AuthGuard] },
     { path: 'clientes', component: ClientesComponent , canActivate: [AuthGuard] },
     { path: 'trabajadores', component: TrabajadoresComponent , canActivate: [AuthGuard] },
     { path: 'proveedores', component: ProveedoresComponent , canActivate: [AuthGuard] },

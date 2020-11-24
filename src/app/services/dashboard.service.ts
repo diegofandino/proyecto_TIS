@@ -2,6 +2,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { map } from 'rxjs/operators';
+import { usuariosPDF } from '../models/usuariosPDF.models';
+
 
 
 @Injectable({
@@ -14,6 +17,8 @@ export class DashboardService {
     'Accept': 'application/json',
     'Access-Control-Allow-Origin': '*'
   });
+
+  
   openSidebarSubject : Subject<boolean> = new Subject<boolean>() ;
   constructor(private http: HttpClient) {
    }
@@ -36,6 +41,20 @@ export class DashboardService {
   }
   listarUsuarios( ){
       return this.http.get( `${environment.url}user/`);
+  }
+  listarUsuariosPDF( ){
+      return this.http.get( `${environment.url}user/`)
+      .pipe( map (data => {
+            return data['usuarios'].map(
+              usuario => ({
+                nombre: usuario.nombre,
+                apellido: usuario.apellido,
+                documento: usuario.documento,
+                email: usuario.email,
+                telefono: usuario.telefono,
+              })
+            )
+      } ));
   }
 
   crearCliente( objeto ){

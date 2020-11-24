@@ -1,0 +1,52 @@
+.azul-claro {
+    color: #2196f3;
+}
+
+.azul-claro2 {
+    color: #4c6ef5;
+}
+
+.naranja-claro {
+    color: #ff5722;
+}
+
+.rojo-claro {
+    color: #f44336;
+}
+
+.morado-claro {
+    color: #be4bdb;
+}
+
+.verde-claro {
+    color: #82c91e;
+}
+
+.box-contenido {
+    margin-bottom: 20px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    h2 {
+        font-size: 22px;
+        font-weight: 600;
+    }
+    i {
+        font-size: 35px;
+        padding-bottom: 15px;
+        text-align: left;
+    }
+    .caja-interna {
+        padding: 20px 35px;
+        border: 1px solid #c5c5c5;
+        border-radius: 5px;
+        text-align: justify;
+    }
+}
+
+.texto-bienvenida {
+    padding-top: 30px;
+}

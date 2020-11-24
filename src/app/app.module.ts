@@ -40,6 +40,7 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { MaterialesComponent } from './components/materiales/materiales.component';
 import { crearMaterialesComponent } from './components/materiales/crear-materiales.component';
 import { ModificarMaterialesComponent } from './components/materiales/modificar-materiales.component';
+import { RegistrarAvaobraComponent } from './components/avance-obra/registrar-avaobra.component';
 //import { RegistrarAvanceobraComponent } from './components/avance-obra/registrar-avanceobra.component';
 
 @NgModule({
@@ -69,6 +70,7 @@ import { ModificarMaterialesComponent } from './components/materiales/modificar-
     MaterialesComponent,
     crearMaterialesComponent,
     ModificarMaterialesComponent,
+    RegistrarAvaobraComponent,
     //RegistrarAvanceobraComponent
   ],
   imports: [

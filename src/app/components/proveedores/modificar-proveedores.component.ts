@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { DashboardService } from 'src/app/services/dashboard.service';
 
 @Component({
   selector: 'app-modificar-proveedores',
@@ -10,12 +12,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ModificarProveedoresComponent implements OnInit {
 
   modificarProveedores: FormGroup;
-  constructor(private formbuilder: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute) { }
-
+  identificacionPro: String;
+  idModificar: String;
+  constructor(private formbuilder: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute,
+    private dashboardService: DashboardService, private toastr: ToastrService) { }
+  
   ngOnInit(): void {
     this.modificarProveedores = this.formbuilder.group({
-      documento: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
       tipo: new FormControl ('', Validators.required),
+      identificacion: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
       nombre: new FormControl ('', Validators.required),
       repreLegal: new FormControl ('', Validators.required),
       telefono: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
@@ -25,21 +30,53 @@ export class ModificarProveedoresComponent implements OnInit {
     })
 
     this.activatedRoute.params
-        .subscribe( params => {
-            console.log("proveedor", params['id']);
+        .subscribe(async params => {
+            this.identificacionPro = await params['identificacion'];
+            this.getData(this.identificacionPro);
+            //console.log("trabajador", params['id']);
         } );
 
+  }
+
+  async getData(id){
+    
+    const data = await this.dashboardService.obtenerDatosByIdPro(id).toPromise();
+    console.log(data);
+
+    this.modificarProveedores.setValue({
+      tipo: data['proveedor'].tipo,
+      identificacion: data['proveedor'].identificacion,
+      nombre: data['proveedor'].nombre,
+      repreLegal: data['proveedor'].repreLegal,
+      telefono: data['proveedor'].telefono,
+      email: data['proveedor'].email,
+      direccion: data['proveedor'].direccion,
+      activo: data['proveedor'].activo,
+     
+      
+    });
+
+    this.idModificar = data['proveedor']._id;
+    
   }
 
   modificar(values){
 
     if( !this.modificarProveedores.valid ){
         this.modificarProveedores.markAllAsTouched();
-        console.log("No debe funcionar el formulario");
+        this.toastr.error('Existen campos obligatorios sin diligenciar', '');
         return;
     }
 
-    console.log(values);
+    Object.assign(this.modificarProveedores.value , {'_id': this.idModificar});
+    console.log("Revisar", this.modificarProveedores.value);
+
+    this.dashboardService.actualizarProveedor(this.modificarProveedores.value)
+        .subscribe( (respuesta: any) => {
+          this.toastr.success('!Modificación exitosa!', '');
+          this.router.navigate(['/materiales']);
+        } );
+
   }
 
   resetear(){

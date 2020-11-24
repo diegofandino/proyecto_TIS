@@ -66,13 +66,25 @@ export class DashboardService {
 
   crearProveedor( objeto ){    
     return this.http.post( `${environment.url}proveedor/create`, objeto , {headers: this.headers});
-}
+  }
+  obtenerDatosByIdPro( objeto ){
+    return this.http.get( `${environment.url}proveedor/${objeto}` , {headers: this.headers});
+  }
+  actualizarProveedor( objeto ){
+    return this.http.post( `${environment.url}proveedor/update`, objeto , {headers: this.headers});
+  }
   listarProveedores( ){
     return this.http.get( `${environment.url}proveedor/`);
-}
+  }
 
   crearMateriales( objeto ){
     return this.http.post( `${environment.url}material/create`, objeto , {headers: this.headers});
+  }
+  obtenerDatosByIdMat( objeto ){
+    return this.http.get( `${environment.url}material/${objeto}` , {headers: this.headers});
+  }
+  actualizarMaterial( objeto ){
+  return this.http.post( `${environment.url}material/update`, objeto , {headers: this.headers});
   }
   listarMateriales( ){
     return this.http.get( `${environment.url}material/`);
@@ -85,8 +97,8 @@ export class DashboardService {
     return this.http.get( `${environment.url}obra/`);
   }
 
-  registrarAvanceObra( objeto ){
-    return this.http.post( `${environment.url}avance-obra/create`, objeto , {headers: this.headers});
+  avanceObra( objeto ){
+    return this.http.post( `${environment.url}obra/create`, objeto , {headers: this.headers});
   }
 
 }

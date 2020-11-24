@@ -1,7 +1,7 @@
 <div class="container crear-proveedores">
     <div class="row align-items-center">
         <div class="col-lg-12 text-center titulos-principales">
-            <h1>Modificar Proveedor</h1>
+            <h1>Modificar proveedor</h1>
         </div>
     </div>
 
@@ -11,23 +11,21 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="documento" placeholder="Documento*" formControlName="documento">
-                        <div *ngIf=" modificarProveedores.controls['documento'].invalid && (modificarProveedores.controls['documento'].dirty || modificarProveedores.controls['documento'].touched)" class="alert alert-danger formulario-error">
-                            <div *ngIf="modificarProveedores.controls['documento'].errors.required">El campo Documento es requerido</div>
-                            <div *ngIf="modificarProveedores.controls['documento'].errors.maxlength">El campo Documento debe tener máximo 10 carácteres</div>
-                            <div *ngIf="modificarProveedores.controls['documento'].errors.pattern">El campo Documento es tipo numérico</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
-                    <div class="form-group">
                         <select name="tipo" class="form-control" id="tipo" formControlName="tipo">
-                            <option value="" disabled selected>Tipo documento*</option>
+                            <option value="" disabled selected>Tipo identificación*</option>
                             <option value="CC"> Cédula de ciudadanía </option>
                             <option value="Nit"> NIT </option>
                         </select>
                         <div *ngIf=" modificarProveedores.controls['tipo'].invalid && (modificarProveedores.controls['tipo'].dirty || modificarProveedores.controls['tipo'].touched)" class="alert alert-danger formulario-error">
                             <div *ngIf="modificarProveedores.controls['tipo'].errors.required">El campo Tipo es requerido</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="identificacion" placeholder="Identificacion*" formControlName="identificacion">
+                        <div *ngIf=" modificarProveedores.controls['identificacion'].invalid && (modificarProveedores.controls['identificacion'].dirty || modificarProveedores.controls['identificacion'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="modificarProveedores.controls['identificacion'].errors.required">El campo identificacion es requerido</div>
                         </div>
                     </div>
                 </div>
@@ -87,8 +85,8 @@
                     <div class="form-group">
                         <select name="activo" class="form-control" id="activo" formControlName="activo">
                             <option value="" disabled selected>Estado*</option>
-                            <option value="1"> Activo </option>
-                            <option value="0"> Inactivo </option>
+                            <option value="true"> Activo </option>
+                            <option value="false"> Inactivo </option>
                         </select>
                         <div *ngIf=" modificarProveedores.controls['activo'].invalid && (modificarProveedores.controls['activo'].dirty || modificarProveedores.controls['activo'].touched)" class="alert alert-danger formulario-error">
                             <div *ngIf="modificarProveedores.controls['activo'].errors.required">El campo Estado es requerido</div>

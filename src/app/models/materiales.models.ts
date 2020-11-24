@@ -5,4 +5,5 @@ export class Materiales {
     precio: number;
     cantidad: number;
     activo: boolean; 
+    //proveedor: String;
 }

@@ -22,6 +22,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { MaterialesComponent} from './components/materiales/materiales.component';
 import { crearMaterialesComponent } from './components/materiales/crear-materiales.component';
 import { ModificarMaterialesComponent } from './components/materiales/modificar-materiales.component';
+import { RegistrarAvaobraComponent } from './components/avance-obra/registrar-avaobra.component';
 
 
 
@@ -43,10 +44,12 @@ const routes: Routes = [
     { path: 'crear-trabajadores', component: CrearTrabajadoresComponent , canActivate: [AuthGuard] },
     { path: 'crear-proveedores', component: CrearProveedoresComponent , canActivate: [AuthGuard] },
     { path: 'crear-materiales', component: crearMaterialesComponent , canActivate: [AuthGuard] },
+    { path: 'registrar-avaobra', component: RegistrarAvaobraComponent , canActivate: [AuthGuard] },
     { path: 'modificar-usuario/:email', component: ModificarUsuarioComponent , canActivate: [AuthGuard] },
     { path: 'modificar-cliente/:identificacion', component: ModificarClienteComponent , canActivate: [AuthGuard] },
     { path: 'modificar-trabajador/:documento', component: ModificarTrabajadoresComponent , canActivate: [AuthGuard] },
-    { path: 'modificar-proveedor/:id', component: ModificarProveedoresComponent , canActivate: [AuthGuard] },
+    { path: 'modificar-proveedor/:identificacion', component: ModificarProveedoresComponent , canActivate: [AuthGuard] },
+    { path: 'modificar-material/:codigo', component: ModificarMaterialesComponent , canActivate: [AuthGuard] },
     { path: 'modificar-obra/:id', component: ModificarObraComponent , canActivate: [AuthGuard] }
   ]},
   { path: '**', redirectTo: '/login', pathMatch: 'full'  },

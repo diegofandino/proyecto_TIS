@@ -70,6 +70,21 @@ export class DashboardService {
     return this.http.get( `${environment.url}cliente/`);
   }
 
+  listarClientesPDF( ){
+    return this.http.get( `${environment.url}cliente/`)
+    .pipe( map (data => {
+          return data['clientes'].map(
+            usuario => ({
+              nombre: usuario.nombre,
+              identificacion: usuario.identificacion,
+              direccion: usuario.direccion,
+              email: usuario.email,
+              telefono: usuario.telefono,
+            })
+          )
+    } ));
+  }
+
   crearTrabajador( objeto ){    
     return this.http.post( `${environment.url}trabajador/create`, objeto , {headers: this.headers});
   }
@@ -114,6 +129,20 @@ export class DashboardService {
   }
   listarObras( ){
     return this.http.get( `${environment.url}obra/`);
+  }
+
+  listarObrasPDF( ){
+    return this.http.get( `${environment.url}obra/`)
+    .pipe( map (data => {
+          return data['obras'].map(
+            usuario => ({
+              nombreObra: usuario.nombreObra,
+              identObra: usuario.identObra,
+              fechaInicio: usuario.fechaInicio,
+              fechaFin: usuario.fechaFin,
+            })
+          )
+    } ));
   }
 
   avanceObra( objeto ){

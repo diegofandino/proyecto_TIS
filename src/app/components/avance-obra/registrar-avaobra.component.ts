@@ -1,9 +1,10 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DashboardService } from 'src/app/services/dashboard.service';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { LocationService } from 'src/app/services/location.service';
 
 @Component({
   selector: 'app-registrar-avaobra',
@@ -11,6 +12,23 @@ import { DashboardService } from 'src/app/services/dashboard.service';
   styleUrls: ['./registrar-avaobra.component.scss']
 })
 export class RegistrarAvaobraComponent implements OnInit {
+  title = 'geolocation';
+  public latitude;
+  public longitude;
+  public fotos;
+  
+  @ViewChild('video', { static: true }) videoElement: ElementRef;
+  @ViewChild('canvas', { static: true }) canvas: ElementRef;
+
+  videoWidth = 0;
+    videoHeight = 0;
+    constraints = {
+        video: {
+            facingMode: "environment",
+            width: { ideal: 4096 },
+            height: { ideal: 2160 }
+        }
+    };
 
   avanceObras: FormGroup
   minDate: any;
@@ -18,16 +36,18 @@ export class RegistrarAvaobraComponent implements OnInit {
   uploadFileEvent: boolean;
   fechaAvance: any;
   constructor(private formbuilder: FormBuilder, private router: Router, private dashboardService: DashboardService,
-    private toastr: ToastrService, private datepipe: DatePipe) { }
+    private toastr: ToastrService, private datepipe: DatePipe,private renderer: Renderer2,public locationService: LocationService) { }
 
   ngOnInit(): void {
+    this.startCamera();
+    let location = this.getLocation();
 
     this.avanceObras = this.formbuilder.group({
-      identObra: new FormControl ('', Validators.required),
+      idObra: new FormControl ('', Validators.required),
       fechaAvance: new FormControl ('', Validators.required),
       descripcion: new FormControl ('', Validators.required),
       foto: new FormControl ('', Validators.required),
-      coords: new FormControl ('', Validators.required)
+      coords: new FormControl ('')
     })
 
     const fechaActual = new Date();
@@ -70,7 +90,7 @@ export class RegistrarAvaobraComponent implements OnInit {
       console.log(this.avanceObras.value);
 
    /* const formData1 = new FormData();
-    formData1.append('identObra',this.avanceObras.controls['identObra'].value );
+    formData1.append('idObra',this.avanceObras.controls['idObra'].value );
     formData1.append('nombreObra',this.avanceObras.controls['nombreObra'].value );
     formData1.append('descripcion',this.avanceObras.controls['descripcion'].value );
     formData1.append('fechaInicio', this.fechaavance );
@@ -83,10 +103,10 @@ export class RegistrarAvaobraComponent implements OnInit {
     } );*/
 
     let objetoprueba = {    
-      identObra: this.avanceObras.controls['identObra'].value,
+      idObra: this.avanceObras.controls['idObra'].value,
       fechaAvance: this.fechaavance,
       descripcion: this.avanceObras.controls['descripcion'].value,
-      foto: this.fileParaSubir.name,
+      foto: this.avanceObras.controls['foto'].value ,
       coords: this.avanceObras.controls['coords'].value ,
     }
 
@@ -117,6 +137,44 @@ export class RegistrarAvaobraComponent implements OnInit {
     } else {
       this.uploadFileEvent = false;
     }
+  }
+
+  getLocation() {
+    this.locationService.getPosition().then(pos => {
+      this.latitude = pos.lat;
+      this.longitude = pos.lng;
+    });
+  }
+
+  startCamera() {
+      if (!!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) {
+          navigator.mediaDevices.getUserMedia(this.constraints).then(this.attachVideo.bind(this)).catch(this.handleError);
+      } else {
+          alert('Sorry, camera not available.');
+      }
+  }
+
+  attachVideo(stream) {
+      this.renderer.setProperty(this.videoElement.nativeElement, 'srcObject', stream);
+      this.renderer.listen(this.videoElement.nativeElement, 'play', (event) => {
+          this.videoHeight = this.videoElement.nativeElement.videoHeight;
+          this.videoWidth = this.videoElement.nativeElement.videoWidth;
+      });
+  }
+
+  capture() {
+      this.renderer.setProperty(this.canvas.nativeElement, 'width', this.videoWidth);
+      this.renderer.setProperty(this.canvas.nativeElement, 'height', this.videoHeight);
+      this.canvas.nativeElement.getContext('2d').drawImage(this.videoElement.nativeElement, 0, 0);
+      var data = this.canvas.nativeElement.toDataURL('image/png').replace("image/png", "image/octet-stream");
+      //data.download = 'myOtherFilename.png';
+      window.location.href = data;
+      this.fotos = data;
+      //window.open(data);
+  }
+
+  handleError(error) {
+      console.log('Error: ', error);
   }
 
   resetear(){

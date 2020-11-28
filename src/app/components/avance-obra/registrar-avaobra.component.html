@@ -1,4 +1,12 @@
-
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon.png" />
+    <title>PWA Camera</title>
+  </head>
 <div class="container crear-usuarios">
     <div class="row align-items-center">
         <div class="col-lg-12 text-center titulos-principales">
@@ -12,19 +20,19 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <select name="identObra" class="form-control" id="identObra" formControlName="identObra">
+                        <select name="idObra" class="form-control" id="idObra" formControlName="idObra">
                             <option value="" disabled selected>Obra*</option>
                             <option value="O1"> Obra 1 </option>
                             <option value="O2"> Obra 2 </option>
                         </select>
-                        <div *ngIf=" avanceObras.controls['identObra'].invalid && (avanceObras.controls['identObra'].dirty || avanceObras.controls['identObra'].touched)" class="alert alert-danger formulario-error">
-                            <div *ngIf="avanceObras.controls['identObra'].errors.required">El campo Identidad de la obra es requerido</div>
+                        <div *ngIf=" avanceObras.controls['idObra'].invalid && (avanceObras.controls['idObra'].dirty || avanceObras.controls['idObra'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="avanceObras.controls['idObra'].errors.required">El campo Identidad de la obra es requerido</div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group calendario-position">
-                        <input type="text" [readonly]="true" [minDate]="minDate" (dateSelect)="fechaAvance($event)" class="form-control" id="fechaAvance" placeholder="{{this.avanceObras.controls['fechaAvance'].value ? this.avanceObras.controls['fechaAvance'].value : 'Fecha de avance*'}}"
+                        <input type="text" [readonly]="true" [minDate]="minDate" (dateSelect)="fechaavance($event)" class="form-control" id="fechaAvance" placeholder="{{this.avanceObras.controls['fechaAvance'].value ? this.avanceObras.controls['fechaAvance'].value : 'Fecha de avance*'}}"
                             formControlName="fechaAvance" ngbDatepicker #inicio="ngbDatepicker">
                         <div class="input-group-append calendar-absolute">
                             <button class="btn btn-outline-secondary calendar" (click)="inicio.toggle()" type="button"> <i class="far fa-calendar-alt"></i> </button>
@@ -45,18 +53,46 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                <!--div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group input-group">
                         <div class="custom-file">
                             <input type="file" class="cursor-pointer form-control custom-file-input" id="inputGroupFile01" formControlName="foto" (change)="fileInputChange($event.target.files)" aria-describedby="inputGroupFileAddon01" accept=".jpg">
                             <label class="custom-file-label" for="inputGroupFile01">Registrar foto</label>
+                            <div class="container-photo">
+                                <img id="photo" class="photo">
+                                <button id="open" type="button" class="btn icon fas fa-camera-retro"></button>
+                            </div>
                         </div>
+
                     </div>
                     <div *ngIf=" avanceObras.controls['foto'].invalid && formDir.submitted" class="alert mt-4 alert-danger formulario-error">
                         <div *ngIf="avanceObras.controls['foto'].errors.required">El campo Registrar foto es requerido</div>
                     </div>
                     <div *ngIf="uploadFileEvent" class="alert mt-4 alert-danger formulario-error">
                         <div *ngIf="uploadFileEvent">El campo Registrar foto sólo acepta formato .jpg</div>
+                    </div>
+                </div-->
+                <div class="container vh-100">
+                    <div class="d-flex flex-column align-items-center">
+                        
+                       <div class="p-1">
+                          <video #video class="vid" autoplay></video>
+                          <canvas #canvas class="vid"></canvas>
+                       </div>
+                       <div class="pb-2">
+                            <button class="btn btn-primary" (click)="capture()">Capture Image</button>
+                        </div>
+                       <div class="p-1">
+                       </div>
+                       <textarea rows="3" [(ngModel)]="fotos" formControlName="foto"></textarea>
+                        
+                       <!--input type="input" [(ngModel)]="data"-->
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                        <div class="form-group">
+                            <input type="text" [(ngModel)]="latitude" class="form-control" id="coords" formControlName="coords">
+                        </div>
+                        <h1>{{latitude}},{{longitude}}</h1>
                     </div>
                 </div>
             </div>

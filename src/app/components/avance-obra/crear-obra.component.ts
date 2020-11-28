@@ -85,7 +85,7 @@ export class CrearObraComponent implements OnInit {
       console.log("Si se puede crear el form");
       console.log(this.crearObras.value);
 
-   /* const formData1 = new FormData();
+   const formData1 = new FormData();
     formData1.append('identObra',this.crearObras.controls['identObra'].value );
     formData1.append('nombreObra',this.crearObras.controls['nombreObra'].value );
     formData1.append('descripcion',this.crearObras.controls['descripcion'].value );
@@ -96,9 +96,9 @@ export class CrearObraComponent implements OnInit {
 
     formData1.forEach( (elemento) => {
       console.log("Enviar al back datos", elemento );
-    } );*/
+    } );
 
-    let objetoprueba = {    
+    /*let objetoprueba = {    
   identObra: this.crearObras.controls['identObra'].value ,
   nombreObra: this.crearObras.controls['nombreObra'].value ,
   descripcion: this.crearObras.controls['descripcion'].value ,
@@ -106,9 +106,9 @@ export class CrearObraComponent implements OnInit {
   fechaFin:  this.fechafinal ,
   regPlano:  this.fileParaSubir.name ,
   activo:  this.crearObras.controls['activo'].value ,
-    }
+    }*/
 
-    this.dashboardService.crearObra( objetoprueba )
+    this.dashboardService.crearObra( formData1 )
       .subscribe( (respuesta: any) => {
        console.log("Proceso exitoso", respuesta)
        this.toastr.success('¡Registro exitoso!', '');

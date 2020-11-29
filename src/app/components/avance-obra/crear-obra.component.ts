@@ -4,7 +4,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import jwt_decode from 'jwt-decode';
 import { DashboardService } from 'src/app/services/dashboard.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-crear-obra',
@@ -18,8 +20,10 @@ export class CrearObraComponent implements OnInit {
   uploadFileEvent: boolean;
   fechainicial: any;
   fechafinal: any;
+  datosUsuarioAut: any;
+  
   constructor(private formbuilder: FormBuilder, private router: Router, private dashboardService: DashboardService,
-    private toastr: ToastrService, private datepipe: DatePipe) { }
+    private toastr: ToastrService, private datepipe: DatePipe, private authService: AuthService) { }
 
   ngOnInit(): void {
 
@@ -32,19 +36,27 @@ export class CrearObraComponent implements OnInit {
       regPlano: new FormControl ('', Validators.required),
       activo: new FormControl ('', Validators.required)
     })
-
+    
     const fechaActual = new Date();
     this.minDate = {
       year: fechaActual.getFullYear(),
       month: fechaActual.getMonth() + 1,
       day: fechaActual.getDate()
     };
-
+    
+    this.datosUsuarioAut = jwt_decode(this.obtenerDatos());
+    console.log("Usuario token autenticación", this.datosUsuarioAut['usuario']._id);
+    
 
   }
 
   get f(){
     return this.crearObras.controls;
+  }
+
+  obtenerDatos(){
+    const data = this.authService.obtenerToken();
+    return data
   }
 
 
@@ -82,38 +94,25 @@ export class CrearObraComponent implements OnInit {
         return;
       }
 
-      console.log("Si se puede crear el form");
-      console.log(this.crearObras.value);
+      this.dashboardService.subirObraTemp( {pdf: this.fileParaSubir} )
+          .subscribe( (respuesta: any) => { console.log(respuesta) } );
 
-   const formData1 = new FormData();
-    formData1.append('identObra',this.crearObras.controls['identObra'].value );
-    formData1.append('nombreObra',this.crearObras.controls['nombreObra'].value );
-    formData1.append('descripcion',this.crearObras.controls['descripcion'].value );
-    formData1.append('fechaInicio', this.fechainicial );
-    formData1.append('fechaFin', this.fechafinal );
-    formData1.append('regPlano', this.fileParaSubir.name );
-    formData1.append('activo', this.crearObras.controls['activo'].value );
 
-    formData1.forEach( (elemento) => {
-      console.log("Enviar al back datos", elemento );
-    } );
+      const formData1 = new FormData();
+      formData1.append('identObra',this.crearObras.controls['identObra'].value );
+      formData1.append('usuario', this.datosUsuarioAut['usuario']._id );
+      formData1.append('nombreObra',this.crearObras.controls['nombreObra'].value );
+      formData1.append('descripcion',this.crearObras.controls['descripcion'].value );
+      formData1.append('fechaInicio', this.fechainicial );
+      formData1.append('fechaFin', this.fechafinal );
+      formData1.append('activo', this.crearObras.controls['activo'].value );
 
-    /*let objetoprueba = {    
-  identObra: this.crearObras.controls['identObra'].value ,
-  nombreObra: this.crearObras.controls['nombreObra'].value ,
-  descripcion: this.crearObras.controls['descripcion'].value ,
-  fechaInicio:  this.fechainicial ,
-  fechaFin:  this.fechafinal ,
-  regPlano:  this.fileParaSubir.name ,
-  activo:  this.crearObras.controls['activo'].value ,
-    }*/
-
-    this.dashboardService.crearObra( formData1 )
-      .subscribe( (respuesta: any) => {
-       console.log("Proceso exitoso", respuesta)
-       this.toastr.success('¡Registro exitoso!', '');
-       this.resetear();
-    });
+      this.dashboardService.crearObra( formData1 )
+        .subscribe( (respuesta: any) => {
+          console.log("Proceso exitoso", respuesta)
+          this.toastr.success('¡Registro exitoso!', '');
+          this.resetear();
+      });
 
   }
 

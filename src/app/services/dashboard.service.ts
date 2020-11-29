@@ -148,5 +148,9 @@ export class DashboardService {
   avanceObra( objeto ){
     return this.http.post( `${environment.url}obra/create`, objeto , {headers: this.headers});
   }
+  
+  subirObraTemp( objeto ){
+    return this.http.post( `${environment.url}obra/uploadpdf`, objeto , {headers: this.headers});
+  }
 
 }

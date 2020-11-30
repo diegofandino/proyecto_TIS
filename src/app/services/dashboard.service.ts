@@ -125,7 +125,7 @@ export class DashboardService {
 }
 
   crearObra( objeto ){
-    return this.http.post( `${environment.url}obra/create`, objeto , {headers: this.headers});
+    return this.http.post( `${environment.url}obra/`, objeto);
   }
   listarObras( ){
     return this.http.get( `${environment.url}obra/`);
@@ -149,8 +149,10 @@ export class DashboardService {
     return this.http.post( `${environment.url}obra/create`, objeto , {headers: this.headers});
   }
   
-  subirObraTemp( objeto ){
-    return this.http.post( `${environment.url}obra/uploadpdf`, objeto , {headers: this.headers});
+  subirObraTemp( archivo ){
+    const formData2 = new FormData();
+    formData2.append('pdf', archivo);
+    return this.http.post( `${environment.url}obra/uploadpdf`, formData2 );
   }
 
 }

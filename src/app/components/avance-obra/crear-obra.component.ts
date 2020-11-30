@@ -94,7 +94,7 @@ export class CrearObraComponent implements OnInit {
         return;
       }
 
-      this.dashboardService.subirObraTemp( {pdf: this.fileParaSubir} )
+      this.dashboardService.subirObraTemp( this.fileParaSubir )
           .subscribe( (respuesta: any) => { console.log(respuesta) } );
 
 

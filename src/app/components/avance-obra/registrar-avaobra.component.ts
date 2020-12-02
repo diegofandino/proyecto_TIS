@@ -46,7 +46,7 @@ export class RegistrarAvaobraComponent implements OnInit {
       idObra: new FormControl ('', Validators.required),
       fechaAvance: new FormControl ('', Validators.required),
       descripcion: new FormControl ('', Validators.required),
-      foto: new FormControl ('', Validators.required),
+      foto: new FormControl (['']),
       coords: new FormControl ('')
     })
 
@@ -89,18 +89,15 @@ export class RegistrarAvaobraComponent implements OnInit {
       console.log("Si se puede crear el form");
       console.log(this.avanceObras.value);
 
-   /* const formData1 = new FormData();
+   const formData1 = new FormData();
     formData1.append('idObra',this.avanceObras.controls['idObra'].value );
-    formData1.append('nombreObra',this.avanceObras.controls['nombreObra'].value );
+    formData1.append('fechaAvance', this.fechaAvance);
     formData1.append('descripcion',this.avanceObras.controls['descripcion'].value );
-    formData1.append('fechaInicio', this.fechaavance );
-    formData1.append('fechaFin', this.fechafinal );
-    formData1.append('regPlano', this.fileParaSubir.name );
-    formData1.append('activo', this.avanceObras.controls['activo'].value );
+    formData1.append('descripcion',this.avanceObras.controls['descripcion'].value );
 
     formData1.forEach( (elemento) => {
       console.log("Enviar al back datos", elemento );
-    } );*/
+    } );
 
     let objetoprueba = {    
       idObra: this.avanceObras.controls['idObra'].value,
@@ -119,26 +116,15 @@ export class RegistrarAvaobraComponent implements OnInit {
 
   }
 
-  fileInputChange(evento) {
-    this.fileParaSubir = evento[0];
-    document.querySelector('.custom-file-label').innerHTML = this.fileParaSubir.name;
-
-    let validExts = new Array('.pdf');
-    if (!evento) {
-      return;
-    }
-
-    let fileExt = evento[0].name;
-    fileExt = fileExt.substring(fileExt.lastIndexOf('.'));
-    if (validExts.indexOf(fileExt) < 0) {
-      this.uploadFileEvent = true;
-      this.avanceObras.setErrors({'invalid': true});
-
-    } else {
-      this.uploadFileEvent = false;
+  onFileSelect(event) {
+    console.log("si pasa");
+    
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.avanceObras.get('foto').setValue(file);
     }
   }
-
+  
   getLocation() {
     this.locationService.getPosition().then(pos => {
       this.latitude = pos.lat;
@@ -166,10 +152,13 @@ export class RegistrarAvaobraComponent implements OnInit {
       this.renderer.setProperty(this.canvas.nativeElement, 'width', this.videoWidth);
       this.renderer.setProperty(this.canvas.nativeElement, 'height', this.videoHeight);
       this.canvas.nativeElement.getContext('2d').drawImage(this.videoElement.nativeElement, 0, 0);
-      var data = this.canvas.nativeElement.toDataURL('image/png').replace("image/png", "image/octet-stream");
+      //var data = this.canvas.nativeElement.toDataURL('image/png').replace("image/png", "image/octet-stream");
+      //var data = this.canvas.nativeElement;
       //data.download = 'myOtherFilename.png';
-      window.location.href = data;
-      this.fotos = data;
+      //window.location.href = data;
+      //var data = this.canvas.nativeElement.toDataURL('image/png');
+      //this.fotos = data;
+      //this.avanceObras.get('foto').setValue(data);
       //window.open(data);
   }
 
@@ -182,5 +171,7 @@ export class RegistrarAvaobraComponent implements OnInit {
     this.avanceObras.markAsUntouched();
     this.router.navigate(['/avance-obra']);
   }
+
+
 
 }

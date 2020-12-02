@@ -84,7 +84,7 @@
                         </div>
                        <div class="p-1">
                        </div>
-                       <textarea rows="3" [(ngModel)]="fotos" formControlName="foto"></textarea>
+                       <input type="file" name="foto" (change)="onFileSelect($event)">
                         
                        <!--input type="input" [(ngModel)]="data"-->
                     </div>

@@ -42,6 +42,8 @@ import { crearMaterialesComponent } from './components/materiales/crear-material
 import { ModificarMaterialesComponent } from './components/materiales/modificar-materiales.component';
 import { RegistrarAvaobraComponent } from './components/avance-obra/registrar-avaobra.component';
 import { ReportesComponent } from './components/reportes/reportes.component';
+import { ListaavaobraComponent } from './components/avance-obra/listaavaobra.component';
+import { AvanceObraRepComponent } from './components/avance-obra/avance-obra-rep.component';
 //import { RegistrarAvanceobraComponent } from './components/avance-obra/registrar-avanceobra.component';
 
 @NgModule({
@@ -73,6 +75,8 @@ import { ReportesComponent } from './components/reportes/reportes.component';
     ModificarMaterialesComponent,
     RegistrarAvaobraComponent,
     ReportesComponent,
+    ListaavaobraComponent,
+    AvanceObraRepComponent,
     //RegistrarAvanceobraComponent
   ],
   imports: [

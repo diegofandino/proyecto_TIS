@@ -146,13 +146,23 @@ export class DashboardService {
   }
 
   avanceObra( objeto ){
-    return this.http.post( `${environment.url}obra/create`, objeto , {headers: this.headers});
+    return this.http.post( `${environment.url}obra/`, objeto , {headers: this.headers});
+  }
+
+  listarAvanceObras( ){
+    return this.http.get( `${environment.url}obra/listarObras/`);
   }
   
   subirObraTemp( archivo ){
     const formData2 = new FormData();
     formData2.append('pdf', archivo);
     return this.http.post( `${environment.url}obra/uploadpdf`, formData2 );
+  }
+
+  subirImgObraTemp( archivo ){
+    const formData3 = new FormData();
+    formData3.append('png', archivo);
+    return this.http.post( `${environment.url}obra/uploadimg`, formData3 );
   }
 
 }

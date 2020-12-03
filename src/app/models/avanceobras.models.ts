@@ -4,5 +4,6 @@ export class AvanceObras {
     fechaAvance: String;
     descripcion:  String;
     foto: String;
-    coords: String;
+    latitude: String;
+    longitude: String;
 }

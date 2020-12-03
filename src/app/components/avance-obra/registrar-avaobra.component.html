@@ -32,7 +32,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group calendario-position">
-                        <input type="text" [readonly]="true" [minDate]="minDate" (dateSelect)="fechaavance($event)" class="form-control" id="fechaAvance" placeholder="{{this.avanceObras.controls['fechaAvance'].value ? this.avanceObras.controls['fechaAvance'].value : 'Fecha de avance*'}}"
+                        <input type="text" [readonly]="true" [minDate]="minDate" (dateSelect)="fechaInicial($event)" class="form-control" id="fechaAvance" placeholder="{{this.avanceObras.controls['fechaAvance'].value ? this.avanceObras.controls['fechaAvance'].value : 'Fecha de avance*'}}"
                             formControlName="fechaAvance" ngbDatepicker #inicio="ngbDatepicker">
                         <div class="input-group-append calendar-absolute">
                             <button class="btn btn-outline-secondary calendar" (click)="inicio.toggle()" type="button"> <i class="far fa-calendar-alt"></i> </button>
@@ -53,25 +53,20 @@
                         </div>
                     </div>
                 </div>
-                <!--div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group input-group">
                         <div class="custom-file">
-                            <input type="file" class="cursor-pointer form-control custom-file-input" id="inputGroupFile01" formControlName="foto" (change)="fileInputChange($event.target.files)" aria-describedby="inputGroupFileAddon01" accept=".jpg">
+                            <input type="file" class="cursor-pointer form-control custom-file-input" id="inputGroupFile01" formControlName="foto" (change)="fileInputChange($event.target.files)" aria-describedby="inputGroupFileAddon01" accept=".png">
                             <label class="custom-file-label" for="inputGroupFile01">Registrar foto</label>
-                            <div class="container-photo">
-                                <img id="photo" class="photo">
-                                <button id="open" type="button" class="btn icon fas fa-camera-retro"></button>
-                            </div>
                         </div>
-
                     </div>
                     <div *ngIf=" avanceObras.controls['foto'].invalid && formDir.submitted" class="alert mt-4 alert-danger formulario-error">
                         <div *ngIf="avanceObras.controls['foto'].errors.required">El campo Registrar foto es requerido</div>
                     </div>
                     <div *ngIf="uploadFileEvent" class="alert mt-4 alert-danger formulario-error">
-                        <div *ngIf="uploadFileEvent">El campo Registrar foto sólo acepta formato .jpg</div>
+                        <div *ngIf="uploadFileEvent">El campo Registrar foto sólo acepta formato .png</div>
                     </div>
-                </div-->
+                </div>
                 <div class="container vh-100">
                     <div class="d-flex flex-column align-items-center">
                         
@@ -84,15 +79,16 @@
                         </div>
                        <div class="p-1">
                        </div>
-                       <input type="file" name="foto" (change)="onFileSelect($event)">
+                       <!--input type="file" name="foto" (change)="onFileSelect($event)"-->
                         
                        <!--input type="input" [(ngModel)]="data"-->
                     </div>
                     <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                         <div class="form-group">
-                            <input type="text" [(ngModel)]="latitude" class="form-control" id="coords" formControlName="coords">
+                            <input type="hidden" [(ngModel)]="latitude" class="form-control" id="latitude" formControlName="latitude">
+                            <input type="hidden" [(ngModel)]="longitude" class="form-control" id="longitude" formControlName="longitude">
                         </div>
-                        <h1>{{latitude}},{{longitude}}</h1>
+                        <!--h1>{{latitude}},{{longitude}}</h1-->
                     </div>
                 </div>
             </div>

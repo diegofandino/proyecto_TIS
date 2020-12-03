@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { LocationService } from 'src/app/services/location.service';
+import jwt_decode from 'jwt-decode';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-registrar-avaobra',
@@ -12,11 +14,13 @@ import { LocationService } from 'src/app/services/location.service';
   styleUrls: ['./registrar-avaobra.component.scss']
 })
 export class RegistrarAvaobraComponent implements OnInit {
+  //Geolocalización
   title = 'geolocation';
   public latitude;
   public longitude;
   public fotos;
   
+  //Captura video
   @ViewChild('video', { static: true }) videoElement: ElementRef;
   @ViewChild('canvas', { static: true }) canvas: ElementRef;
 
@@ -34,9 +38,11 @@ export class RegistrarAvaobraComponent implements OnInit {
   minDate: any;
   fileParaSubir: any;
   uploadFileEvent: boolean;
-  fechaAvance: any;
+  fechainicial: any;
+  datosUsuarioAut: any;
+  
   constructor(private formbuilder: FormBuilder, private router: Router, private dashboardService: DashboardService,
-    private toastr: ToastrService, private datepipe: DatePipe,private renderer: Renderer2,public locationService: LocationService) { }
+    private toastr: ToastrService, private datepipe: DatePipe,private renderer: Renderer2,public locationService: LocationService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.startCamera();
@@ -46,8 +52,9 @@ export class RegistrarAvaobraComponent implements OnInit {
       idObra: new FormControl ('', Validators.required),
       fechaAvance: new FormControl ('', Validators.required),
       descripcion: new FormControl ('', Validators.required),
-      foto: new FormControl (['']),
-      coords: new FormControl ('')
+      foto: new FormControl (''),
+      latitude: new FormControl (''),
+      longitude: new FormControl ('')
     })
 
     const fechaActual = new Date();
@@ -57,11 +64,18 @@ export class RegistrarAvaobraComponent implements OnInit {
       day: fechaActual.getDate()
     };
 
-
+    this.datosUsuarioAut = jwt_decode(this.obtenerDatos());
+    console.log("Usuario token autenticación", this.datosUsuarioAut['usuario']._id);
+    
   }
 
   get f(){
     return this.avanceObras.controls;
+  }
+
+  obtenerDatos(){
+    const data = this.authService.obtenerToken();
+    return data
   }
 
 
@@ -70,10 +84,10 @@ export class RegistrarAvaobraComponent implements OnInit {
   return  `${date.year}-${date.month}-${date.day}`;
   }
 
-  fechaavance(fechaAvance){
-    let fechaavanceModify = new Date(fechaAvance.year, fechaAvance.month - 1, fechaAvance.day);
-    this.fechaAvance = this.datepipe.transform(fechaavanceModify, 'yyyy-MM-dd');
-    console.log(this.fechaavance)
+  fechaInicial(fechaAvance){
+    let fechainicialModify = new Date(fechaAvance.year, fechaAvance.month - 1, fechaAvance.day);
+    this.fechainicial = this.datepipe.transform(fechainicialModify, 'yyyy-MM-dd');
+    console.log(this.fechainicial)
   }
 
   crear(values){
@@ -86,28 +100,24 @@ export class RegistrarAvaobraComponent implements OnInit {
         return;
       }
 
+      this.dashboardService.subirImgObraTemp( this.fileParaSubir )
+          .subscribe( (respuesta: any) => { console.log(respuesta) } );
+
       console.log("Si se puede crear el form");
       console.log(this.avanceObras.value);
 
    const formData1 = new FormData();
     formData1.append('idObra',this.avanceObras.controls['idObra'].value );
-    formData1.append('fechaAvance', this.fechaAvance);
+    formData1.append('fechaAvance', this.fechainicial);
     formData1.append('descripcion',this.avanceObras.controls['descripcion'].value );
-    formData1.append('descripcion',this.avanceObras.controls['descripcion'].value );
+    formData1.append('latitude',this.avanceObras.controls['latitude'].value );
+    formData1.append('longitude',this.avanceObras.controls['longitude'].value );
 
     formData1.forEach( (elemento) => {
       console.log("Enviar al back datos", elemento );
     } );
 
-    let objetoprueba = {    
-      idObra: this.avanceObras.controls['idObra'].value,
-      fechaAvance: this.fechaavance,
-      descripcion: this.avanceObras.controls['descripcion'].value,
-      foto: this.avanceObras.controls['foto'].value ,
-      coords: this.avanceObras.controls['coords'].value ,
-    }
-
-    this.dashboardService.avanceObra( objetoprueba )
+    this.dashboardService.avanceObra( formData1 )
       .subscribe( (respuesta: any) => {
        console.log("Proceso exitoso", respuesta)
        this.toastr.success('¡Registro exitoso!', '');
@@ -115,16 +125,37 @@ export class RegistrarAvaobraComponent implements OnInit {
     });
 
   }
+  //Subir archivo
+  fileInputChange(evento) {
+    this.fileParaSubir = evento[0];
+    document.querySelector('.custom-file-label').innerHTML = this.fileParaSubir.name;
 
-  onFileSelect(event) {
+    let validExts = new Array('.png');
+    if (!evento) {
+      return;
+    }
+
+    let fileExt = evento[0].name;
+    fileExt = fileExt.substring(fileExt.lastIndexOf('.'));
+    if (validExts.indexOf(fileExt) < 0) {
+      this.uploadFileEvent = true;
+      this.avanceObras.setErrors({'invalid': true});
+
+    } else {
+      this.uploadFileEvent = false;
+    }
+  }
+
+  /*onFileSelect(event) {
     console.log("si pasa");
     
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.avanceObras.get('foto').setValue(file);
     }
-  }
+  }*/
   
+  //Geolocalización
   getLocation() {
     this.locationService.getPosition().then(pos => {
       this.latitude = pos.lat;
@@ -132,11 +163,12 @@ export class RegistrarAvaobraComponent implements OnInit {
     });
   }
 
+  //Camara y captura
   startCamera() {
       if (!!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) {
           navigator.mediaDevices.getUserMedia(this.constraints).then(this.attachVideo.bind(this)).catch(this.handleError);
       } else {
-          alert('Sorry, camera not available.');
+          alert('La camara no esta habilitada');
       }
   }
 

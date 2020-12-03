@@ -8,7 +8,7 @@ import { ClientesComponent } from './components/clientes/clientes.component';
 import { CrearClienteComponent } from './components/clientes/crear-cliente.component';
 import { ModificarClienteComponent } from './components/clientes/modificar-cliente.component';
 import { TrabajadoresComponent } from './components/trabajadores/trabajadores.component';
-import {CrearTrabajadoresComponent} from './components/trabajadores/crear-trabajadores.component';
+import { CrearTrabajadoresComponent} from './components/trabajadores/crear-trabajadores.component';
 import { ModificarTrabajadoresComponent} from './components/trabajadores/modificar-trabajadores.component';
 import { ProveedoresComponent} from './components/proveedores/proveedores.component';
 import { CrearProveedoresComponent } from './components/proveedores/crear-proveedores.component';
@@ -24,6 +24,8 @@ import { crearMaterialesComponent } from './components/materiales/crear-material
 import { ModificarMaterialesComponent } from './components/materiales/modificar-materiales.component';
 import { RegistrarAvaobraComponent } from './components/avance-obra/registrar-avaobra.component';
 import { ReportesComponent } from '../app/components/reportes/reportes.component';
+import { ListaavaobraComponent } from '../app/components/avance-obra/listaavaobra.component';
+import { AvanceObraRepComponent } from './components/avance-obra/avance-obra-rep.component';
 
 
 
@@ -53,7 +55,10 @@ const routes: Routes = [
     { path: 'modificar-trabajador/:documento', component: ModificarTrabajadoresComponent , canActivate: [AuthGuard] },
     { path: 'modificar-proveedor/:identificacion', component: ModificarProveedoresComponent , canActivate: [AuthGuard] },
     { path: 'modificar-material/:codigo', component: ModificarMaterialesComponent , canActivate: [AuthGuard] },
-    { path: 'modificar-obra/:id', component: ModificarObraComponent , canActivate: [AuthGuard] }
+    { path: 'modificar-obra/:id', component: ModificarObraComponent , canActivate: [AuthGuard] },
+    { path: 'listaavaobra', component: ListaavaobraComponent , canActivate: [AuthGuard] },
+    { path: 'avance-obra-rep', component: AvanceObraRepComponent , canActivate: [AuthGuard] }
+    
   ]},
   { path: '**', redirectTo: '/login', pathMatch: 'full'  },
 ];

@@ -26,6 +26,7 @@ import { RegistrarAvaobraComponent } from './components/avance-obra/registrar-av
 import { ReportesComponent } from '../app/components/reportes/reportes.component';
 import { ListaavaobraComponent } from '../app/components/avance-obra/listaavaobra.component';
 import { AvanceObraRepComponent } from './components/avance-obra/avance-obra-rep.component';
+import { EntradasMaterialesComponent } from './components/materiales/entradas-materiales.component';
 
 
 
@@ -57,7 +58,8 @@ const routes: Routes = [
     { path: 'modificar-material/:codigo', component: ModificarMaterialesComponent , canActivate: [AuthGuard] },
     { path: 'modificar-obra/:id', component: ModificarObraComponent , canActivate: [AuthGuard] },
     { path: 'listaavaobra', component: ListaavaobraComponent , canActivate: [AuthGuard] },
-    { path: 'avance-obra-rep', component: AvanceObraRepComponent , canActivate: [AuthGuard] }
+    { path: 'avance-obra-rep', component: AvanceObraRepComponent , canActivate: [AuthGuard] },
+    { path: 'entradas-materiales', component: EntradasMaterialesComponent , canActivate: [AuthGuard] }
     
   ]},
   { path: '**', redirectTo: '/login', pathMatch: 'full'  },

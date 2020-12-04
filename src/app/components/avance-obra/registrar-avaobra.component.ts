@@ -54,7 +54,7 @@ export class RegistrarAvaobraComponent implements OnInit {
       descripcion: new FormControl ('', Validators.required),
       foto: new FormControl (''),
       latitude: new FormControl (''),
-      longitude: new FormControl ('')
+      longitude: new FormControl ('')      
     })
 
     const fechaActual = new Date();
@@ -107,11 +107,14 @@ export class RegistrarAvaobraComponent implements OnInit {
       console.log(this.avanceObras.value);
 
    const formData1 = new FormData();
-    formData1.append('idObra',this.avanceObras.controls['idObra'].value );
+    formData1.append('idObra',this.avanceObras.controls['idObra'].value );    
     formData1.append('fechaAvance', this.fechainicial);
     formData1.append('descripcion',this.avanceObras.controls['descripcion'].value );
     formData1.append('latitude',this.avanceObras.controls['latitude'].value );
     formData1.append('longitude',this.avanceObras.controls['longitude'].value );
+    formData1.append('usuario', this.datosUsuarioAut['usuario']._id );
+
+    //console.log('Info User: ' + this.datosUsuarioAut['usuario']._id);
 
     formData1.forEach( (elemento) => {
       console.log("Enviar al back datos", elemento );

@@ -122,7 +122,12 @@ export class DashboardService {
   }
   listarMateriales( ){
     return this.http.get( `${environment.url}material/`);
-}
+  }
+  entradaMateriales( objeto ){
+    return this.http.post( `${environment.url}materialentrada/create`, objeto , {headers: this.headers});
+  }
+
+  
 
   crearObra( objeto ){
     return this.http.post( `${environment.url}obra/`, objeto);
@@ -146,11 +151,12 @@ export class DashboardService {
   }
 
   avanceObra( objeto ){
-    return this.http.post( `${environment.url}obra/`, objeto , {headers: this.headers});
+     console.log('Objeto que se envia' + objeto);
+    return this.http.post( `${environment.url}avanceObra/`, objeto , {headers: this.headers});
   }
 
   listarAvanceObras( ){
-    return this.http.get( `${environment.url}obra/listarObras/`);
+    return this.http.get( `${environment.url}avanceObra/listarObras/`);
   }
   
   subirObraTemp( archivo ){
@@ -162,7 +168,7 @@ export class DashboardService {
   subirImgObraTemp( archivo ){
     const formData3 = new FormData();
     formData3.append('png', archivo);
-    return this.http.post( `${environment.url}obra/uploadimg`, formData3 );
+    return this.http.post( `${environment.url}avanceObra/uploadimg`, formData3 );
   }
 
 }

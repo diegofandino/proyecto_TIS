@@ -44,6 +44,8 @@ import { RegistrarAvaobraComponent } from './components/avance-obra/registrar-av
 import { ReportesComponent } from './components/reportes/reportes.component';
 import { ListaavaobraComponent } from './components/avance-obra/listaavaobra.component';
 import { AvanceObraRepComponent } from './components/avance-obra/avance-obra-rep.component';
+import { EntradasMaterialesComponent } from './components/materiales/entradas-materiales.component';
+import { SalidasMaterialesComponent } from './components/materiales/salidas-materiales.component';
 //import { RegistrarAvanceobraComponent } from './components/avance-obra/registrar-avanceobra.component';
 
 @NgModule({
@@ -77,6 +79,8 @@ import { AvanceObraRepComponent } from './components/avance-obra/avance-obra-rep
     ReportesComponent,
     ListaavaobraComponent,
     AvanceObraRepComponent,
+    EntradasMaterialesComponent,
+    SalidasMaterialesComponent,
     //RegistrarAvanceobraComponent
   ],
   imports: [

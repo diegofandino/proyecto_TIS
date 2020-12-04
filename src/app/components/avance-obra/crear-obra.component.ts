@@ -35,6 +35,7 @@ export class CrearObraComponent implements OnInit {
       fechaFin: new FormControl ('', Validators.required),
       regPlano: new FormControl ('', Validators.required),
       activo: new FormControl ('', Validators.required)
+
     })
     
     const fechaActual = new Date();
@@ -78,7 +79,7 @@ export class CrearObraComponent implements OnInit {
   }
 
   crear(values){
-    console.log("Entro aqui:");
+    console.log("Entro aqui:" + values );
     if( !this.crearObras.valid ){
       console.log(this.crearObras.value);
         this.crearObras.markAllAsTouched();
@@ -106,6 +107,8 @@ export class CrearObraComponent implements OnInit {
       formData1.append('fechaInicio', this.fechainicial );
       formData1.append('fechaFin', this.fechafinal );
       formData1.append('activo', this.crearObras.controls['activo'].value );
+
+      console.log(formData1);
 
       this.dashboardService.crearObra( formData1 )
         .subscribe( (respuesta: any) => {

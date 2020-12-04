@@ -1,0 +1,66 @@
+<div class="container crear-materiales">
+    <div class="row align-items-center">
+        <div class="col-lg-12 text-center titulos-principales">
+            <h1>Entrada material</h1>
+        </div>
+    </div>
+
+    <div class="formulario-crear">
+        <form [formGroup]="entradaMateriales" #formDir (ngSubmit)="crear(formDir)">
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <select name="idMaterial" class="form-control" id="idMaterial" formControlName="idMaterial">
+                            <option value="" disabled selected>Material*</option>
+                            <option value="m1"> Material 1 </option>
+                            <option value="m2"> Material 2 </option>
+                        </select>
+                        <div *ngIf=" entradaMateriales.controls['idMaterial'].invalid && (entradaMateriales.controls['idMaterial'].dirty || entradaMateriales.controls['idMaterial'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="entradaMateriales.controls['idMaterial'].errors.required">El campo codigo es requerido</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <select name="idObra" class="form-control" id="idObra" formControlName="idObra">
+                            <option value="" disabled selected>Obra*</option>
+                            <option value="o1"> Obra 1 </option>
+                            <option value="o2"> Obra 2 </option>
+                        </select>
+                        <div *ngIf=" entradaMateriales.controls['idObra'].invalid && (entradaMateriales.controls['idObra'].dirty || entradaMateriales.controls['idObra'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="entradaMateriales.controls['idObra'].errors.required">El campo codigo es requerido</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <!--input type="text" [(ngModel)]="fechaActual" class="form-control" id="fecha" formControlName="fecha"-->
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Cantidad*" id="cantidad" formControlName="cantidad">
+                        <div *ngIf=" entradaMateriales.controls['cantidad'].invalid && (entradaMateriales.controls['cantidad'].dirty || entradaMateriales.controls['cantidad'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="entradaMateriales.controls['cantidad'].errors.required">El campo cantidad es requerido</div>
+                            <div *ngIf="entradaMateriales.controls['cantidad'].errors.maxlength">El campo cantidad debe tener máximo 10 carácteres</div>
+                            <div *ngIf="entradaMateriales.controls['cantidad'].errors.pattern">El campo cantidad es tipo numérico</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row botones-creacion">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 text-right">
+                    <button type="submit" class="btn btn-success"> Crear </button>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 text-left">
+                    <button type="button" (click)="resetear()" class="btn btn-danger"> Cancelar </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</div>

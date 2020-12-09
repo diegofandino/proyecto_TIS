@@ -16,8 +16,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if(this.authService.estaAutenticado()){
-      this.route.navigate(['../bienvenido']);
+    if(!this.authService.estaAutenticado()){
+      this.route.navigate(['../login']);
     }
 
     this.dashboardService.openSidebarSubject.subscribe( (respuesta) => {

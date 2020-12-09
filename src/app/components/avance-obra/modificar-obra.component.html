@@ -74,9 +74,9 @@
                     <div *ngIf=" modificarObra.controls['regPlano'].invalid && formDir.submitted" class="alert mt-4 alert-danger formulario-error">
                         <div *ngIf="modificarObra.controls['regPlano'].errors.required">El campo Registrar plano es requerido</div>
                     </div>
-                    <div *ngIf="uploadFileEvent" class="alert mt-4 alert-danger formulario-error">
+                    <!-- <div *ngIf="uploadFileEvent" class="alert mt-4 alert-danger formulario-error">
                         <div *ngIf="uploadFileEvent">El campo Registrar plano sólo acepta formato .pdf</div>
-                    </div>
+                    </div> -->
                 </div>
 
 
@@ -84,8 +84,8 @@
                     <div class="form-group">
                         <select name="activo" class="form-control" id="activo" formControlName="activo">
                             <option value="" disabled selected>Estado*</option>
-                            <option value="1"> Activo </option>
-                            <option value="0"> Inactivo </option>
+                            <option [value]="true"> Activo </option>
+                            <option [value]="false"> Inactivo </option>
                         </select>
                         <div *ngIf=" modificarObra.controls['activo'].invalid && (modificarObra.controls['activo'].dirty || modificarObra.controls['activo'].touched)" class="alert alert-danger formulario-error">
                             <div *ngIf="modificarObra.controls['activo'].errors.required">El campo Estado es requerido</div>

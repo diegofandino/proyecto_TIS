@@ -63,8 +63,14 @@ export class DashboardService {
   obtenerDatosByIdCli( objeto ){
     return this.http.get( `${environment.url}cliente/${objeto}` , {headers: this.headers});
   }
+  obtenerDatosByIdObra( objeto ){
+    return this.http.get( `${environment.url}obra/${objeto}` , {headers: this.headers});
+  }
   actualizarCliente( objeto ){
   return this.http.post( `${environment.url}cliente/update`, objeto , {headers: this.headers});
+  }
+  actualizarObra( objeto ){
+  return this.http.post( `${environment.url}obra/update`, objeto , {headers: this.headers});
   }
   listarClientes( ){
     return this.http.get( `${environment.url}cliente/`);

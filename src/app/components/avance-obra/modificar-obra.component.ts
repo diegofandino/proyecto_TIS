@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { DashboardService } from '../../services/dashboard.service';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -17,8 +19,9 @@ export class ModificarObraComponent implements OnInit {
   uploadFileEvent: boolean;
   fechainicial: any;
   fechafinal: any;
+  idModificar: any;
   constructor(private formbuilder: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute,
-    private datepipe: DatePipe, private toastr: ToastrService) { }
+    private datepipe: DatePipe, private toastr: ToastrService, private DashboardService: DashboardService) { }
 
   ngOnInit(): void {
 
@@ -28,15 +31,54 @@ export class ModificarObraComponent implements OnInit {
       descripcion: new FormControl ('', Validators.required),
       fechaInicio: new FormControl ('', Validators.required),
       fechaFin: new FormControl ('', Validators.required),
-      regPlano: new FormControl ('', Validators.required),
+      regPlano: new FormControl (''),
       activo: new FormControl ('', Validators.required)
     })
 
     this.activatedRoute.params
         .subscribe( params => {
             console.log("obra", params['id']);
+            
+            this.idModificar = params['id'];
+
         } );
 
+        this.DashboardService.obtenerDatosByIdObra( this.idModificar  )
+            .subscribe( (respuesta: any) => {
+              console.log("Datos a modificar",respuesta);
+
+              this.modificarObra.patchValue({
+                identObra: respuesta.obra.identObra,
+                nombreObra: respuesta.obra.nombreObra,
+                descripcion: respuesta.obra.descripcion,
+                fechaInicio: this.convertFormatoNG(respuesta.obra.fechaInicio),
+                fechaFin: this.convertFormatoNG(respuesta.obra.fechaFin),
+                // regPlano: respuesta.obra.regPlano,
+                activo: respuesta.obra.activo
+              })
+
+            } )
+
+
+  }
+
+  convertFormatoNG(date){
+    let fechaModificada = date.split('T')[0];
+    console.log(fechaModificada);
+    let fechaSplit = {
+      year: parseInt(fechaModificada.split('-')[0]),
+      month: parseInt(fechaModificada.split('-')[1]),
+      day: parseInt(fechaModificada.split('-')[2]),
+    }
+
+    console.log(fechaSplit);
+
+    return fechaSplit;
+  }
+
+  convertFormatoNorm(date){
+    let fechaModify = new Date(date.year, date.month - 1, date.day);
+    return this.datepipe.transform(fechaModify, 'yyyy-MM-dd');
 
   }
 
@@ -74,21 +116,21 @@ export class ModificarObraComponent implements OnInit {
     formData1.append('identObra',this.modificarObra.controls['identObra'].value );
     formData1.append('nombreObra',this.modificarObra.controls['nombreObra'].value );
     formData1.append('descripcion',this.modificarObra.controls['descripcion'].value );
-    formData1.append('fechaInicio', this.fechainicial );
-    formData1.append('fechaFin', this.fechafinal );
-    formData1.append('regPlano', this.fileParaSubir );
+    formData1.append('fechaInicio', this.convertFormatoNorm(this.modificarObra.controls['fechaInicio'].value));
+    formData1.append('fechaFin', this.convertFormatoNorm( this.modificarObra.controls['fechaFin'].value ));
+    formData1.append('regPlano', this.fileParaSubir ? this.fileParaSubir : '' );
     formData1.append('activo', this.modificarObra.controls['activo'].value );
 
     formData1.forEach( (elemento) => {
       console.log("Enviar al back datos", elemento );
     } );
 
-    // this.dashboardService.crearUsuario( this.crearUsuarios.value )
-    // .subscribe( (respuesta: any) => {
-    //   console.log("Proceso exitoso", respuesta)
-    //   // this.toastr.success('¡Registro exitoso!', '');
-    //   this.resetear();
-    //     });
+    this.DashboardService.actualizarObra( formData1 )
+    .subscribe( (respuesta: any) => {
+      console.log("Proceso exitoso", respuesta)
+      this.toastr.success('¡Registro exitoso!', '');
+      this.resetear();
+    });
 
   }
 

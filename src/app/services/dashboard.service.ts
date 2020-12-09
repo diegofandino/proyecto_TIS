@@ -159,7 +159,7 @@ export class DashboardService {
   }
 
   listarAvanceObras( ){
-    return this.http.get( `${environment.url}avanceObra/listarObras/`);
+    return this.http.get( `${environment.url}avanceObra/`);
   }
   
   subirObraTemp( archivo ){

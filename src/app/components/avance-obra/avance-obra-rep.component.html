@@ -27,10 +27,7 @@
                             <td class="text-center">{{ obra.fechaInicio}}</td>
                             <td class="text-center">{{ obra.fechaFin}}</td>
                             <td class="text-center">
-                                <a [attr.href]="url/obra/pdf/obra.usuario/obra.regPlano" class="cursor-pointer btn btn-success btn-texto"> <i class="fas fa-file-pdf" style="color: #ffffff;"></i></a>
-                            </td>
-                            <td>
-                                {{url/obra/pdf/obra.usuario/obra.regPlano}}
+                                <a target="_blank" download *ngIf="obra.regPlano.length != 0" [attr.href]="url + '/obra/pdf/' + obra.usuario + '/' + obra.regPlano[0]" class="cursor-pointer btn btn-success btn-texto" [attr.download]> <i class="fas fa-file-pdf" style="color: #ffffff;"></i></a>
                             </td>
                             <!--td class="text-center"><a (click)="open(i+1)" class="cursor-pointer btn btn-danger btn-texto"><i class="far fa-trash-alt" style="color: #ffffff;"></i></a></td-->
                         </tr>

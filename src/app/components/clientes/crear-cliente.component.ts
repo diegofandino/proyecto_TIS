@@ -10,10 +10,18 @@ import { DashboardService } from 'src/app/services/dashboard.service';
   styleUrls: ['./crear-cliente.component.scss']
 })
 export class CrearClienteComponent implements OnInit {
+  objListaObras: any[] = [];
 
   crearClientes: FormGroup
   constructor(private formbuilder: FormBuilder, private router: Router, private dashboardService: DashboardService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService) { 
+      this.dashboardService.getObras()
+      .subscribe( (respuesta: any) => {  
+        console.log(respuesta)
+        this.objListaObras = respuesta.obras 
+        console.log(respuesta.obras) 
+      });
+    }
 
   ngOnInit(): void {
     
@@ -24,7 +32,8 @@ export class CrearClienteComponent implements OnInit {
       telefono: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
       email: new FormControl ('', [Validators.required, Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$')]),
       direccion: new FormControl ('', Validators.required),
-      activo: new FormControl ('', Validators.required)
+      activo: new FormControl ('', Validators.required),
+      idObra: new FormControl ('', Validators.required)
     })
 
   }

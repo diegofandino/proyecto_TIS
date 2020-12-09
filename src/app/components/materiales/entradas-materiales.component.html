@@ -13,8 +13,9 @@
                     <div class="form-group">
                         <select name="idMaterial" class="form-control" id="idMaterial" formControlName="idMaterial">
                             <option value="" disabled selected>Material*</option>
-                            <option value="m1"> Material 1 </option>
-                            <option value="m2"> Material 2 </option>
+                            <option *ngFor="let materiales of objListaMateriales" [value]="materiales._id">
+                                {{ materiales.referencia }}
+                            </option>
                         </select>
                         <div *ngIf=" entradaMateriales.controls['idMaterial'].invalid && (entradaMateriales.controls['idMaterial'].dirty || entradaMateriales.controls['idMaterial'].touched)" class="alert alert-danger formulario-error">
                             <div *ngIf="entradaMateriales.controls['idMaterial'].errors.required">El campo codigo es requerido</div>
@@ -23,17 +24,18 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <select class="form-control" id="idObra" formControlName="idObra">
-                            <option value="" disabled selected>Obras*</option>
-                            <option *ngFor="let obras of objListaObras" [value]="obras._id">
-                                {{ obras.nombreObra }}
+                        <select class="form-control" id="idProveedor" formControlName="idProveedor">
+                            <option value="" disabled selected>Proveedor*</option>
+                            <option *ngFor="let proveedor of objListaProveedor" [value]="proveedor._id">
+                                {{ proveedor.nombre }}
                             </option>
                         </select>
-                        <div *ngIf=" entradaMateriales.controls['idObra'].invalid && (entradaMateriales.controls['idObra'].dirty || entradaMateriales.controls['idObra'].touched)" class="alert alert-danger formulario-error">
-                            <div *ngIf="entradaMateriales.controls['idObra'].errors.required">El campo codigo es requerido</div>
+                        <div *ngIf=" entradaMateriales.controls['idProveedor'].invalid && (entradaMateriales.controls['idProveedor'].dirty || entradaMateriales.controls['idProveedor'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="entradaMateriales.controls['idProveedor'].errors.required">El campo idProveedor es requerido</div>
                         </div>
                     </div>
                 </div>
+                   
             </div>
 
             <div class="row">

@@ -74,7 +74,7 @@ export class ModificarProveedoresComponent implements OnInit {
     this.dashboardService.actualizarProveedor(this.modificarProveedores.value)
         .subscribe( (respuesta: any) => {
           this.toastr.success('!Modificación exitosa!', '');
-          this.router.navigate(['/materiales']);
+          this.router.navigate(['/proveedores']);
         } );
 
   }

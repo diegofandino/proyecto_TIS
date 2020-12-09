@@ -14,7 +14,7 @@ export class SalidasMaterialesComponent implements OnInit {
   fechainicial: any;
   minDate: any;
   objListaObras: any[] = [];
-  objListaMaterial: any[] = [];
+  objListaMateriales: any[] = [];
 
   salidaMateriales: FormGroup
   constructor(private formbuilder: FormBuilder, private router: Router, private dashboardService: DashboardService,
@@ -24,12 +24,12 @@ export class SalidasMaterialesComponent implements OnInit {
         console.log(respuesta)
         this.objListaObras = respuesta.obras 
         console.log(respuesta.obras) 
-      });
+      }),
 
       this.dashboardService.getMateriales()
       .subscribe( (respuesta: any) => {  
         console.log(respuesta)
-        this.objListaMaterial = respuesta.materiales
+        this.objListaMateriales = respuesta.materiales
         console.log(respuesta.materiales) 
       });
       

@@ -4,6 +4,7 @@ export class Materiales {
     unidadMedida: String;
     precio: number;
     cantidad: number;
+    proveedor: String;
     activo: boolean; 
-    //proveedor: String;
+    
 }

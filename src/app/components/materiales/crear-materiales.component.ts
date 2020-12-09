@@ -10,10 +10,18 @@ import { DashboardService } from 'src/app/services/dashboard.service';
   styleUrls: ['./crear-materiales.component.scss']
 })
 export class crearMaterialesComponent implements OnInit {
+  objListaProveedor: any[] = [];
 
   crearMateriales: FormGroup
   constructor(private formbuilder: FormBuilder, private router: Router, private dashboardService: DashboardService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService) { 
+      this.dashboardService.getProveedor()
+      .subscribe( (respuesta: any) => {  
+        console.log(respuesta)
+        this.objListaProveedor = respuesta.proveedores
+        console.log(respuesta.proveedores) 
+      });
+    }
 
   ngOnInit(): void {
 
@@ -23,6 +31,7 @@ export class crearMaterialesComponent implements OnInit {
       unidadMedida: new FormControl ('', Validators.required),
       precio: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
       cantidad: new FormControl ('', [Validators.required, Validators.maxLength(5), Validators.pattern('^[0-9]*$')]),
+      proveedor: new FormControl ('', Validators.required),
       activo: new FormControl ('', Validators.required)
     })
   }

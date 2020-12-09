@@ -67,8 +67,8 @@
                         <div *ngIf="uploadFileEvent">El campo Registrar foto sólo acepta formato .png</div>
                     </div>
                 </div>
-                <div class="container vh-100">
-                    <div class="d-flex flex-column align-items-center">
+                <div class="row">
+                    <!--div class="d-flex flex-column align-items-center">
                         
                        <div class="p-1">
                           <video #video class="vid" autoplay></video>
@@ -79,8 +79,7 @@
                         </div>
                        <div class="p-1">
                        </div>
-                       <!--input type="file" name="foto" (change)="onFileSelect($event)"-->
-                    </div>
+                    </div-->
                     <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                         <div class="form-group">
                             <input type="hidden" [(ngModel)]="latitude" class="form-control" id="latitude" formControlName="latitude">

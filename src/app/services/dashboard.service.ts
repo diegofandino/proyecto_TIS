@@ -130,7 +130,7 @@ export class DashboardService {
     return this.http.get( `${environment.url}material/`);
   }
   entradaMateriales( objeto ){
-    return this.http.post( `${environment.url}materialentrada/create`, objeto , {headers: this.headers});
+    return this.http.post( `${environment.url}materialentrada/create`, objeto);
   }
   salidaMateriales( objeto ){
     return this.http.post( `${environment.url}materialsalida/create`, objeto , {headers: this.headers});
@@ -182,6 +182,10 @@ export class DashboardService {
 
   getObras(){
     return this.http.get( `${environment.url}obra/`, {headers: this.headers});
+    }
+
+    getProveedor(){
+    return this.http.get( `${environment.url}proveedor/`, {headers: this.headers});
     }
 
   getMateriales(){

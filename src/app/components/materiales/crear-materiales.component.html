@@ -28,7 +28,7 @@
                     </div>
                 </div>
             </div>
-
+            
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
@@ -70,6 +70,22 @@
                         </select>
                         <div *ngIf=" crearMateriales.controls['activo'].invalid && (crearMateriales.controls['activo'].dirty || crearMateriales.controls['activo'].touched)" class="alert alert-danger formulario-error">
                             <div *ngIf="crearMateriales.controls['activo'].errors.required">El campo Estado es requerido</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <select class="form-control" id="proveedor" formControlName="proveedor">
+                            <option value="" disabled selected>Proveedor*</option>
+                            <option *ngFor="let proveedor of objListaProveedor" [value]="proveedor._id">
+                                {{ proveedor.nombre }}
+                            </option>
+                        </select>
+                        <div *ngIf=" crearMateriales.controls['proveedor'].invalid && (crearMateriales.controls['proveedor'].dirty || crearMateriales.controls['proveedor'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="crearMateriales.controls['proveedor'].errors.required">El campo proveedor es requerido</div>
                         </div>
                     </div>
                 </div>

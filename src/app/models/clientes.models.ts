@@ -6,5 +6,6 @@ export class Clientes {
     telefono: String;
     email: String;
     direccion: String;     
-    activo: boolean;   
+    activo: boolean; 
+    idObra: String;  
 }

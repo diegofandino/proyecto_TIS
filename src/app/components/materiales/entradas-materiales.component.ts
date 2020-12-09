@@ -12,27 +12,33 @@ import { DatePipe } from '@angular/common';
 })
 export class EntradasMaterialesComponent implements OnInit {
   fechainicial: any;
-  //today: number = Date.now();
   minDate: any;
-  objListaObras: any[] = [];
+  objListaMateriales: any[] = [];
+  objListaProveedor: any[] = [];
   
 
   entradaMateriales: FormGroup
   constructor(private formbuilder: FormBuilder, private router: Router, private dashboardService: DashboardService,
     private toastr: ToastrService,private datepipe: DatePipe) {
-      this.dashboardService.getObras()
+      this.dashboardService.getMateriales()
       .subscribe( (respuesta: any) => {  
         console.log(respuesta)
-        this.objListaObras = respuesta.obras 
-        console.log(respuesta.obras) 
+        this.objListaMateriales = respuesta.materiales 
+        console.log(respuesta.materiales) 
+      }),
+      this.dashboardService.getProveedor()
+      .subscribe( (respuesta: any) => {  
+        console.log(respuesta)
+        this.objListaProveedor = respuesta.proveedores
+        console.log(respuesta.proveedores) 
       });
      }
 
   ngOnInit(): void {
     
     this.entradaMateriales = this.formbuilder.group({
-      idMaterial: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
-      idObra: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
+      idMaterial: new FormControl ('', Validators.required),
+      idProveedor: new FormControl ('', Validators.required),
       fecha: new FormControl ('', Validators.required),
       cantidad: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')])
     })
@@ -84,14 +90,5 @@ export class EntradasMaterialesComponent implements OnInit {
     this.entradaMateriales.markAsUntouched();
     this.router.navigate(['/materiales']);
   }
-
-  /*cargarObras(){
-    this.dashboardService.getObras()
-    .subscribe((obrasdata:any) => {
-      this.objListaObras = obrasdata;
-      console.log(obrasdata);
-      console.log(this.objListaObras);
-    })
-  }*/
 
 }

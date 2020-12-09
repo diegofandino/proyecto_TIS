@@ -7,7 +7,6 @@ import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/co
 import { LocationService } from 'src/app/services/location.service';
 import jwt_decode from 'jwt-decode';
 import { AuthService } from 'src/app/services/auth.service';
-
 @Component({
   selector: 'app-registrar-avaobra',
   templateUrl: './registrar-avaobra.component.html',
@@ -18,11 +17,12 @@ export class RegistrarAvaobraComponent implements OnInit {
   title = 'geolocation';
   public latitude;
   public longitude;
-  public fotos;
+
   
   //Captura video
   @ViewChild('video', { static: true }) videoElement: ElementRef;
   @ViewChild('canvas', { static: true }) canvas: ElementRef;
+  @ViewChild('downloadLink') downloadLink: ElementRef;
 
   videoWidth = 0;
     videoHeight = 0;
@@ -149,16 +149,6 @@ export class RegistrarAvaobraComponent implements OnInit {
     }
   }
 
-  /*onFileSelect(event) {
-    console.log("si pasa");
-    
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.avanceObras.get('foto').setValue(file);
-    }
-  }*/
-  
-  //Geolocalización
   getLocation() {
     this.locationService.getPosition().then(pos => {
       this.latitude = pos.lat;
@@ -187,10 +177,10 @@ export class RegistrarAvaobraComponent implements OnInit {
       this.renderer.setProperty(this.canvas.nativeElement, 'width', this.videoWidth);
       this.renderer.setProperty(this.canvas.nativeElement, 'height', this.videoHeight);
       this.canvas.nativeElement.getContext('2d').drawImage(this.videoElement.nativeElement, 0, 0);
-      //var data = this.canvas.nativeElement.toDataURL('image/png').replace("image/png", "image/octet-stream");
-      //var data = this.canvas.nativeElement;
+      var data = this.canvas.nativeElement.toDataURL('image/png').replace("image/png", "image/octet-stream");
+    
       //data.download = 'myOtherFilename.png';
-      //window.location.href = data;
+      window.location.href = data;
       //var data = this.canvas.nativeElement.toDataURL('image/png');
       //this.fotos = data;
       //this.avanceObras.get('foto').setValue(data);

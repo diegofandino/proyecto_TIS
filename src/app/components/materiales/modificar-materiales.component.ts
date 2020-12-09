@@ -10,20 +10,29 @@ import { DashboardService } from 'src/app/services/dashboard.service';
   styleUrls: ['./modificar-materiales.component.scss']
 })
 export class ModificarMaterialesComponent implements OnInit {
+  objListaProveedor: any[] = [];
 
   modificarMateriales: FormGroup;
   codigoMaterial: String;
   idModificar: String;
   constructor(private formbuilder: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute,
-    private dashboardService: DashboardService, private toastr: ToastrService) { }
+    private dashboardService: DashboardService, private toastr: ToastrService) {
+      this.dashboardService.getProveedor()
+      .subscribe( (respuesta: any) => {  
+        console.log(respuesta)
+        this.objListaProveedor = respuesta.proveedores
+        console.log(respuesta.proveedores) 
+      });
+     }
   
     ngOnInit(): void {
     this.modificarMateriales = this.formbuilder.group({
       codigo: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
       referencia: new FormControl ('', Validators.required),
+      unidadMedida: new FormControl ('', Validators.required),
       precio: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
       cantidad: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
-      //proveedor: new FormControl (''),
+      proveedor: new FormControl (''),
       activo: new FormControl ('', Validators.required)
     })
 
@@ -43,9 +52,10 @@ export class ModificarMaterialesComponent implements OnInit {
     this.modificarMateriales.setValue({
       codigo: data['material'].codigo,
       referencia: data['material'].referencia,
+      unidadMedida: data['material'].unidadMedida,
       precio: data['material'].precio,
       cantidad: data['material'].cantidad,
-      //proveedor
+      proveedor: data['material'].proveedor,
       activo: data['material'].activo,
       
     });

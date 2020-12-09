@@ -20,11 +20,14 @@
                             <div *ngIf="entradaMateriales.controls['idMaterial'].errors.required">El campo codigo es requerido</div>
                         </div>
                     </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <select name="idObra" class="form-control" id="idObra" formControlName="idObra">
-                            <option value="" disabled selected>Obra*</option>
-                            <option value="o1"> Obra 1 </option>
-                            <option value="o2"> Obra 2 </option>
+                        <select class="form-control" id="idObra" formControlName="idObra">
+                            <option value="" disabled selected>Obras*</option>
+                            <option *ngFor="let obras of objListaObras" [value]="obras._id">
+                                {{ obras.nombreObra }}
+                            </option>
                         </select>
                         <div *ngIf=" entradaMateriales.controls['idObra'].invalid && (entradaMateriales.controls['idObra'].dirty || entradaMateriales.controls['idObra'].touched)" class="alert alert-danger formulario-error">
                             <div *ngIf="entradaMateriales.controls['idObra'].errors.required">El campo codigo es requerido</div>
@@ -35,8 +38,15 @@
 
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
-                    <div class="form-group">
-                        <!--input type="text" [(ngModel)]="fechaActual" class="form-control" id="fecha" formControlName="fecha"-->
+                    <div class="form-group calendario-position">
+                        <input type="text" [readonly]="true" [minDate]="minDate" (dateSelect)="fechaInicial($event)" class="form-control" id="fecha" placeholder="{{this.entradaMateriales.controls['fecha'].value ? this.entradaMateriales.controls['fecha'].value : 'Fecha*'}}"
+                            formControlName="fecha" ngbDatepicker #inicio="ngbDatepicker">
+                        <div class="input-group-append calendar-absolute">
+                            <button class="btn btn-outline-secondary calendar" (click)="inicio.toggle()" type="button"> <i class="far fa-calendar-alt"></i> </button>
+                        </div>
+                        <div *ngIf=" entradaMateriales.controls['fecha'].invalid && (entradaMateriales.controls['fecha'].dirty || entradaMateriales.controls['fecha'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="entradaMateriales.controls['fecha'].errors.required">El campo Fecha es requerido</div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">

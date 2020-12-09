@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Obras } from 'src/app/models/obras.models';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { ModalComponent } from '../../components/modal/modal.component';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-avance-obra-rep',
@@ -10,7 +11,7 @@ import { ModalComponent } from '../../components/modal/modal.component';
   styleUrls: ['./avance-obra-rep.component.scss']
 })
 export class AvanceObraRepComponent implements OnInit {
-
+  url: string;
   page = 1;
   pageSize = 5;
   obrasLista: Obras[] = [];
@@ -19,6 +20,7 @@ export class AvanceObraRepComponent implements OnInit {
   constructor(private modalService: NgbModal, private dashboardService: DashboardService) { }
 
   ngOnInit(): void {
+    this.url = (environment.url).slice(0, -1);
 
     this.dashboardService.listarObras()
     .subscribe( (respuesta: any) => {

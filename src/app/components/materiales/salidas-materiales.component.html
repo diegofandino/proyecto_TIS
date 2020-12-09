@@ -1,1 +1,77 @@
-<p>salidas-materiales works!</p>
+<!--div class="container crear-materiales">
+    <div class="row align-items-center">
+        <div class="col-lg-12 text-center titulos-principales">
+            <h1>Salida material</h1>
+        </div>
+    </div>
+
+    <div class="formulario-crear">
+        <form [formGroup]="salidaMateriales" #formDir (ngSubmit)="crear(formDir)">
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <select class="form-control" id="idMaterial" formControlName="idMaterial">
+                            <option value="" disabled selected>Materiales*</option>
+                            <option *ngFor="let materiales of objListaMateriales" [value]="materiales._id">
+                                {{ materiales.nombreObra }}
+                            </option>
+                        </select>
+                        <div *ngIf=" salidaMateriales.controls['idMaterial'].invalid && (salidaMateriales.controls['idMaterial'].dirty || salidaMateriales.controls['idMaterial'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="salidaMateriales.controls['idMaterial'].errors.required">El campo codigo es requerido</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <select class="form-control" id="idObra" formControlName="idObra">
+                            <option value="" disabled selected>Obras*</option>
+                            <option *ngFor="let obras of objListaObras" [value]="obras._id">
+                                {{ obras.nombreObra }}
+                            </option>
+                        </select>
+                        <div *ngIf=" salidaMateriales.controls['idObra'].invalid && (salidaMateriales.controls['idObra'].dirty || salidaMateriales.controls['idObra'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="salidaMateriales.controls['idObra'].errors.required">El campo codigo es requerido</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group calendario-position">
+                        <input type="text" [readonly]="true" [minDate]="minDate" (dateSelect)="fechaInicial($event)" class="form-control" id="fecha" placeholder="{{this.salidaMateriales.controls['fecha'].value ? this.salidaMateriales.controls['fecha'].value : 'Fecha*'}}"
+                            formControlName="fecha" ngbDatepicker #inicio="ngbDatepicker">
+                        <div class="input-group-append calendar-absolute">
+                            <button class="btn btn-outline-secondary calendar" (click)="inicio.toggle()" type="button"> <i class="far fa-calendar-alt"></i> </button>
+                        </div>
+                        <div *ngIf=" salidaMateriales.controls['fecha'].invalid && (salidaMateriales.controls['fecha'].dirty || salidaMateriales.controls['fecha'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="salidaMateriales.controls['fecha'].errors.required">El campo Fecha es requerido</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Cantidad*" id="cantidad" formControlName="cantidad">
+                        <div *ngIf=" salidaMateriales.controls['cantidad'].invalid && (salidaMateriales.controls['cantidad'].dirty || salidaMateriales.controls['cantidad'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="salidaMateriales.controls['cantidad'].errors.required">El campo cantidad es requerido</div>
+                            <div *ngIf="salidaMateriales.controls['cantidad'].errors.maxlength">El campo cantidad debe tener máximo 10 carácteres</div>
+                            <div *ngIf="salidaMateriales.controls['cantidad'].errors.pattern">El campo cantidad es tipo numérico</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row botones-creacion">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 text-right">
+                    <button type="submit" class="btn btn-success"> Crear </button>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 text-left">
+                    <button type="button" (click)="resetear()" class="btn btn-danger"> Cancelar </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</div-->

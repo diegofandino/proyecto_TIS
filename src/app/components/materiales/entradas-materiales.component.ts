@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DashboardService } from 'src/app/services/dashboard.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-entradas-materiales',
@@ -10,12 +11,25 @@ import { DashboardService } from 'src/app/services/dashboard.service';
   styleUrls: ['./entradas-materiales.component.scss']
 })
 export class EntradasMaterialesComponent implements OnInit {
+  fechainicial: any;
+  //today: number = Date.now();
   minDate: any;
+  objListaObras: any[] = [];
+  
+
   entradaMateriales: FormGroup
   constructor(private formbuilder: FormBuilder, private router: Router, private dashboardService: DashboardService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,private datepipe: DatePipe) {
+      this.dashboardService.getObras()
+      .subscribe( (respuesta: any) => {  
+        console.log(respuesta)
+        this.objListaObras = respuesta.obras 
+        console.log(respuesta.obras) 
+      });
+     }
 
   ngOnInit(): void {
+    
     this.entradaMateriales = this.formbuilder.group({
       idMaterial: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
       idObra: new FormControl ('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]),
@@ -29,10 +43,22 @@ export class EntradasMaterialesComponent implements OnInit {
       month: fechaActual.getMonth() + 1,
       day: fechaActual.getDate()
     };
+
   }
 
     get f(){
     return this.entradaMateriales.controls;
+  }
+
+  dateToString = (date) => {
+    console.log(date)
+  return  `${date.year}-${date.month}-${date.day}`;
+  }
+
+  fechaInicial(fecha){
+    let fechainicialModify = new Date(fecha.year, fecha.month - 1, fecha.day);
+    this.fechainicial = this.datepipe.transform(fechainicialModify, 'yyyy-MM-dd');
+    console.log(this.fechainicial)
   }
 
   crear(values){
@@ -59,6 +85,13 @@ export class EntradasMaterialesComponent implements OnInit {
     this.router.navigate(['/materiales']);
   }
 
-  
+  /*cargarObras(){
+    this.dashboardService.getObras()
+    .subscribe((obrasdata:any) => {
+      this.objListaObras = obrasdata;
+      console.log(obrasdata);
+      console.log(this.objListaObras);
+    })
+  }*/
 
 }

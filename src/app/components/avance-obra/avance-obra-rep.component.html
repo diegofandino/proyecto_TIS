@@ -27,7 +27,10 @@
                             <td class="text-center">{{ obra.fechaInicio}}</td>
                             <td class="text-center">{{ obra.fechaFin}}</td>
                             <td class="text-center">
-                                <a [routerLink]="['/ver-plano', obra.identObra]" routerLinkActive="router-link-active" class="cursor-pointer btn btn-success btn-texto"> <i class="fas fa-file-pdf" style="color: #ffffff;"></i></a>
+                                <a [attr.href]="url/obra/pdf/obra.usuario/obra.regPlano" class="cursor-pointer btn btn-success btn-texto"> <i class="fas fa-file-pdf" style="color: #ffffff;"></i></a>
+                            </td>
+                            <td>
+                                {{url/obra/pdf/obra.usuario/obra.regPlano}}
                             </td>
                             <!--td class="text-center"><a (click)="open(i+1)" class="cursor-pointer btn btn-danger btn-texto"><i class="far fa-trash-alt" style="color: #ffffff;"></i></a></td-->
                         </tr>

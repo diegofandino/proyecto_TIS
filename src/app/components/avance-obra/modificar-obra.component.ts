@@ -114,6 +114,7 @@ export class ModificarObraComponent implements OnInit {
 
     const formData1 = new FormData();
     formData1.append('identObra',this.modificarObra.controls['identObra'].value );
+    formData1.append('_id',this.idModificar);
     formData1.append('nombreObra',this.modificarObra.controls['nombreObra'].value );
     formData1.append('descripcion',this.modificarObra.controls['descripcion'].value );
     formData1.append('fechaInicio', this.convertFormatoNorm(this.modificarObra.controls['fechaInicio'].value));
@@ -129,6 +130,7 @@ export class ModificarObraComponent implements OnInit {
     .subscribe( (respuesta: any) => {
       console.log("Proceso exitoso", respuesta)
       this.toastr.success('¡Registro exitoso!', '');
+      this.idModificar = '';
       this.resetear();
     });
 

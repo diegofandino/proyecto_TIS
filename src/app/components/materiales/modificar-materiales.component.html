@@ -53,7 +53,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Cantidad*" id="cantidad" formControlName="cantidad">
+                        <input disabled type="text" class="form-control" placeholder="Cantidad*" id="cantidad" formControlName="cantidad">
                         <div *ngIf=" modificarMateriales.controls['cantidad'].invalid && (modificarMateriales.controls['cantidad'].dirty || modificarMateriales.controls['cantidad'].touched)" class="alert alert-danger formulario-error">
                             <div *ngIf="modificarMateriales.controls['cantidad'].errors.required">El campo cantidad es requerido</div>
                             <div *ngIf="modificarMateriales.controls['cantidad'].errors.maxlength">El campo cantidad debe tener máximo 5 carácteres</div>

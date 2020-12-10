@@ -95,17 +95,19 @@
             </div>
 
             <div class="row">
-                <!--<div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <select name="obra" class="form-control" id="obra" formControlName="obra">
-                            <option value="" disabled selected>Obra*</option>
-                            <option value="obra1"> Obra 1 </option>
-                            <option value="obra2"> Obra 2 </option>
+                        <select class="form-control" id="idObra" formControlName="idObra">
+                            <option value="" disabled selected>Obras*</option>
+                            <option *ngFor="let obras of objListaObras" [value]="obras._id">
+                                {{ obras.nombreObra }}
+                            </option>
                         </select>
+                        <div *ngIf=" crearTrabajadores.controls['idObra'].invalid && (crearTrabajadores.controls['idObra'].dirty || crearTrabajadores.controls['idObra'].touched)" class="alert alert-danger formulario-error">
+                            <div *ngIf="crearTrabajadores.controls['idObra'].errors.required">El campo codigo es requerido</div>
+                        </div>
                     </div>
-                    <div *ngIf=" crearTrabajadores.controls['obra'].invalid && (crearTrabajadores.controls['obra'].dirty || crearTrabajadores.controls['obra'].touched)" class="alert alert-danger formulario-error">
-                    </div>
-                </div> -->
+                </div>
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
                         <select name="activo" class="form-control" id="activo" formControlName="activo">

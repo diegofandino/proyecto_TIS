@@ -17,6 +17,7 @@ export class RegistrarAvaobraComponent implements OnInit {
   title = 'geolocation';
   public latitude;
   public longitude;
+  objListaObras: any[] = [];
 
   
   //Captura video
@@ -42,7 +43,14 @@ export class RegistrarAvaobraComponent implements OnInit {
   datosUsuarioAut: any;
   
   constructor(private formbuilder: FormBuilder, private router: Router, private dashboardService: DashboardService,
-    private toastr: ToastrService, private datepipe: DatePipe,private renderer: Renderer2,public locationService: LocationService, private authService: AuthService) { }
+    private toastr: ToastrService, private datepipe: DatePipe,private renderer: Renderer2,public locationService: LocationService, private authService: AuthService) { 
+      this.dashboardService.getObras()
+      .subscribe( (respuesta: any) => {  
+        console.log(respuesta)
+        this.objListaObras = respuesta.obras 
+        console.log(respuesta.obras) 
+      });
+    }
 
   ngOnInit(): void {
     this.startCamera();

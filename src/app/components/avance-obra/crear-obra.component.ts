@@ -78,7 +78,7 @@ export class CrearObraComponent implements OnInit {
     console.log(this.fechafinal)
   }
 
-  crear(values){
+  async crear(values){
     console.log("Entro aqui:" + values );
     if( !this.crearObras.valid ){
       console.log(this.crearObras.value);
@@ -96,8 +96,9 @@ export class CrearObraComponent implements OnInit {
       }
 
       this.dashboardService.subirObraTemp( this.fileParaSubir )
-          .subscribe( (respuesta: any) => { console.log(respuesta) } );
+          .subscribe( (respuesta: any) => {
 
+            
 
       const formData1 = new FormData();
       formData1.append('identObra',this.crearObras.controls['identObra'].value );
@@ -108,7 +109,6 @@ export class CrearObraComponent implements OnInit {
       formData1.append('fechaFin', this.fechafinal );
       formData1.append('activo', this.crearObras.controls['activo'].value );
 
-      console.log(formData1);
 
       this.dashboardService.crearObra( formData1 )
         .subscribe( (respuesta: any) => {
@@ -116,6 +116,8 @@ export class CrearObraComponent implements OnInit {
           this.toastr.success('¡Registro exitoso!', '');
           this.resetear();
       });
+
+    });
 
   }
 

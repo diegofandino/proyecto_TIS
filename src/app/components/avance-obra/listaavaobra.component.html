@@ -28,7 +28,7 @@
                             <td class="text-center">{{ avanceobra.fechaAvance}}</td>
                             <td class="text-center">{{ avanceobra.descripcion}}</td>
                             <td class="text-center">
-                                <a [routerLink]="['/ver-obra', avanceobra.idObra]" routerLinkActive="router-link-active" class="cursor-pointer btn btn-success btn-texto"> <i class="fas fa-image" style="color: #ffffff;"></i></a>
+                                <img style="width:150px;height:150px; object-fit: contain;" [attr.src]="url + '/avanceObra/imagen/' + avanceobra.usuario._id + '/' + avanceobra.foto[0]">
                             </td>
                             <!--td class="text-center"><a (click)="open(i+1)" class="cursor-pointer btn btn-danger btn-texto"><i class="far fa-trash-alt" style="color: #ffffff;"></i></a></td-->
                         </tr>

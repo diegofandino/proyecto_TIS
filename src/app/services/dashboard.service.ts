@@ -70,7 +70,7 @@ export class DashboardService {
   return this.http.post( `${environment.url}cliente/update`, objeto , {headers: this.headers});
   }
   actualizarObra( objeto ){
-  return this.http.post( `${environment.url}obra/update`, objeto , {headers: this.headers});
+  return this.http.post( `${environment.url}obra/update`, objeto );
   }
   listarClientes( ){
     return this.http.get( `${environment.url}cliente/`);

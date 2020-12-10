@@ -10,10 +10,18 @@ import { DashboardService } from 'src/app/services/dashboard.service';
   styleUrls: ['./crear-trabajadores.component.scss']
 })
 export class CrearTrabajadoresComponent implements OnInit {
+  objListaObras: any[] = [];
 
   crearTrabajadores: FormGroup
   constructor(private formbuilder: FormBuilder, private router: Router, private dashboardService: DashboardService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService) { 
+      this.dashboardService.getObras()
+      .subscribe( (respuesta: any) => {  
+        console.log(respuesta)
+        this.objListaObras = respuesta.obras 
+        console.log(respuesta.obras) 
+      });
+    }
 
   ngOnInit(): void {
 
@@ -26,7 +34,7 @@ export class CrearTrabajadoresComponent implements OnInit {
       email: new FormControl ('', [Validators.required, Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$')]),
       direccion: new FormControl ('', Validators.required),
       cargo: new FormControl ('', Validators.required),
-      //obra: new FormControl (''),
+      idObra: new FormControl (''),
       activo: new FormControl ('', Validators.required)
     })
 

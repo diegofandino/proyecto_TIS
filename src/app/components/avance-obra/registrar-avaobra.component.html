@@ -20,13 +20,14 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12">
                     <div class="form-group">
-                        <select name="idObra" class="form-control" id="idObra" formControlName="idObra">
-                            <option value="" disabled selected>Obra*</option>
-                            <option value="O1"> Obra 1 </option>
-                            <option value="O2"> Obra 2 </option>
+                        <select class="form-control" id="idObra" formControlName="idObra">
+                            <option value="" disabled selected>Obras*</option>
+                            <option *ngFor="let obras of objListaObras" [value]="obras._id">
+                                {{ obras.nombreObra }}
+                            </option>
                         </select>
                         <div *ngIf=" avanceObras.controls['idObra'].invalid && (avanceObras.controls['idObra'].dirty || avanceObras.controls['idObra'].touched)" class="alert alert-danger formulario-error">
-                            <div *ngIf="avanceObras.controls['idObra'].errors.required">El campo Identidad de la obra es requerido</div>
+                            <div *ngIf="avanceObras.controls['idObra'].errors.required">El campo codigo es requerido</div>
                         </div>
                     </div>
                 </div>

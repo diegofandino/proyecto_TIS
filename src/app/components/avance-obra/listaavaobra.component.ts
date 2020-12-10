@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AvanceObras} from 'src/app/models/avanceobras.models';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { ModalComponent } from '../../components/modal/modal.component';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-listaavaobra',
@@ -10,7 +11,7 @@ import { ModalComponent } from '../../components/modal/modal.component';
   styleUrls: ['./listaavaobra.component.scss']
 })
 export class ListaavaobraComponent implements OnInit {
-
+  url: string;
   page = 1;
   pageSize = 5;
   avanceobrasLista: AvanceObras[] = [];
@@ -19,10 +20,11 @@ export class ListaavaobraComponent implements OnInit {
   constructor(private modalService: NgbModal, private dashboardService: DashboardService) { }
 
   ngOnInit(): void {
+    this.url = (environment.url).slice(0, -1);
     this.dashboardService.listarAvanceObras()
     .subscribe( (respuesta: any) => {
       console.log(respuesta);
-      this.avanceobrasLista = respuesta.avanceobras;
+      this.avanceobrasLista = respuesta.avanceObras;
     } );
 
     this.refrescarAvanceObras();

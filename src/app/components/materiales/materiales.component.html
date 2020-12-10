@@ -4,23 +4,21 @@
             <h1>Consultar materiales</h1>
         </div>
         <div class="col-lg-3 col-sm-6 text-right titulos-principales">
-            <div>
-                <a [routerLink]="['/crear-materiales']" routerLinkActive="router-link-active" class="cursor-pointer btn btn-primary btn-texto">
-                   Crear material 
-                </a>
-            </div>
-            <div><br></div>
-            <div>
-                <a [routerLink]="['/entradas-materiales']" routerLinkActive="router-link-active" class="cursor-pointer btn btn-primary btn-texto">
-                    Entrada material
-                 </a>
-            </div>
-            <div><br></div>
-            <div>
-                <a [routerLink]="['/salidas-materiales']" routerLinkActive="router-link-active" class="cursor-pointer btn btn-primary btn-texto">
-                    Salida material
-                 </a>
-            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="text-center" scope="col"><a [routerLink]="['/crear-materiales']" routerLinkActive="router-link-active" class="cursor-pointer btn btn-primary btn-texto">
+                            Crear material 
+                         </a></th>
+                        <th class="text-center" scope="col"><a [routerLink]="['/entradas-materiales']" routerLinkActive="router-link-active" class="cursor-pointer btn btn-primary btn-texto">
+                            Entrada material
+                         </a></th>
+                        <th class="text-center" scope="col"><a [routerLink]="['/salidas-materiales']" routerLinkActive="router-link-active" class="cursor-pointer btn btn-primary btn-texto">
+                            Salida material
+                         </a></th>
+                    </tr>
+                </thead>
+            </table>
         </div>
     </div>
     <div class="row">

@@ -7,6 +7,9 @@ import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/co
 import { LocationService } from 'src/app/services/location.service';
 import jwt_decode from 'jwt-decode';
 import { AuthService } from 'src/app/services/auth.service';
+import { environment } from '../../../environments/environment';
+import { Obras } from 'src/app/models/obras.models';
+
 @Component({
   selector: 'app-registrar-avaobra',
   templateUrl: './registrar-avaobra.component.html',
@@ -18,6 +21,7 @@ export class RegistrarAvaobraComponent implements OnInit {
   public latitude;
   public longitude;
   objListaObras: any[] = [];
+  url: string;
 
   
   //Captura video
@@ -41,6 +45,10 @@ export class RegistrarAvaobraComponent implements OnInit {
   uploadFileEvent: boolean;
   fechainicial: any;
   datosUsuarioAut: any;
+
+  obrasLista: Obras[] = [];
+  collectionSize = this.obrasLista.length;
+  countries: any[];
   
   constructor(private formbuilder: FormBuilder, private router: Router, private dashboardService: DashboardService,
     private toastr: ToastrService, private datepipe: DatePipe,private renderer: Renderer2,public locationService: LocationService, private authService: AuthService) { 
@@ -49,10 +57,16 @@ export class RegistrarAvaobraComponent implements OnInit {
         console.log(respuesta)
         this.objListaObras = respuesta.obras 
         console.log(respuesta.obras) 
+      }),
+      this.dashboardService.listarObras()
+      .subscribe( (respuesta: any) => {
+      console.log(respuesta);
+      this.obrasLista = respuesta.obras;
       });
     }
 
   ngOnInit(): void {
+    this.url = (environment.url).slice(0, -1);
     this.startCamera();
     let location = this.getLocation();
 
@@ -107,35 +121,36 @@ export class RegistrarAvaobraComponent implements OnInit {
         this.toastr.error('Existen campos obligatorios sin diligenciar', '');
         return;
       }
-
       this.dashboardService.subirImgObraTemp( this.fileParaSubir )
-          .subscribe( (respuesta: any) => { console.log(respuesta) } );
+      .subscribe( (respuesta: any) => {  
 
-      console.log("Si se puede crear el form");
-      console.log(this.avanceObras.value);
+  console.log("Si se puede crear el form");
+  console.log(this.avanceObras.value);
 
-   const formData1 = new FormData();
-    formData1.append('idObra',this.avanceObras.controls['idObra'].value );    
-    formData1.append('fechaAvance', this.fechainicial);
-    formData1.append('descripcion',this.avanceObras.controls['descripcion'].value );
-    formData1.append('latitude',this.avanceObras.controls['latitude'].value );
-    formData1.append('longitude',this.avanceObras.controls['longitude'].value );
-    formData1.append('usuario', this.datosUsuarioAut['usuario']._id );
+const formData1 = new FormData();
+formData1.append('idObra',this.avanceObras.controls['idObra'].value );    
+formData1.append('fechaAvance', this.fechainicial);
+formData1.append('descripcion',this.avanceObras.controls['descripcion'].value );
+formData1.append('latitude',this.avanceObras.controls['latitude'].value );
+formData1.append('longitude',this.avanceObras.controls['longitude'].value );
+formData1.append('usuario', this.datosUsuarioAut['usuario']._id );
 
-    //console.log('Info User: ' + this.datosUsuarioAut['usuario']._id);
+//console.log('Info User: ' + this.datosUsuarioAut['usuario']._id);
 
-    formData1.forEach( (elemento) => {
-      console.log("Enviar al back datos", elemento );
-    } );
+formData1.forEach( (elemento) => {
+  console.log("Enviar al back datos", elemento );
+} );
 
-    this.dashboardService.avanceObra( formData1 )
-      .subscribe( (respuesta: any) => {
-       console.log("Proceso exitoso", respuesta)
-       this.toastr.success('¡Registro exitoso!', '');
-       this.resetear();
-    });
+this.dashboardService.avanceObra( formData1 )
+  .subscribe( (respuesta: any) => {
+   console.log("Proceso exitoso", respuesta)
+   this.toastr.success('¡Registro exitoso!', '');
+   this.resetear();
+});
 
-  }
+} );
+
+}
   //Subir archivo
   fileInputChange(evento) {
     this.fileParaSubir = evento[0];

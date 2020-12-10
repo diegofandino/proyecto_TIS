@@ -90,6 +90,11 @@
                 </div>
             </div>
 
+            <!--button *ngFor="let obra of obrasLista, let i = index">
+                <a target="_blank" download *ngIf="obra.regPlano.length != 0" [attr.href]="url + '/obra/pdf/' + obra.usuario + '/' + obra.regPlano[0]" class="cursor-pointer btn btn-success btn-texto" [attr.download]> <i class="fas fa-file-pdf" style="color: #ffffff;"></i></a>
+            </button-->
+            
+
             <div class="row botones-creacion">
                 <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12 text-right">
                     <button type="submit" class="btn btn-success"> Crear </button>

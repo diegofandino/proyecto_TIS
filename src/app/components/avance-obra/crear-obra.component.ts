@@ -98,8 +98,6 @@ export class CrearObraComponent implements OnInit {
       this.dashboardService.subirObraTemp( this.fileParaSubir )
           .subscribe( (respuesta: any) => {
 
-            
-
       const formData1 = new FormData();
       formData1.append('identObra',this.crearObras.controls['identObra'].value );
       formData1.append('usuario', this.datosUsuarioAut['usuario']._id );
@@ -116,7 +114,6 @@ export class CrearObraComponent implements OnInit {
           this.toastr.success('¡Registro exitoso!', '');
           this.resetear();
       });
-
     });
 
   }
